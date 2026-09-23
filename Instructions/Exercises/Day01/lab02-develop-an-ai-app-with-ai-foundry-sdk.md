@@ -23,7 +23,7 @@ Before starting this exercise, ensure you have:
 ## Prerequisites
 
 - An active [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account)
-- [Python 3.13](https://www.python.org/downloads/) or later installed
+- [Python 3.12](https://www.python.org/downloads/) or later installed
 - **Azure CLI** installed - [Install Azure CLI](https://aka.ms/installazurecliwindows)
 - [Visual Studio Code](https://code.visualstudio.com/) installed on your local machine
 - A web browser
@@ -75,7 +75,7 @@ You'll write a small Python app that connects to your Foundry project and holds 
 
 ### Prepare the application configuration
 
-1. Open a web browser and go to the [chat-app lab files on GitHub](https://github.com/Kiran-255666/agentic-ai-azure-ai-foundry-labs).
+1. Open a web browser and go to the [GitHub](https://github.com/Kiran-255666/AgenticAIEngineer).
 1. On the repo page, select the green **`<> Code`** button, then select **Download ZIP**.
 
     ![Screenshot of the Code button.](../../media/code.png)
@@ -83,7 +83,7 @@ You'll write a small Python app that connects to your Foundry project and holds 
 1. Inside the extracted folder, open this path to find the chat app files:
 
     ```
-    labfiles/Day-01-summary/lab-01-develop-an-ai-app-with-ai-foundry-sdk/python/chat-app
+    labfiles/Day01/lab02-develop-an-ai-app-with-ai-foundry-sdk/python/chat-app
     ```
 
     You should see a code file, a configuration file for app settings, and a file listing the Python packages the app needs.
@@ -114,7 +114,7 @@ You'll write a small Python app that connects to your Foundry project and holds 
     code .env
     ```
 
-1. In the file, replace `your_project_endpoint` with the endpoint you saved earlier, and `your_model_deployment` with the deployment name you saved too.
+1. In the file, replace those placeholder values by actual vales.
 1. Save with **Ctrl+S** (or right-click and choose Save), then close the editor while keeping your terminal open.
 
 ### Write code to connect to your project and chat with your model (Note: We have the code updated in the mentioned files instructions but verify before you start the execution, so that there are no indentation issues)
@@ -185,47 +185,78 @@ You'll write a small Python app that connects to your Foundry project and holds 
 
 1. Save the file with **Ctrl+S**.
 
-# Sign into Azure and run the app
+## Sign in to Azure and Verify Your Account
 
-1. Check whether you're already signed in:
+### 1. Sign in to Azure
 
-    ```
-    az account show
-    ```
+```bash
+az login
+````
 
-    If this shows your account details, skip to step 3. If it shows an error, or shows the wrong account, sign out first:
+**image**
 
-    ```
-    az logout
-    ```
+Follow the prompts:
 
-1. Sign in to Azure:
+* Open the sign-in page that appears.
+* Enter the code shown in the terminal.
+* Click **"Assigned by your organization"**.
+* Sign in using the credentials provided by your trainer.
 
-    ```
-    az login
-    ```
+If you're prompted to select a subscription or tenant, type:
 
-    You need to do this even if your terminal session already knows who you are; the app itself needs its own sign-in. The first time you run this exercise, use this step directly. After that, always check with `az account show` first, and only run `az login` again if it's needed.
+```text
+1
+```
 
-    Follow the prompts: open the sign-in link in a new tab, enter the code shown, and sign in using the account your trainer gave you. Back in the terminal, pick the subscription containing the Foundry project if you're asked to.
+and press **Enter**.
 
-    If you're asked to pick a subscription or tenant, type **1** and press Enter.
+### 2. If `az login` Fails
 
-    > If your account has access to subscriptions in more than one tenant, add the `--tenant` parameter instead. See [Sign into Azure interactively using the Azure CLI](https://learn.microsoft.com/cli/azure/authenticate-azure-cli-interactively) for details.
+Sign out completely and try again:
+
+```bash
+az logout
+```
+
+Then sign in again:
+
+```bash
+az login
+```
+
+If prompted, select:
+
+```text
+1
+```
+
+for the subscription.
+
+### 3. Verify the Active Account
+
+After signing in successfully, confirm that Azure CLI is using the correct account:
+
+```bash
+az account show
+```
+
+You should see your account and subscription details.
 
 1. Run the app:
 
-    ```
+    ```bash
     python chat-app.py
     ```
 
     ![Screenshot of the terminal running chat-app.py, showing the app started and waiting for input.](../../media/response-00.png)
 
-1. When prompted, type a question, such as "What is the fastest animal on Earth?", and read the model's reply.
-1. Ask a follow-up, like "Where can I see one?" or "Are they endangered?" The model should answer using the earlier question as context, since your app is saving the conversation history.
+2. When prompted, type a question, such as "What is the fastest animal on Earth?", and read the model's reply.
 
-    ![Screenshot of the reponses](../../media/response-01.png)
-1. Type "quit" to exit the program.
+3. Ask a follow-up, like "Where can I see one?" or "Are they endangered?" The model should answer using the earlier question as context, since your app is saving the conversation history.
+
+    ![Screenshot of the responses](../../media/response-01.png)
+
+4. Type "quit" to exit the program.
 
     > If the app stops with a rate-limit error, wait a few seconds and try again. If there isn't enough quota left on the deployment, the model may not respond at all; check with your trainer if this happens.
 
