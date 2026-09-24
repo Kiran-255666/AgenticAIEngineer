@@ -92,7 +92,7 @@ pip install -r requirements.txt
 > 1. Copying the required lab folder to a shorter location, such as the Desktop: (the path below is the expected path; verify it matches your VM before running the command):
 >
 >    ```powershell
->    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\Instructions\Exercises\Day02\lab03-byod-openai" "C:\Users\agenticuser\Desktop\lab03-byod-openai" -Recurse
+>    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai" "C:\Users\agenticuser\Desktop\lab03-byod-openai" -Recurse
 >    ```
 >
 >    Then navigate to the shorter path:
