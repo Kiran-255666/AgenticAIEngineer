@@ -10,7 +10,7 @@ In the full credit-risk workflow, validation happens early:
 
 ```mermaid
 graph LR
-    A["📊 Application Received"] --> B["Day 2: Document Validation"]
+    A["Application Received"] --> B["Day 2: Document Validation"]
     B --> C["Document Presence Check"]
     B --> D["Name Comparison"]
     C --> E{Both docs present?}
@@ -19,7 +19,7 @@ graph LR
     E -->|Yes| F
     F -->|No| H["FAIL: Name mismatch"]
     F -->|Yes| I["PASS: Proceed"]
-    G --> J["🔄 Credit Scoring & Risk Assessment"]
+    G --> J["Credit Scoring & Risk Assessment"]
     H --> J
     I --> J
 ```
