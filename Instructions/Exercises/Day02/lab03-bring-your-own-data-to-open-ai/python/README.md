@@ -1,4 +1,4 @@
-# Credit Risk Document Validation (Day 2 Lab)
+# Credit Risk Document Validation
 
 ## What this does
 
