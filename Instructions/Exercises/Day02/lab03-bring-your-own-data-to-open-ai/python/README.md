@@ -78,7 +78,7 @@ pip install -r requirements.txt
 ```
 
 > [!NOTE]
-> TLDR: if `python -m venv labenv` errors out on the VM, swap `python` for `py`:
+> If `python -m venv labenv` errors out on the VM, swap `python` for `py`:
 > ```powershell
 > py -m venv labenv
 > .\labenv\Scripts\Activate.ps1
