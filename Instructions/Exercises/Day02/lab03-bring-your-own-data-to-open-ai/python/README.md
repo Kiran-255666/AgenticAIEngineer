@@ -431,6 +431,17 @@ Get credentials from Azure Portal:
 ## Setup
 
 **Windows (PowerShell):**
+
+Run the following commands:
+
+```powershell
+python -m venv labenv
+.\labenv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+**If the above setup fails, use the following instead:**
+
 ```powershell
 py -m venv .venv
 .venv\Scripts\Activate.ps1
