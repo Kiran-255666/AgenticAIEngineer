@@ -16,7 +16,7 @@ A person comparing two PDFs by eye is slow, and two people won't always agree. O
 > [!NOTE]
 > This is faster than a manual check, but it can go further. Azure's own OCR tool, Azure AI Vision (Read API), plus Azure Document Intelligence for structured documents, could read the uploaded certificates directly instead of someone typing in what's on them. Day 2 is focused on prompt engineering, so this lab sticks to that and leaves the OCR side for later.
 
-## Architecture, in plain words
+## Architecture
 
 There's one script, `prompt_engineering.py`, and it does everything. Before it can talk to Azure, it needs three things ready on disk:
 
@@ -75,15 +75,45 @@ Create and activate a Python virtual environment, then install the dependencies:
 python -m venv labenv
 .\labenv\Scripts\Activate.ps1
 pip install -r requirements.txt
-```
+````
 
 > [!NOTE]
 > If `python -m venv labenv` errors out on the VM, swap `python` for `py`:
+>
 > ```powershell
 > py -m venv labenv
 > .\labenv\Scripts\Activate.ps1
 > pip install -r requirements.txt
 > ```
+
+> [!TIP]
+> If you encounter an issue due to the path length exceeding 120 characters, you can resolve it by:
+>
+> 1. Copying the required lab folder to a shorter location, such as the Desktop: (the path below is the expected path; verify it matches your VM before running the command):
+>
+>    ```powershell
+>    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\Instructions\Exercises\Day02\lab03-byod-openai" "C:\Users\agenticuser\Desktop\lab03-byod-openai" -Recurse
+>    ```
+>
+>    Then navigate to the shorter path:
+>
+>    ```powershell
+>    cd "C:\Users\agenticuser\Desktop\lab03-byod-openai"
+>    ```
+>
+> 2. Alternatively, shorten the parent folder names to reduce the overall path length. For example:
+>
+>    ```text
+>    AgenticAIEngineer-main\AgenticAIEngineer-main\Instructions\Exercises\Day02\lab03-byod-openai
+>    ```
+>
+>    can be shortened to:
+>
+>    ```text
+>    a\b\c\d\e\lab03-byod-openai
+>    ```
+>
+>    This reduces the overall path length while keeping the `lab03-byod-openai` folder unchanged.
 
 Fill in `.env`:
 
