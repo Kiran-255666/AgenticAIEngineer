@@ -20,7 +20,7 @@ This exercise takes approximately **30** minutes.
 ## Prerequisites
 
 - An active [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account)
-- [Python 3.13](https://www.python.org/downloads/) or later installed
+- [Python 3.12](https://www.python.org/downloads/) or later installed
 - **Azure CLI** installed. [Install Azure CLI](https://aka.ms/installazurecliwindows)
 - [Visual Studio Code](https://code.visualstudio.com/) installed on your local machine
 - A web browser
@@ -44,27 +44,7 @@ This exercise takes approximately **30** minutes.
 
     ![Screenshot of the Foundry project home page, showing the API key, Project endpoint, and Azure OpenAI endpoint fields.](../../media/project-home-page-1.png)
 
-1. To confirm the name of your deployed model, use any of these:
-    - Under **Use a model**, select **View deployments**
-
-        ![Screenshot of the View deployments page, listing the deployed model name.](../../media/view-deployments.png)
-
-    - On the same home page scroll down, check the **Recent work** or **All** section
-
-        ![Screenshot of the Recent work / All section on the home page, showing the deployed model.](../../media/recent-work-all.png)
-
-    - In the top menu, select **Build**, then **Models**
-
-        ![Screenshot of the Build menu with Models selected, showing the deployed model name.](../../media/build-models.png)
-
-    Note this exact name too.
-1. On the project home page, find the **Project endpoint** field and copy the value shown there directly. This is the web address your app will use to reach your project and model. (The **Azure OpenAI endpoint** field, shown next to it, works too if you prefer to use that instead.)
-
-    ![Screenshot of the API key, Project endpoint, and Azure OpenAI endpoint fields, with the copy icon next to Project endpoint highlighted.](../../media/project-endpoint-copy.png)
-
-1. Copy both the endpoint and the deployment name into a local text file and save it somewhere safe. You'll paste these values into a configuration file later in this exercise, and you'll need them again in later exercises.
-
-    > **Tip**: If you don't see a project or a deployment here, check with your trainer before continuing.
+1. Copy the API key from there and save it somewhere temporarily, such as Notepad **(for safety, do not share or commit the key)**. Paste the key into the `.env` file when executing the lab, and use the pre-filled Azure OpenAI endpoint **(please recheck the endpoint before running the lab)**.
 
 # Explore prompt engineering techniques
 
@@ -211,7 +191,7 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 1. In the extracted folder, navigate to:
 
     ```
-    labfiles\Day-01-summary\lab-02-bring-your-own-data-to-open-ai\python\
+    labfiles\Day02\lab03-byod-openai
     ```
 
     This folder already contains everything you need for this exercise: `.env`, `grounding.txt`, `prompt_engineering.py`, `requirements.txt`, and `system.txt`.
@@ -230,10 +210,10 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 
 ## Configure your application
 
-1. In Visual Studio Code, open the `.env` file. It already contains placeholder values:
+1. In Visual Studio Code, open the `.env` file. Now place the API Key:
 
     ```env
-    AZURE_OPENAI_ENDPOINT=https://your_azure_openai_endpoint/openai/v1/
+    AZURE_OPENAI_ENDPOINT=https://hakunamatata1.openai.azure.com/openai/v1/
     AZURE_OPENAI_API_KEY=your_azure_openai_api_key
     AZURE_OPENAI_DEPLOYMENT=your_azure_openai_deployment
     ```
@@ -250,74 +230,124 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 1. Check `prompt_engineering.py` for any indentation issues before running it. Python uses indentation to define blocks of code, so an incorrectly indented line can cause an error when you execute the script.
 1. Save your changes.
 
-## Create a Python virtual environment
+## Running it
 
-1. In the Visual Studio Code terminal, make sure you're in the exercise's `python` folder.
+Create and activate a Python virtual environment, then install the dependencies:
 
-2. Create a virtual environment named `.venv`:
+```powershell
+python -m venv labenv
+.\labenv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
 
-   ```powershell
-   python -m venv .venv
-   ```
+> [!NOTE]
+> If `python -m venv labenv` errors out on the VM, swap `python` for `py`:
+>
+> ```powershell
+> py -m venv labenv
+> .\labenv\Scripts\Activate.ps1
+> pip install -r requirements.txt
+> ```
 
-   > **Note:** If `python -m venv .venv` returns an error in the Virtual Machine, use the Windows Python Launcher instead:
-   >
-   > ```powershell
-   > py -m venv .venv
-   > ```
+> [!TIP]
+> If you encounter an issue due to the path length exceeding 120 characters, you can resolve it by:
+>
+> 1. Copying the required lab folder to a shorter location, such as the Desktop **(the path below is the expected path; verify it matches your VM before running the command):**
+>
+>    ```powershell
+>    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai" "C:\Users\agenticuser\Desktop\lab03-byod-openai" -Recurse
+>    ```
+>
+>    Then navigate to the shorter path:
+>
+>    ```powershell
+>    cd "C:\Users\agenticuser\Desktop\lab03-byod-openai"
+>    ```
+>
+> 2. Alternatively, shorten the parent folder names to reduce the overall path length. For example:
+>
+>    ```text
+>    AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai
+>    ```
+>
+>    can be shortened to:
+>
+>    ```text
+>    a\b\c\d\e\lab03-byod-openai
+>    ```
+>
+>    This reduces the overall path length while keeping the `lab03-byod-openai` folder unchanged.
 
-3. Activate the virtual environment:
+## Configure Azure OpenAI
 
-   ```powershell
-   .venv\Scripts\Activate.ps1
-   ```
+Fill in the `.env` file:
 
-   After activation, you should see `(.venv)` at the beginning of the terminal prompt.
+```text
+AZURE_OPENAI_ENDPOINT=https://hakunamatata1.openai.azure.com/openai/v1/
+AZURE_OPENAI_API_KEY=your_actual_api_key
+AZURE_OPENAI_DEPLOYMENT=gpt-5.4-mini
+```
 
-   > **Tip:** If PowerShell prevents the activation script from running, open a Command Prompt terminal and use:
-   >
-   > ```cmd
-   > .venv\Scripts\activate.bat
-   > ```
+Copy the API key from the location provided by the instructor and save it somewhere temporarily, such as Notepad **(for safety, do not share or commit the key)**. Paste the key into `.env` when executing the lab and use the pre-filled Azure OpenAI endpoint **(please recheck the endpoint before running the lab)**.
 
-4. Install the required packages:
+## Run the application
 
-   ```powershell
-   pip install -r requirements.txt
-   ```
+Run the script:
 
+```powershell
+python prompt_engineering.py
+```
 
-## Run your application
+Select **option 1** when prompted. The application will ask for the client name and the state of each document.
 
-The `system.txt` file contains the system message that the application sends to the model. You'll edit and save this file between iterations. The application pauses each time so you can update the system message before sending the next request.
+Use these shortcuts:
 
-1. Make sure the virtual environment is activated and that you're in the exercise's `python` folder.
-1. Run the application:
+| Shortcut | Meaning                |
+| -------- | ---------------------- |
+| PR       | Present and readable   |
+| PU       | Present but unreadable |
+| PA       | Present but unclear    |
+| MI       | Missing                |
 
-    ```powershell
-    python prompt_engineering.py
-    ```
+## Test cases
 
-1. When the application pauses and asks you to continue, open `system.txt` in Visual Studio Code.
-1. Replace the contents of `system.txt` with the following system message, and save the file:
+### Pass
 
-    ```text
-    You're an AI assistant who helps people find information. You'll provide answers from the text provided in the prompt, and respond concisely.
-    ```
+```text
+Client: Contoso Technologies Pvt Ltd
+Registration Certificate: PR, name = Contoso Technologies Pvt Ltd
+GST Certificate: PR, name = CONTOSO TECHNOLOGIES PVT LTD
+```
 
-1. Return to the terminal and press **Enter** when prompted to continue.
-1. When prompted for the user message, enter:
+**Result:** `PASS`
 
-    ```text
-    What animal is the favorite of children at Contoso?
-    ```
+Only the letter case is different, and that is ignored.
 
-1. Review the model's response.
+### Fail
 
-    ![Screenshot of the terminal in Visual Studio Code, showing the .env file with placeholder values and the app's output after asking about Contoso's favorite animal.](../../media/result-01-02.png)
+```text
+Client: Contoso Technologies Pvt Ltd
+Registration Certificate: PR, name = Contoso Technology Pvt Ltd
+GST Certificate: PR, name = Contoso Technologies Pvt Ltd
+```
 
-1. Continue with the remaining iterations in the exercise by editing and saving `system.txt`, then entering the specified user message when prompted.
+**Result:** `FAIL, COMPANY_NAME_MISMATCH`
+
+"Technology" and "Technologies" are different words, so this is not treated as a formatting difference.
+
+### Manual review
+
+```text
+Client: Contoso Technologies Pvt Ltd
+Registration Certificate: PU
+GST Certificate: PR, name = Contoso Technologies Pvt Ltd
+```
+
+**Result:** `MANUAL_REVIEW, UNREADABLE_REGISTRATION_CERTIFICATE`
+
+A document that is present but unreadable is not the same as a missing document, so the case is sent for manual review instead of being automatically failed.
+
 
 ## Summary
 
-You explored how system instructions and examples can influence a model's responses in the Chat playground. You then created a Python virtual environment and ran an application that reads configuration from a `.env` file and sends different system messages and user prompts to your deployed Azure OpenAI model.
+You created a Python virtual environment, configured the `.env` file with your Azure OpenAI credentials, and ran an application that validates client documents against the provided information. You tested different document states and reviewed how the application handles matching information, mismatches, and cases that require manual review.
