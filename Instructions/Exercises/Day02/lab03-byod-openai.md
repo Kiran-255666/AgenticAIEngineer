@@ -278,18 +278,6 @@ pip install -r requirements.txt
 >
 >    This reduces the overall path length while keeping the `lab03-byod-openai` folder unchanged.
 
-## Configure Azure OpenAI
-
-Fill in the `.env` file:
-
-```text
-AZURE_OPENAI_ENDPOINT=https://hakunamatata1.openai.azure.com/openai/v1/
-AZURE_OPENAI_API_KEY=your_actual_api_key
-AZURE_OPENAI_DEPLOYMENT=gpt-5.4-mini
-```
-
-Copy the API key from the location provided by the instructor and save it somewhere temporarily, such as Notepad **(for safety, do not share or commit the key)**. Paste the key into `.env` when executing the lab and use the pre-filled Azure OpenAI endpoint **(please recheck the endpoint before running the lab)**.
-
 ## Run the application
 
 Run the script:
