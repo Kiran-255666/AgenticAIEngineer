@@ -73,111 +73,152 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 
 1. In **Instructions**, verify that the following default instruction is present:
 
+   ```text
+   You are an AI assistant that helps people find information.
+   ```
+
+2. If the instruction is not present, enter it manually.
+
+3. In the **Chat** message box, submit the following prompt:
+
+   ```text
+   Validate these company documents.
+
+   Client Company Name:
+
+   Contoso Technologies Pvt Ltd
+
+   Company Registration Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+
+   GST Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+   ```
+
+4. Review the response. With the default instruction, the model will usually explain or summarize the provided information instead of returning a specific document-validation outcome.
+
+5. In **Instructions**, replace the default instruction with the following:
+
+   ```text
+   You are a document validation assistant.
+
+   Check the following:
+
+   1. Company Registration Certificate is present.
+   2. GST Certificate is present.
+   3. The client company name matches the company name on both certificates.
+
+   Return only one of these outcomes:
+
+   PASS
+   FAIL
+   MANUAL_REVIEW
+   ```
+
+6. In the **Chat** pane, submit the following prompt. This prompt includes examples directly in the message because the new playground does not provide separate User and Assistant example fields.
+
+   ```text
+   Validate each submission using exactly one outcome:
+
+   PASS
+   FAIL
+   MANUAL_REVIEW
+
+   Example 1:
+
+   Client Company Name:
+
+   Contoso Technologies Pvt Ltd
+
+   Company Registration Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+
+   GST Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+
+   Outcome:
+
+   PASS
+
+   Example 2:
+
+   Client Company Name:
+
+   Contoso Technologies Pvt Ltd
+
+   Company Registration Certificate:
+
+   Company Name: Contoso Technology Pvt Ltd
+
+   GST Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+
+   Outcome:
+
+   FAIL
+
+   Now validate this submission:
+
+   Client Company Name:
+
+   Contoso Technologies Pvt Ltd
+
+   Company Registration Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+
+   GST Certificate:
+
+   Company Name: Contoso Technologies Pvt Ltd
+
+   Return only the outcome.
+   ```
+
+7. Verify that the model returns a single validation outcome. Depending on the prompt and model version, the exact response may vary, but it should be similar to:
+
+   ```text
+   PASS
+   ```
+
+8. This demonstrates that clear instructions, a defined output format, and examples help produce more consistent document-validation responses.
+
+9. In **Instructions**, replace the validation instruction with the following default instruction:
+
+   ```text
+   You are an AI assistant that helps people find information.
+   ```
+
+10. In the **Chat** pane, submit the following prompt:
+
     ```text
-    You are an AI assistant that helps people find information.
+    # 1. Check whether a Company Registration Certificate is present
+
+    # 2. Check whether a GST Certificate is present
+
+    # 3. Compare the company names
+
+    # 4. Return a validation result
     ```
 
-1. If the instruction is not present, enter it manually.
+11. Review the response. The model may treat the prompt as a plain-language request instead of consistently following the required validation process.
 
-1. In the **Chat** message box, submit the following prompt:
-
-    ```text
-    What kind of article is this?
-    ---
-    Severe drought likely in California
-
-    Millions of California residents are bracing for less water and dry lawns as drought threatens to leave a large swath of the region with a growing water shortage.
-
-    In a remarkable indication of drought severity, officials in Southern California have declared a first-of-its-kind action limiting outdoor water use to one day a week for nearly 8 million residents.
-
-    Much remains to be determined about how daily life will change as people adjust to a drier normal. But officials are warning the situation is dire and could lead to even more severe limits later in the year.
-    ```
-
-1. Review the response. With the default instruction, the model will usually describe or summarize the article instead of returning one category label.
-
-1. In **Instructions**, replace the default instruction with the following:
+12. In **Instructions**, replace the instruction with:
 
     ```text
-    You are a news classification assistant.
-
-    Categorize each news article using a single category label.
-
-    Respond with only one of these categories:
-    News, Sports, Entertainment, Technology, Business, Health, Science, or Other.
+    You are a document validation assistant helping validate company documents for a fictional credit-risk assessment.
     ```
 
-1. In the **Chat** pane, submit the following prompt. This prompt includes examples directly in the message because the new playground does not provide separate User and Assistant example fields.
+13. Send the same document-validation prompt again.
 
-    ```text
-    Classify each article using exactly one category:
-    News, Sports, Entertainment, Technology, Business, Health, Science, or Other.
+14. Review the response. The model should now provide a more focused response based on the document-presence and company-name checks.
 
-    Example 1:
-    Article:
-    New York Baseballers Wins Big Against Chicago
+15. When you finish testing, you can leave the playground open or return to the project home page to continue with the application section.
 
-    New York Baseballers mounted a big 5-0 shutout against the Chicago Cyclones last night.
-
-    Category:
-    Sports
-
-    Example 2:
-    Article:
-    Joyous moments at the Oscars
-
-    This year's Academy Awards were full of emotional performances, laughs, and memorable moments.
-
-    Category:
-    Entertainment
-
-    Now classify this article:
-    ---
-    Severe drought likely in California
-
-    Millions of California residents are bracing for less water and dry lawns as drought threatens to leave a large swath of the region with a growing water shortage.
-
-    In a remarkable indication of drought severity, officials in Southern California have declared a first-of-its-kind action limiting outdoor water use to one day a week for nearly 8 million residents.
-
-    Much remains to be determined about how daily life will change as people adjust to a drier normal. But officials are warning the situation is dire and could lead to even more severe limits later in the year.
-
-    Return only the category.
-    ```
-
-1. Verify that the model returns a single category label similar to:
-
-    ```text
-    News
-    ```
-
-    This demonstrates that clear instructions, a defined output format, and examples help produce more consistent responses.
-
-1. In **Instructions**, replace the classification instruction with the following default instruction:
-
-    ```text
-    You are an AI assistant that helps people find information.
-    ```
-
-1. In the **Chat** pane, submit the following prompt:
-
-    ```text
-    # 1. Create a list of animals
-    # 2. Create a list of whimsical names for those animals
-    # 3. Combine them randomly into a list of 25 animal and name pairs
-    ```
-
-1. Review the response. The model may treat the prompt as a plain-language request instead of a request for executable code.
-
-1. In **Instructions**, replace the instruction with:
-
-    ```text
-    You are a coding assistant helping write Python code.
-    ```
-
-1. Send the same animal-and-name prompt again.
-
-1. Review the response. The model should now produce Python code that creates lists of animals and names, then combines them into pairs.
-
-1. When you finish testing, you can leave the playground open or return to the project home page to continue with the application section.
 
 # Get the application files from GitHub
 
