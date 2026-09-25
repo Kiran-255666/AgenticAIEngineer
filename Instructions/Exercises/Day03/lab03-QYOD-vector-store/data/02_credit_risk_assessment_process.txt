@@ -1,0 +1,43 @@
+Credit Risk Assessment Process
+Version: 1.0 | Last updated: 2025-10-02
+
+Objective
+
+Assess customer creditworthiness using document verification, compliance validation, financial analysis, external bureau data, and industry risk evaluation.
+
+Process Overview
+
+Step 1
+Verify Company Registration Certificate and GST Certificate are available.
+
+Step 2
+Confirm the client company name matches both submitted certificates.
+
+Step 3
+Verify company legal status through the MCA database.
+
+Step 4
+Review sanctions, watchlists, and compliance findings from approved compliance screening sources.
+
+Step 5
+Collect financial statements for the previous two financial years.
+
+Step 6
+Calculate key financial ratios from the latest financial year:
+- Current Ratio
+- Debt-to-Equity Ratio
+- Net Profit Margin
+
+Step 7
+Retrieve the latest external credit bureau score.
+
+Step 8
+Assign an Industry Risk Rating using the Industry Risk Matrix.
+
+Step 9
+Determine the final risk outcome and recommended credit terms.
+
+Day 3 Focus
+
+Day 3 retrieval exercises focus only on Step 8 Industry Risk Rating.
+Other assessment steps are included for business context only.
