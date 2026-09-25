@@ -184,7 +184,9 @@ You'll write a small Python app that connects to your Foundry project and holds 
 
 ## Sign in to Azure and Verify Your Account
 
-### 1. Sign in to Azure
+### 1. Sign in to Azure 
+
+If you have already signed in to Azure earlier, you can skip this section and proceed directly to **Run the app** using `python chat-app.py`; otherwise, follow the flow below.
 
 ```bash
 az login
