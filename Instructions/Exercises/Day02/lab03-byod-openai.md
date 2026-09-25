@@ -347,44 +347,79 @@ Use these shortcuts:
 | PA       | Present but unclear    |
 | MI       | Missing                |
 
-## Test cases
+## Example Scenarios
 
-### Pass
+### Scenario 1: Matching company names
+
+Enter the following values when prompted:
 
 ```text
-Client: Contoso Technologies Pvt Ltd
-Registration Certificate: PR, name = Contoso Technologies Pvt Ltd
-GST Certificate: PR, name = CONTOSO TECHNOLOGIES PVT LTD
-```
+Client company name:
+> Contoso Technologies Pvt Ltd
+
+Registration Certificate (PR/PU/PA/MI):
+> PR
+
+Registration Certificate company name:
+> Contoso Technologies Pvt Ltd
+
+GST Certificate (PR/PU/PA/MI):
+> PR
+
+GST Certificate company name:
+> CONTOSO TECHNOLOGIES PVT LTD
+````
 
 **Result:** `PASS`
 
-Only the letter case is different, and that is ignored.
+The names match after safe normalisation, which ignores differences such as letter case.
 
-### Fail
+### Scenario 2: Company name mismatch
+
+Enter the following values when prompted:
 
 ```text
-Client: Contoso Technologies Pvt Ltd
-Registration Certificate: PR, name = Contoso Technology Pvt Ltd
-GST Certificate: PR, name = Contoso Technologies Pvt Ltd
+Client company name:
+> Contoso Technologies Pvt Ltd
+
+Registration Certificate (PR/PU/PA/MI):
+> PR
+
+Registration Certificate company name:
+> Contoso Technology Pvt Ltd
+
+GST Certificate (PR/PU/PA/MI):
+> PR
+
+GST Certificate company name:
+> Contoso Technologies Pvt Ltd
 ```
 
 **Result:** `FAIL, COMPANY_NAME_MISMATCH`
 
-"Technology" and "Technologies" are different words, so this is not treated as a formatting difference.
+"Technology" and "Technologies" are different words, so the names do not match after safe normalisation.
 
-### Manual review
+### Scenario 3: Unreadable document
+
+Enter the following values when prompted:
 
 ```text
-Client: Contoso Technologies Pvt Ltd
-Registration Certificate: PU
-GST Certificate: PR, name = Contoso Technologies Pvt Ltd
+Client company name:
+> Contoso Technologies Pvt Ltd
+
+Registration Certificate (PR/PU/PA/MI):
+> PU
+
+GST Certificate (PR/PU/PA/MI):
+> PR
+
+GST Certificate company name:
+> Contoso Technologies Pvt Ltd
 ```
 
 **Result:** `MANUAL_REVIEW, UNREADABLE_REGISTRATION_CERTIFICATE`
 
-A document that is present but unreadable is not the same as a missing document, so the case is sent for manual review instead of being automatically failed.
-
+The Registration Certificate is present but unreadable, so the company name cannot be verified and the case is sent for manual review.
 
 ## Summary
 
