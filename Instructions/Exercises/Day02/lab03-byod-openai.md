@@ -213,12 +213,60 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
     You are a document validation assistant helping validate company documents for a fictional credit-risk assessment.
     ```
 
-13. Send the same document-validation prompt again.
+13. Send the following document-validation prompt again:
 
-14. Review the response. The model should now provide a more focused response based on the document-presence and company-name checks.
+```text
+Validate each submission using exactly one outcome:
 
-15. When you finish testing, you can leave the playground open or return to the project home page to continue with the application section.
+PASS
+FAIL
+MANUAL_REVIEW
 
+Example 1:
+
+Client Company Name:
+Contoso Technologies Pvt Ltd
+
+Company Registration Certificate:
+Company Name: Contoso Technologies Pvt Ltd
+
+GST Certificate:
+Company Name: Contoso Technologies Pvt Ltd
+
+Outcome:
+PASS
+
+Example 2:
+
+Client Company Name:
+Contoso Technologies Pvt Ltd
+
+Company Registration Certificate:
+Company Name: Contoso Technology Pvt Ltd
+
+GST Certificate:
+Company Name: Contoso Technologies Pvt Ltd
+
+Outcome:
+FAIL
+
+Now validate this submission:
+
+Client Company Name:
+Contoso Technologies Pvt Ltd
+
+Company Registration Certificate:
+Company Name: Contoso Technologies Pvt Ltd
+
+GST Certificate:
+Company Name: Contoso Technologies Pvt Ltd
+
+Return only the outcome.
+```
+
+19. Review the response. The model should now provide a more focused response based on the document-presence and company-name checks.
+
+20. When you finish testing, you can leave the playground open or return to the project home page to continue with the application section.
 
 ### Prepare the application configuration (If you already have the latest ZIP file downloaded, skip to **Step 4**)
 
