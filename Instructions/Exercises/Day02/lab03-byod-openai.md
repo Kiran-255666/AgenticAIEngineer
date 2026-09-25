@@ -299,10 +299,10 @@ pip install -r requirements.txt
 >    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai" "C:\Users\agenticuser\Desktop\lab03-byod-openai" -Recurse
 >    ```
 >
->    Then navigate to the shorter path:
+>    Then open the copied Desktop folder directly in VS Code:
 >
 >    ```powershell
->    cd "C:\Users\agenticuser\Desktop\lab03-byod-openai"
+>    code "C:\Users\agenticuser\Desktop\lab03-byod-openai"
 >    ```
 >
 > 2. Alternatively, shorten the parent folder names to reduce the overall path length. For example:
