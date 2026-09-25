@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-# import namespaces for async
+# Import namespaces for async
 import asyncio
 from openai import AsyncOpenAI
 from azure.identity.aio import AzureCliCredential, get_bearer_token_provider
@@ -22,7 +22,6 @@ async def main():
 
         # Initialize an async OpenAI client
         credential = AzureCliCredential()
-
 
         token_provider = get_bearer_token_provider(
             credential,
@@ -60,3 +59,11 @@ async def main():
             print("Assistant:", assistant_text)
 
             last_response_id = response.id
+
+    finally:
+        if credential:
+            await credential.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
