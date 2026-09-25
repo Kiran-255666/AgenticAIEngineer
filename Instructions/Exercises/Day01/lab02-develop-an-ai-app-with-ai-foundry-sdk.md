@@ -79,18 +79,11 @@ You'll write a small Python app that connects to your Foundry project and holds 
 1. On the repo page, select the green **`<> Code`** button, then select **Download ZIP**.
 
     ![Screenshot of the Code button.](../../media/code.png)
-1. Once the download finishes, find the ZIP file and extract it to a folder on your computer.
-1. Inside the extracted folder, open this path to find the chat app files:
-
-    ```
-    labfiles/Day01/lab02-develop-an-ai-app-with-ai-foundry-sdk/python/chat-app
-    ```
-
-    You should see a code file, a configuration file for app settings, and a file listing the Python packages the app needs.
+1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer. **Ensure that there are no other ZIP files or extracted folders with the same name in the Downloads folder.**
 
 1. **Copy the `chat-app` folder to the Desktop:**
 
-   **Use the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the command.**
+   **Use PowerShell to run the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the commands.**
 
    ```powershell
    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day01\lab02-develop-an-ai-app-with-ai-foundry-sdk\python\chat-app" "$env:USERPROFILE\Desktop\chat-app" -Recurse
