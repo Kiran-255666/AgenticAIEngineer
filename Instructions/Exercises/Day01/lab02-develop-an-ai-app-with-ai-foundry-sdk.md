@@ -88,10 +88,19 @@ You'll write a small Python app that connects to your Foundry project and holds 
 
     You should see a code file, a configuration file for app settings, and a file listing the Python packages the app needs.
 
-1. Open this `chat-app` folder in a terminal or command-line window.
-Add it as a short tip like this:
+1. **Copy the `chat-app` folder to the Desktop:**
 
-1. **Install the required packages:**
+   **Use the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the command.**
+
+   ```powershell
+   Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day01\lab02-develop-an-ai-app-with-ai-foundry-sdk\python\chat-app" "$env:USERPROFILE\Desktop\chat-app" -Recurse
+   ```
+
+   ```powershell
+   code "$env:USERPROFILE\Desktop\chat-app"
+   ```
+
+2. **Install the required packages:**
 
    Create and activate a Python virtual environment, then install the required dependencies:
 
@@ -109,17 +118,6 @@ Add it as a short tip like this:
    > pip install -r requirements.txt
    > ```
 
-   > **Tip:** If you encounter a long path/name conflict, copy the `chat-app` folder to your Desktop and open the copied folder in VS Code. **The path below is an example; verify your actual path before running the command.**
-   >
-   > ```powershell
-   > Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day01\lab02-develop-an-ai-app-with-ai-foundry-sdk\python\chat-app" "$env:USERPROFILE\Desktop\chat-app" -Recurse
-   > ```
-   >
-   > Then open the Desktop copy directly in VS Code:
-   >
-   > ```powershell
-   > code "$env:USERPROFILE\Desktop\chat-app"
-   > ```
 
 
 
