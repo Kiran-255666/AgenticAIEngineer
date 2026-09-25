@@ -111,16 +111,7 @@ You'll write a small Python app that connects to your Foundry project and holds 
    > pip install -r requirements.txt
    > ```
 
-
-
-
-1. Open the configuration file to edit it:
-
-    ```
-    code .env
-    ```
-
-1. In the file, replace those placeholder values by actual vales.
+1. Open the configuration file *.env* to fill the required placeholder values by actual vales
 1. Save with **Ctrl+S** (or right-click and choose Save), then close the editor while keeping your terminal open.
 
 ### Write code to connect to your project and chat with your model (Note: We have the code updated in the mentioned files instructions but verify before you start the execution, so that there are no indentation issues)
@@ -198,9 +189,6 @@ You'll write a small Python app that connects to your Foundry project and holds 
 ```bash
 az login
 ````
-
-**image**
-
 Follow the prompts:
 
 * Open the sign-in page that appears.
