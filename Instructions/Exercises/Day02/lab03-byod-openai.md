@@ -220,7 +220,8 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 15. When you finish testing, you can leave the playground open or return to the project home page to continue with the application section.
 
 
-### Prepare the application configuration
+### Prepare the application configuration (If you already have the latest ZIP file downloaded, skip to **Step 4**)
+
 
 1. Open a web browser and go to the [GitHub](https://github.com/Kiran-255666/AgenticAIEngineer).
 1. On the repo page, select the green **`<> Code`** button, then select **Download ZIP**.
@@ -228,7 +229,7 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
     ![Screenshot of the Code button.](../../media/code.png)
 1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer. **Ensure that there are no other ZIP files or extracted folders with the same name in the Downloads folder.**
 
-1. **Copy the `chat-app` folder to the Desktop:**
+1. **Copy the `lab03-byod-openai` folder to the Desktop:**
 
    **Use PowerShell to run the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the commands.**
 
