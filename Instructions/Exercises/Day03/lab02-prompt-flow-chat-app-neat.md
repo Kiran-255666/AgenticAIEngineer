@@ -14,7 +14,7 @@ The features of Foundry we're going to use in this exercise require a project th
 based on a Foundry hub resource.
 
 1. In a web browser, open the Foundry portal at
-   https://ai.azure.com and sign in using your Azure credentials.
+   [https://ai.azure.com](https://ai.azure.com) and sign in using your Azure credentials.
 
    Close any tips or quick start panes that are opened the first time you sign in.
    If necessary, use the Foundry logo at the top left to navigate to the home page,
@@ -23,7 +23,8 @@ based on a Foundry hub resource.
    ![Screenshot](../../media/a1.png)
 
 2. In the browser, navigate to
-   https://ai.azure.com/managementCenter/allResources and select **Create new**.
+   [https://ai.azure.com/managementCenter/allResources](https://ai.azure.com/managementCenter/allResources)
+   and select **Create new**.
 
    Then choose the option to create a new **AI hub resource**.
 
@@ -34,13 +35,12 @@ based on a Foundry hub resource.
    - Use the **Rename hub** link to specify a valid name for your new hub.
    - Expand **Advanced options**.
    - Specify the following settings for your project:
-
      - **Subscription:** Your Azure subscription
      - **Resource group:** Create or select a resource group
      - **Region:** East US 2 or Sweden Central
 
-     > **Note:** In the event of a quota limit being exceeded later in the exercise,
-     > you may need to create another resource in a different region.
+   > **Note:** In the event of a quota limit being exceeded later in the exercise,
+   > you may need to create another resource in a different region.
 
    > **Note:** If you're working in an Azure subscription in which policies are used to
    > restrict allowable resource names, you may need to use the link at the bottom of
@@ -58,7 +58,8 @@ in a folder in blob storage. Before exploring prompt flow, let's ensure that you
 Foundry resource has the required access to the blob store so it can read them.
 
 1. In a new browser tab, open the Azure portal at
-   https://portal.azure.com, signing in with your Azure credentials if prompted.
+   [https://portal.azure.com](https://portal.azure.com), signing in with your Azure
+   credentials if prompted.
 
    View the resource group containing your Azure AI hub resources.
 
@@ -205,7 +206,6 @@ in a travel agency.
 
    # user:
    {{question}}
-````
 
 Read the prompt you added so you are familiar with it.
 
@@ -224,9 +224,9 @@ It consists of:
 
 11. Save the changes to the flow.
 
-> **Note:** In this exercise, we'll stick to a simple chat flow, but note that the prompt
-> flow editor includes many other tools that you could add to the flow, enabling you to
-> create complex logic to orchestrate conversations.
+    > **Note:** In this exercise, we'll stick to a simple chat flow, but note that the
+    > prompt flow editor includes many other tools that you could add to the flow,
+    > enabling you to create complex logic to orchestrate conversations.
 
 ## Test the flow
 
@@ -318,3 +318,9 @@ When you're satisfied with the behavior of the flow you created, you can deploy 
 
    This enables you to integrate the prompt flow solution into an application as a
    generative AI application.
+
+## Conclusion
+
+In this exercise, you created and tested a prompt flow in Microsoft Foundry that uses a GPT model to manage a conversational chat experience. You configured the required resource authorization, deployed the model, created a chat flow with chat history and user input, tested the flow, and deployed it as an endpoint.
+
+You also verified the deployed endpoint using sample travel-related prompts and reviewed the available connection information for integrating the flow into an application.
