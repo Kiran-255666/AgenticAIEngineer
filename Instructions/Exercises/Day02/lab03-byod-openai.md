@@ -280,54 +280,6 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 1. Check `prompt_engineering.py` for any indentation issues before running it. Python uses indentation to define blocks of code, so an incorrectly indented line can cause an error when you execute the script.
 1. Save your changes.
 
-## Running it
-
-Create and activate a Python virtual environment, then install the dependencies:
-
-```powershell
-python -m venv labenv
-.\labenv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-> [!NOTE]
-> If `python -m venv labenv` errors out on the VM, swap `python` for `py`:
->
-> ```powershell
-> py -m venv labenv
-> .\labenv\Scripts\Activate.ps1
-> pip install -r requirements.txt
-> ```
-
-> [!TIP]
-> If you encounter an issue due to the path length exceeding 120 characters, you can resolve it by:
->
-> 1. Copying the required lab folder to a shorter location, such as the Desktop **(the path below is the expected path; verify it matches your VM before running the command):**
->
->    ```powershell
->    Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai" "C:\Users\agenticuser\Desktop\lab03-byod-openai" -Recurse
->    ```
->
->    Then open the copied Desktop folder directly in VS Code:
->
->    ```powershell
->    code "C:\Users\agenticuser\Desktop\lab03-byod-openai"
->    ```
->
-> 2. Alternatively, shorten the parent folder names to reduce the overall path length. For example:
->
->    ```text
->    AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai
->    ```
->
->    can be shortened to:
->
->    ```text
->    a\b\c\d\e\lab03-byod-openai
->    ```
->
->    This reduces the overall path length while keeping the `lab03-byod-openai` folder unchanged.
-
 ## Run the application
 
 Run the script:
