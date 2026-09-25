@@ -233,11 +233,11 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
    **Use PowerShell to run the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the commands.**
 
    ```powershell
-   Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day01\lab02-develop-an-ai-app-with-ai-foundry-sdk\python\chat-app" "$env:USERPROFILE\Desktop\chat-app" -Recurse
+   Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day02\lab03-byod-openai" "$env:USERPROFILE\Desktop\lab03-byod-openai" -Recurse
    ```
 
    ```powershell
-   code "$env:USERPROFILE\Desktop\chat-app"
+   code "$env:USERPROFILE\Desktop\lab03-byod-openai"
    ```
 
 2. **Install the required packages:**
