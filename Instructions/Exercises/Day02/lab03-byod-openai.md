@@ -220,34 +220,43 @@ In this section, you'll use the deployed model playground in Microsoft Foundry t
 15. When you finish testing, you can leave the playground open or return to the project home page to continue with the application section.
 
 
-# Get the application files from GitHub
+### Prepare the application configuration
 
-1. If you already downloaded and extracted this repository's ZIP file in a previous exercise, skip ahead to the next step, and navigate directly to the folder path below. Otherwise, follow the steps below to download it first.
-1. Open a web browser and go to the [lab files on GitHub](https://github.com/Kiran-255666/agentic-ai-azure-ai-foundry-labs).
-1. On the repository page, select the green **`<> Code`** button, and then select **Download ZIP**.
+1. Open a web browser and go to the [GitHub](https://github.com/Kiran-255666/AgenticAIEngineer).
+1. On the repo page, select the green **`<> Code`** button, then select **Download ZIP**.
 
     ![Screenshot of the Code button.](../../media/code.png)
+1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer. **Ensure that there are no other ZIP files or extracted folders with the same name in the Downloads folder.**
 
-1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer.
-1. In the extracted folder, navigate to:
+1. **Copy the `chat-app` folder to the Desktop:**
 
-    ```
-    labfiles\Day02\lab03-byod-openai
-    ```
+   **Use PowerShell to run the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the commands.**
 
-    This folder already contains everything you need for this exercise: `.env`, `grounding.txt`, `prompt_engineering.py`, `requirements.txt`, and `system.txt`.
+   ```powershell
+   Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day01\lab02-develop-an-ai-app-with-ai-foundry-sdk\python\chat-app" "$env:USERPROFILE\Desktop\chat-app" -Recurse
+   ```
 
-    > **Tip**: If you're not sure which folder contains the exercise files, check with your trainer.
+   ```powershell
+   code "$env:USERPROFILE\Desktop\chat-app"
+   ```
 
-1. In **File Explorer**, select the address bar at the top of the window, type the following command, and press **Enter**:
+2. **Install the required packages:**
 
-    ```
-    code .
-    ```
+   Create and activate a Python virtual environment, then install the required dependencies:
 
-    This opens the folder directly in Visual Studio Code.
+   ```powershell
+   python -m venv labenv
+   .\labenv\Scripts\Activate.ps1
+   pip install -r requirements.txt
+   ```
 
-    > **Tip**: If `code .` doesn't work, open the folder manually in Visual Studio Code.
+   > **Note:** If `python -m venv labenv` returns an error in the Virtual Machine, use the Windows Python Launcher instead:
+   >
+   > ```powershell
+   > py -m venv labenv
+   > .\labenv\Scripts\Activate.ps1
+   > pip install -r requirements.txt
+   > ```
 
 ## Configure your application
 
