@@ -1,126 +1,15 @@
 # Use a prompt flow to manage conversation in a chat app
 
-In this exercise, you'll use Microsoft Foundry portal's prompt flow to create a custom
-chat app that uses a user prompt and chat history as inputs, and uses a GPT model from
-Azure OpenAI to generate an output.
+## Prerequisites
 
-## Create a Foundry hub and project
+For this lab, the following have already been configured:
 
-> **Note:** Please check with your instructor if the Foundry hub, project, and model are
-> already deployed. If they are, feel free to jump to the next section in this document:
-> **Create a prompt flow**.
+- Microsoft Foundry hub and project
+- Resource authorization and storage access
+- Required Azure resources
+- **GPT-5.4-mini** model deployment
 
-The features of Foundry we're going to use in this exercise require a project that is
-based on a Foundry hub resource.
-
-1. In a web browser, open the Foundry portal at
-   [https://ai.azure.com](https://ai.azure.com) and sign in using your Azure credentials.
-
-   Close any tips or quick start panes that are opened the first time you sign in.
-   If necessary, use the Foundry logo at the top left to navigate to the home page,
-   which looks similar to the following image. Close the Help pane if it's open.
-
-   ![Screenshot](../../media/a1.png)
-
-2. In the browser, navigate to
-   [https://ai.azure.com/managementCenter/allResources](https://ai.azure.com/managementCenter/allResources)
-   and select **Create new**.
-
-   Then choose the option to create a new **AI hub resource**.
-
-3. In the **Create a project** wizard:
-
-   - Enter a valid name for your project.
-   - Select the option to create a new hub.
-   - Use the **Rename hub** link to specify a valid name for your new hub.
-   - Expand **Advanced options**.
-   - Specify the following settings for your project:
-     - **Subscription:** Your Azure subscription
-     - **Resource group:** Create or select a resource group
-     - **Region:** East US 2 or Sweden Central
-
-   > **Note:** In the event of a quota limit being exceeded later in the exercise,
-   > you may need to create another resource in a different region.
-
-   > **Note:** If you're working in an Azure subscription in which policies are used to
-   > restrict allowable resource names, you may need to use the link at the bottom of
-   > the **Create a new project** dialog box to create the hub using the Azure portal.
-
-   > **Tip:** If the **Create** button is still disabled, be sure to rename your hub
-   > to a unique alphanumeric value.
-
-4. Wait for your project to be created.
-
-## Configure resource authorization
-
-The prompt flow tools in Foundry create file-based assets that define the prompt flow
-in a folder in blob storage. Before exploring prompt flow, let's ensure that your
-Foundry resource has the required access to the blob store so it can read them.
-
-1. In a new browser tab, open the Azure portal at
-   [https://portal.azure.com](https://portal.azure.com), signing in with your Azure
-   credentials if prompted.
-
-   View the resource group containing your Azure AI hub resources.
-
-2. Select the Foundry resource for your hub to open it.
-
-   Then expand its **Resource Management** section and select the **Identity** page.
-
-   ![Screenshot](../../media/a2.png)
-
-3. If the status of the system assigned identity is **Off**, switch it **On** and save
-   your changes.
-
-   Then wait for the change of status to be confirmed.
-
-4. Return to the resource group page, and then select the **Storage account** resource
-   for your hub and view its **Access Control (IAM)** page.
-
-   ![Screenshot](../../media/a3.png)
-
-5. Add a role assignment to the **Storage Blob Data Reader** role for the managed
-   identity used by your Foundry project resource.
-
-   ![Screenshot](../../media/a4.png)
-
-6. When you've reviewed and assigned the role access to allow the Foundry managed
-   identity to read blobs in the storage account, close the Azure portal tab and return
-   to the Foundry portal.
-
-## Deploy a generative AI model
-
-Now you're ready to deploy a generative AI language model to support your prompt flow
-application.
-
-1. In the pane on the left for your project, in the **My assets** section, select the
-   **Models + endpoints** page.
-
-2. In the **Models + endpoints** page, in the **Model deployments** tab, in the
-   **+ Deploy model** menu, select **Deploy base model**.
-
-3. Search for the **gpt-4o** model in the list, and then select and confirm it.
-
-4. Deploy the model with the following settings by selecting **Customize** in the
-   deployment details:
-
-   - **Deployment name:** A valid name for your model deployment
-   - **Deployment type:** Global Standard
-   - **Automatic version update:** Enabled
-   - **Model version:** Select the most recent available version
-   - **Connected AI resource:** Select your Azure OpenAI resource connection
-   - **Tokens per Minute Rate Limit (thousands):** 50K, or the maximum available
-     in your subscription if less than 50K
-   - **Content filter:** DefaultV2
-
-   > **Note:** Reducing the TPM helps avoid over-using the quota available in the
-   > subscription you are using. 50,000 TPM should be sufficient for the data used in
-   > this exercise.
-
-   If your available quota is lower than this, you will be able to complete the
-   exercise but you may experience errors if the rate limit is exceeded.
-
-5. Wait for the deployment to complete.
+Use the existing resources and proceed directly to **Create a prompt flow**.
 
 ## Create a prompt flow
 
