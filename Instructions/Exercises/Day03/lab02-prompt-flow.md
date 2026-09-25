@@ -1,215 +1,167 @@
-# Use a prompt flow to manage conversation in a chat app
+# Use a prompt flow to manage industry risk assessment
+
+> **Note:** This lab uses the **Microsoft Foundry classic UI** because Prompt Flow is a legacy feature and is not available in the new Microsoft Foundry experience. Microsoft has announced that Prompt Flow will be retired on **April 20, 2027**, and recommends **Microsoft Agent Framework** for new development. This lab is provided to help you understand how Prompt Flow works and how its components are structured.
+
+In this exercise, you'll use Microsoft Foundry's Prompt Flow to create and test a custom AI workflow for the **Credit Risk Assessment** use case. The flow will use an **Industry Risk Matrix** to assess a client's industry and return both the associated risk category and its score contribution to the overall credit risk assessment.
+
+## Day 3 Use Case Context
+
+When a company applies for credit, there are several things to check before deciding how much credit to offer and under what terms. One of these checks is the industry the company operates in.
+
+Some industries are generally considered lower risk, while others may have higher operational, financial, or market-related risks. In this lab, you'll build an AI-powered industry assessment workflow using Prompt Flow. The workflow uses an **Industry Risk Matrix** to classify a client's industry as Low, Medium, or High Risk.
+
+The result can later be combined with other checks such as company status, compliance screening, financial analysis, and external credit bureau information to support the overall credit risk assessment.
+
+The Industry Risk Matrix used in this exercise is:
+
+| Risk Category | Industries |
+|--------------|------------|
+| Low Risk | Utilities, Government, Healthcare |
+| Medium Risk | Manufacturing, FMCG Distribution, IT Services |
+| High Risk | Construction, Real Estate Developers, Airlines, Commodity Trading, Startups, Mining & Metals |
+
+This lab focuses only on Industry Risk Assessment. It does not calculate the final credit score or make the final lending decision.
 
 ## Prerequisites
 
 For this lab, the following have already been configured:
 
+- Open the [Microsoft Foundry portal](https://ai.azure.com/) and switch from the **new Microsoft Foundry UI** to the **classic UI**, as Prompt Flow is available in the classic experience. As shown in the image below, simply click the UI toggle to switch between the experiences. If a feedback prompt appears, select **Continue without feedback**.
+
+    ![Screenshot](../../media/z1.png)
+
 - Microsoft Foundry hub and project
 - Resource authorization and storage access
 - Required Azure resources
 - **GPT-5.4-mini** model deployment
+- **Industry Risk Matrix** reference data
 
 Use the existing resources and proceed directly to **Create a prompt flow**.
 
-## Create a prompt flow
+# Create a prompt flow
 
-A prompt flow provides a way to orchestrate prompts and other activities to define an
-interaction with a generative AI model.
+A prompt flow provides a way to connect prompts and other activities to build an interaction with a generative AI model. In this exercise, you'll create a simple flow that takes a client's industry as input, checks it against the Industry Risk Matrix, and returns the corresponding risk category and score contribution.
 
-In this exercise, you'll use a template to create a basic chat flow for an AI assistant
-in a travel agency.
+0. After changing to the classic UI, at the top you see **All resources**. Click it as shown in the image below.
 
-1. In the Foundry portal navigation bar, in the **Build and customize** section,
-   select **Prompt flow**.
+    ![Screenshot](../../media/c1.png)
 
-2. Create a new flow based on the **Chat flow** template, specifying `Travel-Chat`
-   as the folder name.
+1. You may see multiple hubs and projects. Select the **shaktiman** project, as it is already configured for this lab.
 
-   A simple chat flow is created for you.
+2. In the left navigation pane, under **Build and customize**, select **Prompt flow**.
 
-   > **Tip:** If a permissions error occurs, wait a few minutes and try again,
-   > specifying a different flow name if necessary.
+    ![Screenshot](../../media/c2.png)
 
-3. To be able to test your flow, you need compute, and it can take a while to start.
+3. Click **+ Create**, select **Chat flow**, and specify `Credit-Risk-Industry` as the folder name. A simple chat flow is created for you.
+> Tip: If a permissions error occurs, wait a few minutes and try again, specifying a different flow name if necessary.
 
-   Select **Start compute session** to get it started while you explore and modify
-   the default flow.
+4. To test your flow, you need a compute session, and it can take a while to start; so select **Start compute session** and let it start while you explore and modify the default flow.
 
-4. View the prompt flow, which consists of a series of inputs, outputs, and tools.
+5. View the prompt flow, which consists of inputs, outputs, and tools. You can expand and edit the properties of these objects in the editing panes on the left and view the overall flow as a graph on the right.
 
-   You can expand and edit the properties of these objects in the editing panes on
-   the left, and view the overall flow as a graph on the right.
+6. View the **Inputs** pane and note the input used to receive the user's industry or question.
 
-   ![Screenshot](../../media/a5.png)
+7. View the **Outputs** pane and note that there is an output for the model's Industry Risk Assessment.
 
-5. View the **Inputs** pane, and note that there are two inputs:
+8. View the **Chat LLM** tool pane, which contains the information needed to send the prompt to the model.
 
-   - Chat history
-   - The user's question
+9. In the Chat LLM tool pane, for **Connection**, select the connection for the Azure OpenAI service resource in your AI hub. Then configure the following connection properties:
 
-6. View the **Outputs** pane and note that there's an output to reflect the model's
-   answer.
+    a. Api: `chat`
 
-7. View the **Chat LLM** tool pane, which contains the information needed to submit
-   a prompt to the model.
+    b. deployment_name: The existing **GPT-5.4-mini** deployment
 
-8. In the **Chat LLM** tool pane, for **Connection**, select the connection for the
-   Azure OpenAI service resource in your AI hub.
+    c. response_format: `{"type":"text"}`
 
-   Then configure the following connection properties:
+10. Modify the **Prompt** field as follows:
 
-   - **Api:** `chat`
-   - **deployment_name:** The `gpt-4o` model you deployed
-   - **response_format:** `{"type":"text"}`
+    **# system:**
 
-9. Modify the **Prompt** field as follows, removing the `\` escape in the YAML loop:
+    **Objective**: Assess the risk level of a client's industry using the provided Industry Risk Matrix.
 
-   ```text
-   # system:
-   **Objective**: Assist users with travel-related inquiries, offering tips, advice, and
-   recommendations as a knowledgeable travel agent.
+    The result will help support a broader credit risk assessment by identifying whether the client's industry is considered Low, Medium, or High Risk.
 
-   **Capabilities**:
-   - Provide up-to-date travel information, including destinations, accommodations,
-     transportation, and local attractions.
-   - Offer personalized travel suggestions based on user preferences, budget, and travel
-     dates.
-   - Share tips on packing, safety, and navigating travel disruptions.
-   - Help with itinerary planning, including optimal routes and must-see landmarks.
-   - Answer common travel questions and provide solutions to potential travel issues.
+    **Industry Risk Matrix**:
 
-   **Instructions**:
-   1. Engage with the user in a friendly and professional manner, as a travel agent
-      would.
-   2. Use available resources to provide accurate and relevant travel information.
-   3. Tailor responses to the user's specific travel needs and interests.
-   4. Ensure recommendations are practical and consider the user's safety and comfort.
-   5. Encourage the user to ask follow-up questions for further assistance.
+    - **Low Risk**: Utilities, Government, Healthcare
+    - **Medium Risk**: Manufacturing, FMCG Distribution, IT Services
+    - **High Risk**: Construction, Real Estate Developers, Airlines, Commodity Trading, Startups, Mining & Metals
 
-   {% for item in chat_history %}
-   # user:
-   {{item.inputs.question}}
-   # assistant:
-   {{item.outputs.answer}}
-   {% endfor %}
+    **Instructions**:
 
-   # user:
-   {{question}}
+    1. Identify the industry provided by the user.
+    2. Match the industry against the Industry Risk Matrix.
+    3. Assign the corresponding risk category: Low, Medium, or High.
+    4. Return the response using the following format:
 
-Read the prompt you added so you are familiar with it.
+       Industry Identified: <industry>
 
-It consists of:
+       Risk Category: <Low Risk | Medium Risk | High Risk>
 
-* A **system message**, which includes an objective, a definition of its capabilities,
-  and some instructions.
-* The **chat history**, ordered to show each user question input and each previous
-  assistant answer output.
+       Industry Risk Score Contribution: <score>
 
-10. In the **Inputs** section for the Chat LLM tool, under the prompt, ensure the
-    following variables are set:
+    5. Use the following score contribution values:
+       - Low Risk = 15 points
+       - Medium Risk = 8 points
+       - High Risk = 3 points
+    6. If the industry does not clearly match an entry in the matrix, indicate that manual review is required instead of assigning a risk category with certainty.
+    7. Do not evaluate other credit risk factors such as financial statements, sanctions checks, bureau scores, company registration records, compliance screening, or final credit decisions.
 
-    * **question (string):** `${inputs.question}`
-    * **chat_history (string):** `${inputs.chat_history}`
+    **# user:**
 
-11. Save the changes to the flow.
+    `{{question}}`
 
-    > **Note:** In this exercise, we'll stick to a simple chat flow, but note that the
-    > prompt flow editor includes many other tools that you could add to the flow,
-    > enabling you to create complex logic to orchestrate conversations.
+    Read the prompt you added so you are familiar with it. It tells the model what to look for, provides the Industry Risk Matrix, defines the score contribution for each category, and explains what to do when an industry is not listed.
 
-## Test the flow
+11. In the **Inputs** section for the Chat LLM tool (under the prompt), ensure the following variable is set:
 
-Now that you've developed the flow, you can use the chat window to test it.
+    a. question (string): `${inputs.question}`
 
-1. Ensure the compute session is running.
+12. Save the changes to the flow.
 
-   If not, wait for it to start.
+> **Note:** This lab focuses only on Industry Risk Assessment. A complete credit risk evaluation would also consider factors such as company status, compliance and sanctions checks, financial performance, and external credit ratings. These areas are explored in later labs.
 
-2. On the toolbar, select **Chat** to open the Chat pane, and wait for the chat to
-   initialize.
+# Test the flow
 
-3. Enter the query:
+Now that you've built the flow, use the chat window to check how it handles different industries.
 
-   ```text
-   I have one day in London, what should I do?
-   ```
+1. Ensure the compute session is running. If not, wait for it to start.
 
-   Review the output.
+2. On the toolbar, select **Chat** to open the Chat pane and wait for the chat to initialize.
 
-   The Chat pane should look similar to this:
+3. Test the following industries:
+   - `Utilities`
+   - `Healthcare`
+   - `Manufacturing`
+   - `IT Services`
+   - `Construction`
+   - `Mining & Metals`
 
-   ![Screenshot](../../media/a6.png)
+4. Check that each industry is assigned the correct risk category based on the Industry Risk Matrix.
 
-## Deploy the flow
+5. Check that the corresponding Industry Risk score contribution is also returned:
+   - Low Risk → 15 points
+   - Medium Risk → 8 points
+   - High Risk → 3 points
 
-When you're satisfied with the behavior of the flow you created, you can deploy the flow.
+6. Test an industry that is not listed in the Industry Risk Matrix, such as `Renewable Energy`, `Biotechnology`, or `Logistics`, and verify that the flow recommends manual review instead of assigning a risk category with certainty.
 
-> **Note:** Deployment can take a long time, and can be impacted by capacity constraints
-> in your subscription or tenant.
+# Lab Summary
 
-1. On the toolbar, select **Deploy** and deploy the flow with the following settings:
+In this lab, you built and tested an Industry Risk Assessment workflow using Microsoft Foundry Prompt Flow as part of a larger Credit Risk Assessment solution.
 
-   **Basic settings:**
+You:
 
-   * **Endpoint:** New
-   * **Endpoint name:** Enter a unique name
-   * **Deployment name:** Enter a unique name
-   * **Virtual machine:** Standard_DS3_v2
-   * **Instance count:** 1
-   * **Inferencing data collection:** Disabled
+- Used an existing Microsoft Foundry project and model deployment
+- Created and configured a Prompt Flow
+- Configured an LLM node using the existing **GPT-5.4-mini** deployment
+- Added an Industry Risk Matrix to the prompt
+- Classified client industries into Low, Medium, and High risk categories
+- Returned the Industry Risk score contribution used by the broader credit assessment
+- Tested the flow with different industry scenarios
 
-   **Advanced settings:**
+The Industry Risk result from this lab can later be combined with company checks, compliance screening, financial analysis, and external credit information to support the overall credit risk assessment.
 
-   * Use the default settings.
+**Congratulations, you have completed Day 3 - Lab02 Industry Risk Assessment.**
 
-2. In Foundry portal, in the navigation pane, in the **My assets** section, select
-   the **Models + endpoints** page.
-
-   If the page opens for your `gpt-4o` model, use its back button to view all models
-   and endpoints.
-
-3. Initially, the page may show only your model deployments.
-
-   It may take some time before the deployment is listed, and even longer before it's
-   successfully created.
-
-4. When the deployment has succeeded, select it.
-
-   Then, view its **Test** page.
-
-   > **Tip:** If the test page describes the endpoint as unhealthy, return to the
-   > **Models + endpoints** page and wait a minute or so before refreshing the view
-   > and selecting the endpoint again.
-
-   ![Screenshot](../../media/a7.png)
-
-5. Enter the prompt:
-
-   ```text
-   What is there to do in San Francisco?
-   ```
-
-   Review the response.
-
-6. Enter the prompt:
-
-   ```text
-   Tell me something about the history of the city.
-   ```
-
-   Review the response.
-
-   The test pane should look similar to this.
-
-7. View the **Consume** page for the endpoint, and note that it contains connection
-   information and sample code that you can use to build a client application for your
-   endpoint.
-
-   This enables you to integrate the prompt flow solution into an application as a
-   generative AI application.
-
-## Conclusion
-
-In this exercise, you created and tested a prompt flow in Microsoft Foundry that uses a GPT model to manage a conversational chat experience. You configured the required resource authorization, deployed the model, created a chat flow with chat history and user input, tested the flow, and deployed it as an endpoint.
-
-You also verified the deployed endpoint using sample travel-related prompts and reviewed the available connection information for integrating the flow into an application.
+Please close the current document and move to the next one.
