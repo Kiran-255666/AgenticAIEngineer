@@ -1,0 +1,145 @@
+Credit Risk Assessment Scorecard 
+Purpose 
+The Credit Risk Assessment Scorecard provides a standardized framework for evaluating 
+customer credit risk. 
+The scorecard combines compliance verification, financial performance, external credit 
+information, and industry risk to determine an overall risk profile. 
+Maximum Possible Score: 100 
+Compliance Verification 
+Weight: 20 
+All mandatory compliance checks must be completed before a credit recommendation can be 
+issued. 
+No Compliance Issues Found 
+Score: 20 
+Compliance Concern Identified 
+Score: 0 
+Examples of Compliance Concerns 
+Sanctions Match 
+Watchlist Match 
+Regulatory Restrictions 
+Material Adverse Findings 
+Frequently Asked Questions 
+What happens if a sanctions match is identified? 
+Any sanctions or compliance concern results in a compliance score of 0 and requires manual 
+review. 
+Can a customer proceed if compliance checks fail? 
+No. Compliance concerns must be resolved before a final credit decision can be made. 
+Liquidity Assessment 
+Current Ratio 
+Weight: 20 
+Current Ratio ≥ 1.50 
+Score: 20 
+Current Ratio 1.20 - 1.49 
+Score: 15 
+Current Ratio 1.00 - 1.19 
+Score: 8 
+Current Ratio < 1.00 
+Score: 0 
+Definition 
+Current Ratio = Current Assets ÷ Current Liabilities 
+Example 
+Current Assets = 150,000 
+Current Liabilities = 100,000 
+Current Ratio = 1.50 
+Score Awarded = 20 
+Frequently Asked Questions 
+What score is assigned when Current Ratio exceeds 1.5? 
+20 points. 
+What score is assigned for a Current Ratio of 1.3? 
+15 points. 
+What does a Current Ratio below 1.0 indicate? 
+The company may have difficulty meeting short-term obligations. 
+Leverage Assessment 
+Debt-to-Equity Ratio 
+Weight: 15 
+Debt-to-Equity ≤ 1.50 
+Score: 15 
+Debt-to-Equity 1.51 - 2.00 
+Score: 10 
+Debt-to-Equity 2.01 - 3.00 
+Score: 5 
+Debt-to-Equity > 3.00 
+Score: 0 
+Definition 
+Debt-to-Equity = Total Debt ÷ Shareholder Equity 
+Example 
+Total Debt = 200,000 
+Shareholder Equity = 100,000 
+Debt-to-Equity = 2.00 
+Score Awarded = 10 
+Frequently Asked Questions 
+How is Debt-to-Equity calculated? 
+What score is assigned for a Debt-to-Equity ratio of 2.5? 
+What does a higher Debt-to-Equity ratio indicate? 
+Profitability Assessment 
+Net Profit Margin 
+Weight: 15 
+Net Margin ≥ 8% 
+Score: 15 
+Net Margin 4% - 7.99% 
+Score: 10 
+Net Margin 1% - 3.99% 
+Score: 5 
+Net Margin < 1% 
+Score: 0 
+Definition 
+Net Profit Margin = Net Profit ÷ Revenue 
+Example 
+Revenue = 500,000 
+Net Profit = 40,000 
+Net Profit Margin = 8% 
+Score Awarded = 15 
+Frequently Asked Questions 
+How is Net Profit Margin calculated? 
+What score is awarded for a Net Margin of 6%? 
+What happens if a company reports a loss? 
+External Credit Bureau Assessment 
+Weight: 15 
+Credit Score ≥ 700 
+Score: 15 
+Credit Score 650 - 699 
+Score: 10 
+Credit Score 600 - 649 
+Score: 5 
+Credit Score < 600 
+Score: 0 
+Frequently Asked Questions 
+What score is assigned to a bureau rating of 720? 
+What score is assigned to a bureau rating of 630? 
+What happens when a bureau score falls below 600? 
+Industry Risk Assessment 
+Weight: 15 
+Low Risk Industry 
+Score: 15 
+Medium Risk Industry 
+Score: 8 
+High Risk Industry 
+Score: 3 
+Worked Example 
+Customer Profile 
+Industry: Utilities 
+Current Ratio: 1.56 
+Debt-to-Equity: 1.86 
+Net Profit Margin: 5.56% 
+Credit Bureau Score: 720 
+Compliance Status: Passed 
+Score Breakdown 
+Compliance: 20 
+Liquidity: 20 
+Leverage: 10 
+Profitability: 10 
+Bureau: 15 
+Industry Risk: 15 
+Final Score: 90 
+Risk Rating: Low Risk 
+Assessment Guidelines 
+Use the most recent financial statements available. 
+Validate all calculations before assigning scores. 
+Missing financial data should be escalated for manual review. 
+Compliance checks must always be completed first. 
+Knowledge Check Questions 
+How many points are assigned for a bureau score above 700? 
+Which category carries the highest weight? 
+What is the maximum possible score? 
+How should missing financial information be handled? 
+Can compliance checks be skipped? 
