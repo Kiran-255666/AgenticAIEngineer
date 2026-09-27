@@ -63,7 +63,7 @@ This gives you a baseline for understanding how the model answers questions **be
 
    ```text
    You are a Credit Risk Assessment Assistant.
-````
+    ````
 
 6. In the chat pane, enter:
 
