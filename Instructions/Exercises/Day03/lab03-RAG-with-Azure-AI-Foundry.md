@@ -230,17 +230,6 @@ The `.env` file is already prefilled with the required Azure OpenAI endpoint and
 
 **No changes are required.**
 
-If you need to configure the file manually, use:
-
-```env
-AZURE_OPENAI_ENDPOINT="https://<resource-name>.services.ai.azure.com/openai/v1/"
-MODEL_DEPLOYMENT_NAME="<your-model-deployment-name>"
-```
-
-Replace `<resource-name>` and `<your-model-deployment-name>` with the values from your Microsoft Foundry project.
-
-> **Important:** The deployment name is not necessarily the same as the model name. Use the exact deployment name configured in your project.
-
 ## Review the knowledge base
 
 The `knowledge_base` folder contains three PDF documents:
