@@ -212,18 +212,6 @@ py -m venv labenv
 .\labenv\Scripts\Activate.ps1
 ```
 
-> **Tip:** If PowerShell blocks the activation script, run:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-Then activate the environment again:
-
-```powershell
-.\labenv\Scripts\Activate.ps1
-```
-
 After activation, your terminal should show `(labenv)` before the path.
 
 ## Install the required packages
