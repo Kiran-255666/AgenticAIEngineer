@@ -174,22 +174,16 @@ The application files for the Credit Risk RAG application are provided in the [t
 
    > **Note:** The source path should normally match the extracted repository folder name. If the extracted folder name is different, update the source path accordingly.
 
-7. Move into the copied lab folder:
+7. Open the copied lab folder directly in Visual Studio Code:
 
    ```powershell
-   cd "$env:USERPROFILE\Desktop\lab03-RAG"
-   ```
-
-8. Open the application folder in Visual Studio Code:
-
-   ```powershell
-   code .
+   code "$env:USERPROFILE\Desktop\lab03-RAG"
    ```
 
 Your application should now be located at a short path similar to:
 
 ```text
-C:\Users\<username>\Desktop\lab03-RAG
+C:\Users\agenticuser\Desktop\lab03-RAG
 ```
 
 This keeps the working folder path short and helps avoid Windows long-path issues.
