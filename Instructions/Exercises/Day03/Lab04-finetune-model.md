@@ -88,8 +88,6 @@ Start the job now. It may take a while, so you can test gpt-5.4-mini in the play
 
 > **Note**: Fine-tuning and automatic deployment can take 60 minutes or longer. To check progress, open the fine-tuning job and select the **Monitor tab**. The steps to reach the Monitor tab are shown in the following screenshots.
 
-![Snippet](../../media/ftt1.png)
-![Snippet](../../media/m.png)
 ![Snippet](../../media/w8.png)
 
 
