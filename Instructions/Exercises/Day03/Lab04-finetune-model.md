@@ -10,15 +10,35 @@ lab:
 
 # Fine-tune a language model
 
-Prompt engineering tells a language model how to behave in one conversation. Fine-tuning uses example conversations to make a particular style or behavior more consistent.
+**Prompt engineering** means giving a language model instructions for a specific task or conversation. For example, you can tell a model, *"Act as a credit analyst and explain your decision with the key factors."* The model follows those instructions for that interaction.
 
-In this exercise, you explore a travel-planning chat application. First, you test the prepared **gpt-5.4-mini** model in the playground. Next, you create a supervised fine-tuning job using **gpt-4.1** and your training data. Finally, you test the fine-tuned model and compare its responses with the prepared base model.
+**Fine-tuning** is different. Instead of relying only on instructions, you provide the model with example inputs and the responses you expect. The model learns those patterns and can follow the desired behavior more consistently.
 
-The goal is to create a friendly travel assistant that suggests destinations and activities in a consistent tone, without recommending hotels, flights, rental cars, or restaurants.
+### Real-world example
+
+Imagine a bank wants an AI assistant to review business loan applications. You could give it examples showing how to assess:
+
+* Company documents
+* Compliance requirements
+* Financial ratios
+* Credit history
+* Industry risk
+
+For example, if a company's financial information is incomplete, the training examples can show the assistant that it should **identify the missing information instead of making assumptions**.
+
+In this exercise, you will build a **credit risk management assistant** that follows this type of assessment consistently.
+
+## What you will do
+
+1. **Test the prepared `gpt-5.4-mini` model** in the playground and observe how it responds to credit-risk scenarios.
+2. **Create a supervised fine-tuning job** using `gpt-4.1` and the provided training data.
+3. **Test the fine-tuned model** and compare its responses with the prepared base model.
+
+The goal is to understand how example-based training can make a model's behavior more consistent for a specific use case.
 
 This exercise takes approximately **90 minutes**.
 
-> **Note**: Fine-tuning depends on cloud capacity and can take 60 minutes or longer. Some portal features are in preview or active development, so you may see warnings, errors, or unexpected behavior. Continue with the playground-testing tasks while the job runs.
+> **Note:** Fine-tuning depends on cloud capacity and can take 60 minutes or longer. Some portal features are in preview or under active development, so you may see warnings or unexpected behavior. You can continue with the playground-testing tasks while the job runs.
 
 ## Prerequisites
 
@@ -223,4 +243,8 @@ Each entry includes system instructions, a credit-risk-related user question, an
 
 ## Summary
 
-You tested the prepared **gpt-5.4-mini** model using prompt instructions, reviewed the supervised fine-tuning dataset in `credit_risk_management.jsonl`, and tested the resulting fine-tuned model. Fine-tuning is useful when a particular behavior, response style, or domain-specific approach needs to remain consistent across many credit risk assessment conversations.
+In this lab, you tested **gpt-5.4-mini** in the playground and saw how instructions can guide the model's responses. You then prepared a **credit risk management dataset** in JSONL format and used it to start a supervised fine-tuning job with **gpt-4.1**.
+
+**Fine-tuning** means training a model with example conversations so it learns to respond in a more consistent way for a specific task or style. In this lab, the examples teach the model how to handle credit risk assessments, including document verification, compliance checks, financial ratios, credit scores, and industry risk.
+
+Finally, you tested the fine-tuned model with the same credit risk questions and compared its responses with the base model.
