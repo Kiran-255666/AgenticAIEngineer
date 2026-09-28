@@ -88,7 +88,7 @@ Start the job now. It may take a while, so you can test gpt-5.4-mini in the play
     ![Basic details page showing Supervised, gpt-4.1, and Data Zone selected.](../../media/fine-tune-002.png)
 
 1. Select **Next**.
-1. In **Datasets**, under **Training data source**, select **Upload or drag and drop**. Upload `travel-finetune-hotel.jsonl`.
+1. In **Datasets**, under **Training data source**, select **Upload or drag and drop**. Upload `credit_risk_management.jsonl`.
 1. Confirm that the upload finishes and that the Dataset preview displays the file content and JSONL rows.
 1. Leave **Validation data source (optional)** empty.
 
