@@ -45,7 +45,7 @@ Microsoft Foundry projects organize the models, resources, data, and other asset
 
 # Download the training data
 
-1. Open the [training dataset](https://github.com/Kiran-255666/agentic-ai-azure-ai-foundry-labs/blob/main/labfiles/Day-04/Lab-02-finetune-model/travel-finetune-hotel.jsonl) in a browser.
+1. Open the [training dataset](https://github.com/Kiran-255666/AgenticAIEngineer/blob/main/labfiles/Day03/lab04-fine-tuning/credit_risk_management.jsonl) in a browser.
 1. Download the file and save it locally as `credit_risk_management.jsonl`.
 
     > **Important**: Your browser may save the file with a `.txt` extension. If it does, rename the file so that its name ends in `.jsonl`.
