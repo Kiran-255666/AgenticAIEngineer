@@ -100,6 +100,7 @@ Start the job now. It may take a while, so you can test gpt-5.4-mini in the play
     - **Display name**: Keep the generated name, or enter `ft-credit`
     - **Seed**: Keep the default value, **Random**
     - **Automatically deploy model after job completion**: Turn this on
+    - **Deployment type**: Keep Developer
     - **Hyperparameter tuning**: Keep **Default** selected for batch size, number of epochs, and learning-rate multiplier
 
     ![Optional settings page showing a generated display name, Random seed, automatic deployment control, and default hyperparameters.](../../media/fine-tune-004.png)
