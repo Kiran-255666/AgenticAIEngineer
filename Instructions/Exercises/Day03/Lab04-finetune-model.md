@@ -90,69 +90,63 @@ Start the job now. It may take a while, so you can test gpt-5.4-mini in the play
 
 ![Snippet](../../media/w8.png)
 
-
 # Test gpt-5.4-mini in the playground
 
-While the fine-tuning job runs, test the prepared gpt-5.4-mini model and note how prompt instructions affect its behavior.
+While the fine-tuning job runs, test the prepared **gpt-5.4-mini** model and note how prompt instructions affect its behavior.
 
 1. Open the model playground for **gpt-5.4-mini**.
-1. In the chat pane, enter:
 
-    ```text
-    What can you do?
-    ```
+2. In the chat pane, enter:
 
-    The response may be generic. The travel application needs more specific behavior and tone.
+   ```text
+   What can you do?
+   ```
 
-![Snippet](../../media/w1.png)
+   The response may be generic. The credit risk application needs more specific behavior focused on business credit assessment.
 
-1. In the **Instructions** field, enter:
+3. In the **Instructions** field, enter:
 
-    ```text
-    You are an AI assistant that helps people plan their travel.
-    ```
-![Snippet](../../media/w2.png)
+   ```text
+   You are an AI assistant that helps assess the creditworthiness of business clients.
+   ```
 
-1. Ask the same question again:
+4. Ask the same question again:
 
-    ```text
-    What can you do?
-    ```
+   ```text
+   What can you do?
+   ```
 
-    The assistant may say that it can help book flights, hotels, or rental cars. The travel application should avoid that behavior.
+   The assistant may provide a general response. The credit risk application requires more specific behavior and should focus on document verification, compliance checks, financial analysis, external credit information, and industry risk.
 
-![Snippet](../../media/w3.png)
+5. Replace the instructions with the following prompt:
 
-1. Replace the instructions with the following prompt:
+   ```text
+   You are an AI credit risk management assistant that helps assess the creditworthiness of business clients. Your objective is to evaluate company documents, compliance status, financial ratios, external credit information, and industry risk using the provided credit risk assessment rules.
+   Do not invent missing financial or compliance information.
+   Clearly identify missing documents or data and explain how they affect the assessment.
+   ```
 
-    ```text
-    You are an AI travel assistant that helps people plan their trips. Your objective is to offer support for travel-related inquiries, such as visa requirements, weather forecasts, local attractions, and cultural norms.
-    You should not provide any hotel, flight, rental car or restaurant recommendations.
-    Ask engaging questions to help someone plan their trip and think about what they want to do on their holiday.
-    ```
+6. Test the model with these questions. Note the answers, tone, and writing style:
 
-1. Test the model with these questions. Note the answers, tone, and writing style:
+   ```text
+   What documents are required to start a credit risk assessment?
+   ```
 
-    ```text
-    Where in Rome should I stay?
-    ```
+   ```text
+   The client uploaded only the GST Certificate. Can we pass the document verification step?
+   ```
 
-    ```text
-    I'm mostly there for the food. Where should I stay to be within walking distance of affordable restaurants?
-    ```
+   ```text
+   A company has a Current Ratio of 1.56, Debt-to-Equity of 1.86, and Net Profit Margin of 5.56%. How many points does it receive for these three financial metrics?
+   ```
 
-    ```text
-    What are some local delicacies I should try?
-    ```
+   ```text
+   How does industry risk affect the credit score?
+   ```
 
-    ```text
-    When is the best time of year to visit in terms of the weather?
-    ```
-
-    ```text
-    What's the best way to get around the city?
-    ```
-![Snippet](../../media/w3.png)
+   ```text
+   What happens if a sanctions or compliance match is confirmed?
+   ```
 
 # Review the training data
 
@@ -160,7 +154,7 @@ The training file contains examples of the behavior and writing style that you w
 
 1. Open the downloaded `credit_risk_management.jsonl` file in a text editor.
 
-1. Review the JSONL entries. The first entry should look similar to the following example, formatted for readability:
+2. Review the JSONL entries. The first entry should look similar to the following example, formatted for readability:
 
 ```json
 {"messages": [
@@ -179,51 +173,54 @@ The training file contains examples of the behavior and writing style that you w
 ]}
 ```
 
-Each entry includes system instructions, a travel-related user question, and the assistant response that you want the model to learn. These examples help the fine-tuned model produce a more consistent response style.
+Each entry includes system instructions, a credit-risk-related user question, and an assistant response that you want the model to learn. These examples help the fine-tuned model produce more consistent credit risk assessments and follow the defined scoring rules.
 
 # Test the fine-tuned model
 
 1. In the left navigation, select **Fine-tune** and check the status of the job you started earlier.
-1. Select the job to view its details. Open the **Logs** tab if you need to review completed tasks or errors.
+
+2. Select the job to view its details. Open the **Logs** tab if you need to review completed tasks or errors.
+
 ![Snippet](../../media/logs.png)
 
 1. When fine-tuning finishes, verify that the fine-tuned model is available in **Deployments**.
 
-    > **Tip**: If automatic deployment did not finish successfully, open the completed fine-tuning job and make the fine-tuned model available from its details page.
+   > **Tip**: If automatic deployment did not finish successfully, open the completed fine-tuning job and make the fine-tuned model available from its details page.
 
-1. Open the fine-tuned model in the model playground.
-1. Set the **Instructions** field to the same travel-assistant prompt used earlier:
+2. Open the fine-tuned model in the model playground.
 
-    ```text
-    You are an AI travel assistant that helps people plan their trips. Your objective is to offer support for travel-related inquiries, such as visa requirements, weather forecasts, local attractions, and cultural norms.
-    You should not provide any hotel, flight, rental car or restaurant recommendations.
-    Ask engaging questions to help someone plan their trip and think about what they want to do on their holiday.
-    ```
+3. Set the **Instructions** field to the same credit risk management prompt used earlier:
 
-1. Ask the same travel questions again:
+   ```text
+   You are an AI credit risk management assistant that helps assess the creditworthiness of business clients. Your objective is to evaluate company documents, compliance status, financial ratios, external credit information, and industry risk using the provided credit risk assessment rules.
+   Do not invent missing financial or compliance information.
+   Clearly identify missing documents or data and explain how they affect the assessment.
+   ```
 
-    ```text
-    Where in Rome should I stay?
-    ```
+4. Ask the same credit risk questions again:
 
-    ```text
-    I'm mostly there for the food. Where should I stay to be within walking distance of affordable restaurants?
-    ```
+   ```text
+   What documents are required to start a credit risk assessment?
+   ```
 
-    ```text
-    What are some local delicacies I should try?
-    ```
+   ```text
+   The client uploaded only the GST Certificate. Can we pass the document verification step?
+   ```
 
-    ```text
-    When is the best time of year to visit in terms of the weather?
-    ```
+   ```text
+   A company has a Current Ratio of 1.56, Debt-to-Equity of 1.86, and Net Profit Margin of 5.56%. How many points does it receive for these three financial metrics?
+   ```
 
-    ```text
-    What's the best way to get around the city?
-    ```
+   ```text
+   How does industry risk affect the credit score?
+   ```
 
-1. Compare the fine-tuned model's responses with the prepared gpt-5.4-mini base model. Note differences in tone, consistency, and adherence to the travel-assistant instructions.
+   ```text
+   What happens if a sanctions or compliance match is confirmed?
+   ```
+
+5. Compare the fine-tuned model's responses with the prepared **gpt-5.4-mini** base model. Note differences in tone, consistency, adherence to the credit risk instructions, and use of the defined assessment rules.
 
 ## Summary
 
-You tested the prepared gpt-5.4-mini model using prompt instructions, created a supervised gpt-4.1 fine-tuning job using your travel dataset, and tested the resulting fine-tuned model. Fine-tuning is useful when a particular behavior or response style must remain consistent across many conversations.
+You tested the prepared **gpt-5.4-mini** model using prompt instructions, reviewed the supervised fine-tuning dataset in `credit_risk_management.jsonl`, and tested the resulting fine-tuned model. Fine-tuning is useful when a particular behavior, response style, or domain-specific approach needs to remain consistent across many credit risk assessment conversations.
