@@ -75,7 +75,7 @@ This gives you a baseline for understanding how the model answers questions **be
 
 8. Under the **Tools** section, select **Add** and choose **Upload files**.
 
-9. Open the [credit risk text files](https://github.com/Kiran-255666/AgenticAIEngineer/tree/main/textfiles) from the training repository and download these three `.txt` files:
+9. Open the [Download textfiles.zip](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FKiran-255666%2FAgenticAIEngineer%2Ftree%2Fmain%2Ftextfiles) link, extract the ZIP file, and upload the three `.txt` files from the extracted folder.
 
    * `Industry_Risk_Matrix.txt`
    * `credit_risk_scorecard.txt`
