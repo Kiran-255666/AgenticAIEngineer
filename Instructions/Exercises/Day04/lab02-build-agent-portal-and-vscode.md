@@ -190,9 +190,19 @@ The Code interpreter can now use these calculation rules when analyzing the fina
 
 ---
 
+Yes man, understood now. You want the **“Review the response” output/expected-result text** for each test, written based on the **actual Copilot outputs you pasted**, not new test prompts.
+
+So for **Test 1**, for example, instead of the current generic:
+
+> The agent should clearly state that the required documents cannot be verified...
+
+you want something closer to what Copilot actually returned.
+
+Here is the full section with the **output expectations aligned to your actual test results**:
+
 ## Test your credit-risk agent
 
-Test the agent to confirm that it can retrieve information from the grounding documents and use Code interpreter for financial analysis.
+Test the agent to confirm that it can retrieve information from the grounding documents and use Code Interpreter for financial analysis.
 
 > **Note:** The agent's response may not match the examples word-for-word. Responses can vary depending on the model and context. Verify that the response contains the expected information, calculations, and reasoning described in each test.
 
@@ -206,7 +216,19 @@ Verify whether the Company Registration Certificate and GST Certificate are avai
 
 2. Review the response.
 
-The agent should clearly state that the required documents cannot be verified because the Company Registration Certificate and GST Certificate are not provided in the available files. It should not assume that either document is available or that the company name matches.
+The agent should state that it could not verify the Company Registration Certificate or GST Certificate because the actual certificate files are not provided in the available files.
+
+The response should also state that the company name cannot be compared with the names on the certificates because the certificates are unavailable.
+
+A response similar to the following is expected:
+
+* Company Registration Certificate: Not found / not verifiable
+* GST Certificate: Not found / not verifiable
+* Exact company name match: Cannot be confirmed because the certificates are unavailable
+
+The agent may also refer to `Credit_Risk_Assessment_Rules.txt` to explain that both certificates are required and that the company names must match exactly.
+
+The agent should not assume that the certificates are available or that the company name matches.
 
 ### 2. Test the credit-risk assessment rules
 
@@ -218,7 +240,9 @@ Using the exact rules in Credit_Risk_Assessment_Rules.txt, what checks must be c
 
 2. Review the response.
 
-The response should cover the main assessment areas defined in `Credit_Risk_Assessment_Rules.txt`, including:
+The response should retrieve the rules from `Credit_Risk_Assessment_Rules.txt` and summarize the required assessment areas.
+
+It should cover:
 
 * Document verification
 * Company-name matching
@@ -233,7 +257,7 @@ The response should cover the main assessment areas defined in `Credit_Risk_Asse
 
 The exact wording or order may differ, but the response should be consistent with the rules provided in `Credit_Risk_Assessment_Rules.txt`.
 
-### 3. Test financial calculations with Code interpreter
+### 3. Test financial calculations with Code Interpreter
 
 1. Enter:
 
@@ -258,25 +282,38 @@ Then calculate the following using the formulas provided in Formulas.txt:
 Show the latest financial year, extracted values, formulas, and final calculated results. Do not assume, invent, or estimate any values. If the CSV cannot be accessed, clearly state that the file could not be read.
 ```
 
-2. The agent should use **Code interpreter** to open and process `financial_data.csv`.
+2. The agent should use **Code Interpreter** to open and process `financial_data.csv`.
 
 3. Review the response.
 
-The response should identify the latest financial year and show the extracted financial values used for the calculations.
+The response should confirm that the CSV was successfully accessed and that the latest available financial year is **2025**.
 
-For the provided `financial_data.csv`, the latest financial year is **2025**.
+It should extract and use the values from the 2025 row:
 
-The calculations should be based on the formulas in `Formulas.txt`:
+* Current Assets: 7,800,000
+* Current Liabilities: 5,000,000
+* Total Debt: 9,300,000
+* Shareholders' Equity: 5,000,000
+* Revenue: 9,000,000
+* Net Profit: 500,000
+
+The response should show the formulas and calculations:
 
 ```text
-Current Ratio = Current Assets / Current Liabilities
+Current Ratio = 7,800,000 / 5,000,000 = 1.56
 
-Debt-to-Equity = Total Debt / Shareholders' Equity
+Debt-to-Equity = 9,300,000 / 5,000,000 = 1.86
 
-Net Profit Margin = (Net Profit / Revenue) × 100
+Net Profit Margin = (500,000 / 9,000,000) × 100 = 5.56%
 ```
 
-The agent should show the calculation steps and final values. The numerical presentation may vary slightly due to rounding, but the results should be consistent with the uploaded CSV data.
+The final results should be approximately:
+
+* Current Ratio: **1.56**
+* Debt-to-Equity: **1.86**
+* Net Profit Margin: **5.56%**
+
+The agent should state that the calculations are based on the latest available financial year in `financial_data.csv` and should not assume or estimate values.
 
 ### 4. Test the Industry Risk Matrix
 
@@ -299,16 +336,14 @@ Do not use general knowledge or assume an industry risk rating. If the industry 
 
 2. Review the response.
 
-The agent should identify the client's industry from `financial_data.csv` and use the Industry Risk Matrix from `Credit_Risk_Assessment_Rules.txt`.
+The agent should read the `Industry` value from `financial_data.csv` and apply the Industry Risk Matrix from `Credit_Risk_Assessment_Rules.txt`.
 
-For the provided data:
+For the provided data, the response should identify:
 
-```text
-Company: Contoso Manufacturing Ltd
-Industry: Manufacturing
-Risk Category: Medium Risk
-Industry Score: 8
-```
+* Company: **Contoso Manufacturing Ltd**
+* Industry: **Manufacturing**
+* Industry Risk Category: **Medium Risk**
+* Industry Risk Score: **8**
 
 The agent should explain that **Manufacturing** is listed under **Medium Risk** in the Industry Risk Matrix and therefore receives **8 points**.
 
@@ -350,21 +385,41 @@ The agent should combine information from:
 * `Formulas.txt` for the financial calculation formulas
 * `financial_data.csv` for the client's financial data
 
-The scorecard defined in `Credit_Risk_Assessment_Rules.txt` contains:
+The response should identify the client as **Contoso Manufacturing Ltd** and use **2025** as the latest financial year.
 
-| Category                          | Maximum Score |
-| --------------------------------- | ------------: |
-| Compliance                        |            20 |
-| Liquidity (Current Ratio)         |            20 |
-| Leverage (Debt-to-Equity)         |            15 |
-| Profitability (Net Profit Margin) |            15 |
-| External Credit Bureau            |            15 |
-| Industry Risk                     |            15 |
-| **Total**                         |       **100** |
+The available financial calculations should be:
 
-3. Verify that the agent explains how each score was calculated and uses only the available evidence.
+* Current Ratio = **1.56** → **20 points**
+* Debt-to-Equity = **1.86** → **10 points**
+* Net Profit Margin = **5.56%** → **10 points**
+* D&B Credit Score = **720** → **15 points**
+* Industry = **Manufacturing** → **Medium Risk** → **8 points**
 
-> **Note:** The final response may be formatted differently or use different wording. The important point is that the agent applies the rules from `Credit_Risk_Assessment_Rules.txt`, uses the financial data from `financial_data.csv`, uses the formulas from `Formulas.txt`, and does not invent missing information.
+The response should also identify the missing information:
+
+* Company Registration Certificate: not provided
+* GST Certificate: not provided
+* Company name match: cannot be confirmed
+* MCA legal status: cannot be verified
+* Sanctions/compliance screening: cannot be verified
+
+The scorecard should be presented according to the rules:
+
+| Category                          | Maximum Score |  Available Score |
+| --------------------------------- | ------------: | ---------------: |
+| Compliance                        |            20 | Cannot be scored |
+| Liquidity (Current Ratio)         |            20 |               20 |
+| Leverage (Debt-to-Equity)         |            15 |               10 |
+| Profitability (Net Profit Margin) |            15 |               10 |
+| External Credit Bureau            |            15 |               15 |
+| Industry Risk                     |            15 |                8 |
+| **Total**                         |       **100** | **63 available** |
+
+The agent should not assign a compliance score because the required compliance information is not available.
+
+It should therefore state that the **full 100-point score and final risk rating cannot be determined from the available information**. It should also not provide a final credit limit or payment terms based on an incomplete scorecard.
+
+> **Note:** The final response may use different wording or formatting. The important point is that the agent applies the rules from `Credit_Risk_Assessment_Rules.txt`, uses the financial data from `financial_data.csv`, uses the formulas from `Formulas.txt`, and does not invent missing information.
 
 ### 6. Request a visualization
 
@@ -376,13 +431,21 @@ Use Code Interpreter to read the uploaded financial_data.csv and create a chart 
 Use the formulas provided in Formulas.txt to calculate the three metrics before creating the chart.
 ```
 
-2. The agent should use **Code interpreter** to read the financial data, calculate the metrics, and generate a suitable visualization.
+2. The agent should use **Code Interpreter** to read `financial_data.csv`, calculate the three metrics, and generate a visualization.
 
 3. Review the visualization.
 
-The chart should represent the Current Ratio, Debt-to-Equity Ratio, and Net Profit Margin calculated from the latest financial year in `financial_data.csv`.
+The response should confirm that the chart was generated from the latest financial year in `financial_data.csv`.
 
-> **Note:** The chart style, layout, labels, and presentation may vary. The important point is that the visualization is based on the uploaded financial data and the calculations defined in `Formulas.txt`.
+For the provided data, the chart should represent approximately:
+
+* Current Ratio: **1.56**
+* Debt-to-Equity Ratio: **1.86**
+* Net Profit Margin: **5.56%**
+
+The agent may also provide the calculation steps and save the generated chart as an image file.
+
+The chart style, layout, labels, and presentation may vary. The important point is that the visualization is based on the uploaded financial data and the calculations defined in `Formulas.txt`.
 
 ---
 
