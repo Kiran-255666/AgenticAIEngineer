@@ -1,0 +1,5 @@
+Current Ratio = Current Assets / Current Liabilities
+
+Debt-to-Equity = Total Debt / Shareholders' Equity
+
+Net Profit Margin = (Net Profit / Revenue) × 100

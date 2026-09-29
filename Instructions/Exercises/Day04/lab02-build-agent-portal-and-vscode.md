@@ -140,7 +140,7 @@ Return to the agent playground.
 2. The `textfiles` folder, which you downloaded earlier as part of the lab, already contains the following file:
 
    ```text
-   Credit_Risk_Calculation_Rules.txt
+   Forumlas.txt
    ```
 
    This file contains the calculation rules for:
@@ -155,7 +155,7 @@ Return to the agent playground.
 
    It also specifies that the **latest available financial year** should be used for these calculations.
 
-3. In the **Code interpreter** section, select **+ Files** and upload `Credit_Risk_Calculation_Rules.txt` from the `textfiles` folder using **Drag and drop files here** or **browse for files**.
+3. In the **Code interpreter** section, select **+ Files** and upload `Forumlas.txt` from the `textfiles` folder using **Drag and drop files here** or **browse for files**.
 
 4. Verify that the file status shows **Success**, then select **Attach**.
 
@@ -190,53 +190,46 @@ The Code interpreter can now use these calculation rules when analyzing the fina
 
 ---
 
-Yeah man. Since you’re **not using PNG screenshots anymore**, the testing section should focus on **what the user should enter and what kind of result they should expect**, without forcing exact wording. Add a note that AI responses may differ but should contain the same key information.
-
-Here’s the cleaned-up version:
-
 ## Test your credit-risk agent
 
 Test the agent to confirm that it can retrieve information from the grounding documents and use Code interpreter for financial analysis.
 
 > **Note:** The agent's response may not match the examples word-for-word. Responses can vary depending on the model and context. Verify that the response contains the expected information, calculations, and reasoning described in each test.
 
-### 1. Verify the required documents
+### Verify the required documents
 
 1. In the playground chat pane, enter:
 
 ```text
-Verify whether the Company Registration Certificate and GST Certificate are available for the client. Also compare the company name shown on both documents.
+Verify whether the Company Registration Certificate and GST Certificate are available for the client. Compare the client company name with the company name shown on both certificates and confirm whether the names match exactly.
 ```
 
 2. Review the response.
 
-The agent should identify whether the required documents are available and compare the company name across the certificates.
-
-If a required document is missing, the agent should clearly state that it cannot complete the verification rather than assuming the document is available.
+The agent should clearly state that the required documents cannot be verified because the Company Registration Certificate and GST Certificate are not provided in the available files. It should not assume that either document is available or that the company name matches.
 
 ### 2. Test the credit-risk assessment rules
 
 1. Enter:
 
 ```text
-What checks must be completed before assigning a credit risk rating?
+Using the exact rules in Credit_Risk_Assessment_Rules.txt, what checks must be completed before assigning a credit risk rating? Summarize the required checks and scoring areas defined in the file.
 ```
 
 2. Review the response.
 
-The agent should retrieve the assessment process from the uploaded credit-risk grounding document.
-
-The response should cover the main checks, including:
+The response should cover the main assessment areas defined in `Credit_Risk_Assessment_Rules.txt`, including:
 
 * Document verification
 * Company-name matching
-* Legal status
-* Compliance and sanctions checks
+* MCA legal status
+* Sanctions and compliance screening
 * Financial statements
 * Financial ratios
-* Credit bureau score
+* External credit bureau score
 * Industry risk
-* Final scorecard
+* Credit-risk scorecard
+* Final risk classification
 
 The exact wording or order may differ, but the response should be consistent with the rules provided in `Credit_Risk_Assessment_Rules.txt`.
 
@@ -245,83 +238,151 @@ The exact wording or order may differ, but the response should be consistent wit
 1. Enter:
 
 ```text
-Analyze the financial data and calculate the Current Ratio, Debt-to-Equity, and Net Profit Margin for the latest financial year.
+Use Code Interpreter to access the uploaded file named financial_data.csv.
+
+First, open and read the CSV file directly using Code Interpreter. Do not use File Search to retrieve the CSV data.
+
+Identify the latest Financial_Year in the file and use that row for the calculation. Extract these exact columns:
+- Current_Assets
+- Current_Liabilities
+- Total_Debt
+- Shareholders_Equity
+- Revenue
+- Net_Profit
+
+Then calculate the following using the formulas provided in Formulas.txt:
+- Current Ratio = Current_Assets / Current_Liabilities
+- Debt-to-Equity = Total_Debt / Shareholders_Equity
+- Net Profit Margin = (Net_Profit / Revenue) × 100
+
+Show the latest financial year, extracted values, formulas, and final calculated results. Do not assume, invent, or estimate any values. If the CSV cannot be accessed, clearly state that the file could not be read.
 ```
 
-2. The agent should use **Code interpreter** to process `financial_data.csv` and calculate the required metrics.
+2. The agent should use **Code interpreter** to open and process `financial_data.csv`.
 
-3. Review the calculations and verify that they are based on the uploaded financial data.
+3. Review the response.
 
-The response should provide:
+The response should identify the latest financial year and show the extracted financial values used for the calculations.
 
-* Current Ratio
-* Debt-to-Equity
-* Net Profit Margin
-* The latest financial year used for the calculation
+For the provided `financial_data.csv`, the latest financial year is **2025**.
 
-The numerical presentation may vary, but the calculated values should be consistent with the uploaded data and the rules in `Credit_Risk_Calculation_Rules.txt`.
+The calculations should be based on the formulas in `Formulas.txt`:
+
+```text
+Current Ratio = Current Assets / Current Liabilities
+
+Debt-to-Equity = Total Debt / Shareholders' Equity
+
+Net Profit Margin = (Net Profit / Revenue) × 100
+```
+
+The agent should show the calculation steps and final values. The numerical presentation may vary slightly due to rounding, but the results should be consistent with the uploaded CSV data.
 
 ### 4. Test the Industry Risk Matrix
 
 1. Enter:
 
 ```text
-Using the Industry Risk Matrix, determine the industry risk rating for the client and explain the score assigned.
+Use the exact rules in Credit_Risk_Assessment_Rules.txt to determine the client's industry risk.
+
+First, identify the client's Industry from the uploaded financial_data.csv. Then use the Industry Risk Matrix provided in Credit_Risk_Assessment_Rules.txt to determine the applicable risk category and score.
+
+State:
+- Company name
+- Industry
+- Industry risk category
+- Industry risk score
+- Brief explanation of how the industry maps to the Industry Risk Matrix
+
+Do not use general knowledge or assume an industry risk rating. If the industry or required information is unavailable, clearly state that it could not be determined.
 ```
 
 2. Review the response.
 
-The agent should use the Industry Risk Matrix from the credit-risk rules:
+The agent should identify the client's industry from `financial_data.csv` and use the Industry Risk Matrix from `Credit_Risk_Assessment_Rules.txt`.
 
-| Industry Risk | Industries                                                                                  | Score |
-| ------------- | ------------------------------------------------------------------------------------------- | ----: |
-| Low           | Utilities, Government, Healthcare                                                           |    15 |
-| Medium        | Manufacturing, FMCG distribution, IT services                                               |     8 |
-| High          | Construction, Real estate developers, Airlines, Commodity trading, Startups, Mining & Metal |     3 |
+For the provided data:
 
-The response should identify the client's industry, corresponding risk category, and assigned score.
+```text
+Company: Contoso Manufacturing Ltd
+Industry: Manufacturing
+Risk Category: Medium Risk
+Industry Score: 8
+```
+
+The agent should explain that **Manufacturing** is listed under **Medium Risk** in the Industry Risk Matrix and therefore receives **8 points**.
 
 ### 5. Generate the final credit-risk assessment
 
 1. Enter:
 
 ```text
-Using all available documents and financial data, complete the credit-risk assessment. Calculate the required financial ratios, apply the scorecard, determine the final risk rating, and provide the recommended credit limit and payment terms. Clearly show how the final score was calculated.
+Using the exact rules in Credit_Risk_Assessment_Rules.txt and the financial data in financial_data.csv, complete the credit-risk assessment for the client.
+
+Use Code Interpreter to read financial_data.csv and calculate the Current Ratio, Debt-to-Equity Ratio, and Net Profit Margin using the formulas in Formulas.txt.
+
+Use the latest financial year available in financial_data.csv.
+
+Apply the scoring rules exactly as defined in Credit_Risk_Assessment_Rules.txt.
+
+Show:
+- Document verification result
+- Company name match result
+- MCA legal status
+- Sanctions and compliance screening result
+- Financial ratios and calculations
+- D&B credit score
+- Industry risk category and score
+- Score for each credit-risk scorecard category
+- Total score out of 100
+- Final risk rating
+- Recommended credit limit
+- Recommended payment terms
+
+Clearly explain how each score was calculated. Do not invent, assume, or estimate missing company information. If required information is unavailable, clearly identify it and do not assign a score based on an assumption.
 ```
 
 2. Review the response.
 
-The agent should combine information retrieved through **File search** with calculations performed using **Code interpreter**.
+The agent should combine information from:
 
-The assessment should consider:
+* `Credit_Risk_Assessment_Rules.txt` for the assessment and scoring rules
+* `Formulas.txt` for the financial calculation formulas
+* `financial_data.csv` for the client's financial data
 
-| Category                   | Maximum Score |
-| -------------------------- | ------------: |
-| Compliance                 |            20 |
-| Liquidity (Current Ratio)  |            20 |
-| Leverage (Debt-to-Equity)  |            15 |
-| Profitability (Net Margin) |            15 |
-| External Credit Bureau     |            15 |
-| Industry Risk              |            15 |
-| **Total**                  |       **100** |
+The scorecard defined in `Credit_Risk_Assessment_Rules.txt` contains:
 
-3. Verify that the agent explains how the individual scores contribute to the final score and applies the rules from the uploaded credit-risk documentation.
+| Category                          | Maximum Score |
+| --------------------------------- | ------------: |
+| Compliance                        |            20 |
+| Liquidity (Current Ratio)         |            20 |
+| Leverage (Debt-to-Equity)         |            15 |
+| Profitability (Net Profit Margin) |            15 |
+| External Credit Bureau            |            15 |
+| Industry Risk                     |            15 |
+| **Total**                         |       **100** |
 
-> **Note:** The final response may be formatted differently or use different wording. The important point is that the agent uses the available evidence, applies the supplied scoring rules, and does not invent missing information.
+3. Verify that the agent explains how each score was calculated and uses only the available evidence.
+
+> **Note:** The final response may be formatted differently or use different wording. The important point is that the agent applies the rules from `Credit_Risk_Assessment_Rules.txt`, uses the financial data from `financial_data.csv`, uses the formulas from `Formulas.txt`, and does not invent missing information.
 
 ### 6. Request a visualization
 
 1. Enter:
 
 ```text
-Create a chart showing the company's Current Ratio, Debt-to-Equity, and Net Profit Margin.
+Use Code Interpreter to read the uploaded financial_data.csv and create a chart showing the company's Current Ratio, Debt-to-Equity Ratio, and Net Profit Margin for the latest financial year.
+
+Use the formulas provided in Formulas.txt to calculate the three metrics before creating the chart.
 ```
 
-2. The agent should use **Code interpreter** to process the financial values and generate a suitable visualization.
+2. The agent should use **Code interpreter** to read the financial data, calculate the metrics, and generate a suitable visualization.
 
-3. Review the generated visualization and confirm that it represents the calculated financial metrics.
+3. Review the visualization.
 
-> **Note:** The chart style, layout, labels, and presentation may vary. The visualization should represent the Current Ratio, Debt-to-Equity, and Net Profit Margin calculated from the uploaded financial data.
+The chart should represent the Current Ratio, Debt-to-Equity Ratio, and Net Profit Margin calculated from the latest financial year in `financial_data.csv`.
+
+> **Note:** The chart style, layout, labels, and presentation may vary. The important point is that the visualization is based on the uploaded financial data and the calculations defined in `Formulas.txt`.
 
 ---
 
@@ -337,7 +398,7 @@ flowchart TD
     E --> F[Calculate Financial Ratios]
     C --> G[Credit Risk Assessment]
     F --> G
-    H[Credit Bureau Score] --> G
+    H[D&B Credit Score] --> G
     I[Industry Risk Matrix] --> G
     G --> J[100-Point Scorecard]
     J --> K{Final Risk Rating}
@@ -346,7 +407,7 @@ flowchart TD
     K -->|High < 50| N[No Credit<br/>Advance Payment]
 ```
 
-**Tip:** The exact decision should always be based on the supplied documents and data. If required information is missing or cannot be verified, the agent should clearly identify the missing information rather than inventing a result.
+**Tip:** The final assessment should always be based on the supplied documents and data. If required information is missing or cannot be verified, the agent should clearly identify the missing information rather than inventing a result.
 
 ---
 
@@ -357,12 +418,14 @@ You used an existing Microsoft Foundry project and its deployed model to create 
 You:
 
 * Configured the agent with credit-risk assessment instructions.
-* Grounded the agent with credit-risk documentation using **File search**.
+* Grounded the agent with `Credit_Risk_Assessment_Rules.txt` using **File search**.
+* Used `Formulas.txt` to define the required financial calculations.
+* Used **Code interpreter** to read and analyze `financial_data.csv`.
 * Verified required company documents and company-name consistency.
-* Used **Code interpreter** to calculate Current Ratio, Debt-to-Equity, and Net Profit Margin.
+* Calculated Current Ratio, Debt-to-Equity, and Net Profit Margin using the latest financial year.
 * Applied the Industry Risk Matrix and 100-point credit-risk scorecard.
 * Combined compliance, financial, bureau, and industry information into a structured assessment.
-* Tested the agent with document-verification, financial-analysis, scoring, and visualization prompts.
+* Tested the agent with document verification, financial analysis, industry risk, scoring, and visualization prompts.
 * Generated a visualization from the financial data using **Code interpreter**.
 
-This demonstrates how a Microsoft Foundry agent can combine **grounded business documents, financial calculations, and structured decision rules** to support a practical credit-risk assessment workflow.
+This demonstrates how a Microsoft Foundry agent can combine **grounded business rules, financial data, calculations, and structured scoring rules** to support a practical credit-risk assessment workflow.
