@@ -137,7 +137,7 @@ Return to the agent playground.
 
    ![Screenshot of Code interpreter.](../../media/04-03-07.png)
 
-2. The `textfiles` folder provided with the lab already contains the following file:
+2. The `textfiles` folder, which you downloaded earlier as part of the lab, already contains the following file:
 
    ```text
    Credit_Risk_Calculation_Rules.txt
@@ -163,7 +163,7 @@ The Code interpreter can now use these calculation rules when analyzing the fina
 
 ### 5. Upload the financial data
 
-1. Use the `financial_data.csv` file provided with the lab.
+1. Use the `financial_data.csv` file that you downloaded earlier as part of the lab.
 
 2. The file contains the financial information required to calculate the credit-risk metrics for the latest financial year, including:
 
