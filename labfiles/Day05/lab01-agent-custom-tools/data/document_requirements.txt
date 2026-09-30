@@ -1,0 +1,2 @@
+company_registration|Company Registration Certificate
+gst_certificate|GST Certificate
