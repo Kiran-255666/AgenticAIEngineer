@@ -132,6 +132,12 @@ The agent should return information similar to:
 * Registration status: Active.
 * The company name shown on both certificates matches.
 
+> **Tip:** Generally, you should see output similar to the above. However, in some cases, you may see output in the following format:
+>
+> * Available company documents: Company Registration Certificate and GST Certificate.
+> * Name consistency: Both documents show Apex Manufacturing Pvt Ltd, and the names match the stated company name.
+> * Missing/unavailable expected documents: None; the required documents are available.
+
 ### Test 2: Financial ratios
 
 Ask:
