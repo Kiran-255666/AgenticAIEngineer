@@ -1,0 +1,97 @@
+CREDIT RISK ASSESSMENT RULES
+
+Document Verification
+---------------------
+The following documents are required:
+1. Company Registration Certificate
+2. GST Certificate
+
+Both documents must be available.
+
+The company name must match across the provided documents.
+
+Company registration status should be reviewed.
+An Active status is acceptable.
+An Inactive status requires attention.
+
+Compliance
+----------
+Check for sanctions and compliance records.
+
+A confirmed match in sanctions or compliance records results
+in rejection.
+
+Financial Analysis
+------------------
+Use the latest available financial year for ratio analysis.
+
+Current Ratio:
+Current Assets / Current Liabilities
+
+Debt-to-Equity Ratio:
+Total Debt / Shareholders' Equity
+
+Net Profit Margin:
+(Net Profit / Revenue) × 100
+
+External Credit Bureau
+----------------------
+Use the latest available external credit bureau score or rating.
+
+Industry Risk
+-------------
+Industry risk categories:
+
+Low Risk:
+- Utilities
+- Government
+- Healthcare
+
+Medium Risk:
+- Manufacturing
+- FMCG distribution
+- IT services
+
+High Risk:
+- Construction
+- Real estate developers
+- Airlines
+- Commodity trading
+- Startups
+- Mining & Metal
+
+Scorecard
+---------
+Total Score: 100
+
+Compliance: 20
+Liquidity: 20
+Leverage: 15
+Profitability: 15
+External Credit Bureau: 15
+Industry Risk: 15
+
+Final Risk Classification
+-------------------------
+Score above 80:
+Risk Level: Low
+
+Score from 50 to 80:
+Risk Level: Medium
+
+Score below 50:
+Risk Level: High
+
+Credit Recommendation
+---------------------
+Low Risk:
+Credit limit up to $5M
+Payment terms up to 60 days
+
+Medium Risk:
+Credit limit up to $2M
+Payment terms up to 30 days
+
+High Risk:
+No credit
+Advance payment required
