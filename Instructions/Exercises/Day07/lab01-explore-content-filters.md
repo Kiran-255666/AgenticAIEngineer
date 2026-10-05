@@ -136,7 +136,7 @@ When the default guardrail doesn't meet your needs, you can create custom guardr
 
    ![Screenshot of Create guardrail controls page](../../media/content-harm-2.png)
 
-1. Select **Next** when you've modified the content filter settings for all four risk categories.
+1. Try exploring the other sections on the page. We highly recommend exploring them and selecting the sections that are relevant to your use cases. Select **Next** after modifying the content filter settings for all four risk categories and any additional categories you selected.
 
 1. In the **Select agents and models** section, scroll down to **Models** and check the checkbox next to **gpt-5.4-mini**. Then apply the new guardrail and click Next.
 
