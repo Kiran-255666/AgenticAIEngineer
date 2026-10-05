@@ -70,7 +70,7 @@ To complete this exercise, you need:
 
 9. After the dataset is uploaded, click **Next**.
    
-   ![Screenshot](../../media/Next.png)
+   ![Screenshot](../../media/NextNext1.png)
 
 ## Select Evaluation Scope
 
