@@ -1,0 +1,17 @@
+{
+  "completed_at_utc": "2026-10-06T04:23:04.426473+00:00",
+  "evaluation_id": "eval_b3a757ef35624fdd88b164e171018dc3",
+  "run_id": "evalrun_9eeff9071d924c45acb9699359baf10e",
+  "status": "completed",
+  "report_url": "https://ai.azure.com/nextgen/r/jrUAl9CJQLSHkxoOWTKoJg,Agentic_AI_Engineer_AI_Resources,,hakunamatata11,hakunamatata/build/evaluations/eval_b3a757ef35624fdd88b164e171018dc3/run/evalrun_9eeff9071d924c45acb9699359baf10e",
+  "result_counts": "ResultCounts(errored=0, failed=0, passed=7, total=7, skipped=0)",
+  "agent_name": "it-support-agent",
+  "dataset": "credit-risk-test-queries",
+  "dataset_version": "20261006042156",
+  "use_case": "Credit Risk Assessment",
+  "evaluators": [
+    "builtin.coherence",
+    "builtin.violence",
+    "builtin.task_adherence"
+  ]
+}
