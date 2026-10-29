@@ -327,7 +327,7 @@ Return only the outcome.
 
 1. Review `system.txt` and `grounding.txt`. These files are already provided and contain the system instructions and grounding information used by the application.
 1. Check `prompt_engineering.py` for any indentation issues before running it. Python uses indentation to define blocks of code, so an incorrectly indented line can cause an error when you execute the script.
-1. Save your changes.
+1. Save your changes by `ctrl+s` .
 
 ## Run the application
 
