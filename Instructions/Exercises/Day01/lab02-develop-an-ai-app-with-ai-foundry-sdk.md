@@ -111,76 +111,113 @@ You'll write a small Python app that connects to your Foundry project and holds 
    > pip install -r requirements.txt
    > ```
 
-1. Open the configuration file *.env* to fill the required placeholder values by actual vales
-1. Save with **Ctrl+S** (or right-click and choose Save), then close the editor while keeping your terminal open.
+## Configure your application
 
-### Write code to connect to your project and chat with your model (Note: We have the code updated in the mentioned files instructions but verify before you start the execution, so that there are no indentation issues)
+1. **Configure the `.env` file.**
 
-1. Open the app's code file:
+   Open `.env` in Visual Studio Code and add your Azure AI Foundry endpoint and model deployment name.
 
-    ```
-    code chat-app.py
-    ```
+   ```env
+   AZURE_OPENAI_ENDPOINT=""
+   MODEL_DEPLOYMENT=""
+   ```
 
-1. Near the top, some import statements are already there. Find the comment `# Add references` and add these lines below it, so your app can use the SDKs you installed:
+   Replace the empty values with the corresponding details from your project in [Azure AI Foundry](https://ai.azure.com/).
 
-    ```python
-    # Add references
-    from azure.identity import AzureCliCredential
-    from azure.ai.projects import AIProjectClient
-    from openai import AzureOpenAI
-    ```
+2. **Review `chat-app.py`.**
 
-1. In the `main` function, under `# Get configuration settings`, the code already reads your project endpoint and model deployment name from the `.env` file you edited earlier. No changes needed there.
-1. Find `# Initialize the project client` and add:
+   First, review how the application loads its configuration:
 
-    ```python
-    # Initialize the project client
-    project_client = AIProjectClient(
-        credential=AzureCliCredential(
-            exclude_environment_credential=True,
-            exclude_managed_identity_credential=True
-        ),
-        endpoint=project_endpoint,
-    )
-    ```
+   ```python
+   load_dotenv()
+   azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+   model_deployment = os.getenv("MODEL_DEPLOYMENT")
+   ```
 
-    This creates a connection between your app and the Foundry project, using your signed-in Azure identity instead of a password or key.
+   This loads the values from `.env` so the application can identify the Azure endpoint and model deployment.
 
-1. Find `# Get a chat client` and add:
+   Next, review the authentication and client setup:
 
-    ```python
-    # Get a chat client
-    openai_client = project_client.get_openai_client(api_version="2024-10-21")
-    ```
+   ```python
+   token_provider = get_bearer_token_provider(
+       AzureCliCredential(),
+       "https://ai.azure.com/.default"
+   )
 
-1. Find `# Initialize prompt with system message` and add:
+   openai_client = OpenAI(
+       base_url=azure_openai_endpoint,
+       api_key=token_provider
+   )
+   ```
 
-    ```python
-    # Initialize prompt with system message
-    prompt = [
-        {"role": "system", "content": "You are a helpful AI assistant that answers questions."}
-    ]
-    ```
+   This uses your Azure CLI credentials to obtain an access token and initializes the OpenAI client to communicate with the deployed model.
 
-    This line sets up the model's instructions before any conversation starts, telling it how to behave.
+   Finally, examine how the application sends prompts and receives responses:
 
-1. The code already has a loop that keeps asking for input until you type "quit". Inside that loop, find `# Get a chat completion` and add:
+   ```python
+   stream = openai_client.responses.create(
+       model=model_deployment,
+       instructions="You are a helpful AI assistant that answers questions and provides information.",
+       input=input_text,
+       previous_response_id=last_response_id,
+       stream=True
+   )
+   ```
 
-    ```python
-    # Get a chat completion
-    prompt.append({"role": "user", "content": input_text})
-    response = openai_client.chat.completions.create(
-        model=model_deployment,
-        messages=prompt)
-    completion = response.choices[0].message.content
-    print(completion)
-    prompt.append({"role": "assistant", "content": completion})
-    ```
+   This sends the prompt to the model and streams the response as it is generated. The `previous_response_id` helps maintain conversation context between requests. The application displays the response as it arrives and exits when you type `quit`.
 
-    Each time you ask something, this code adds your question to the conversation, sends the whole conversation to the model, prints the reply, and saves that reply too. Saving both sides of the conversation is what lets the model remember earlier questions when you ask a follow-up.
+3. **Review `chat-async.py`.**
 
-1. Save the file with **Ctrl+S**.
+   Examine how the asynchronous client is initialized:
+
+   ```python
+   credential = AzureCliCredential()
+
+   token_provider = get_bearer_token_provider(
+       credential,
+       "https://ai.azure.com/.default"
+   )
+
+   async_client = AsyncOpenAI(
+       base_url=azure_openai_endpoint,
+       api_key=token_provider
+   )
+   ```
+
+   This configures Azure authentication and initializes `AsyncOpenAI`, which supports asynchronous requests.
+
+   Next, review how the application sends a prompt and displays the response:
+
+   ```python
+   response = await async_client.responses.create(
+       model=model_deployment,
+       instructions="You are a helpful AI assistant that answers questions and provides information.",
+       input=input_text,
+       previous_response_id=last_response_id
+   )
+
+   print("Assistant:", response.output_text)
+   last_response_id = response.id
+   ```
+
+   The `await` keyword waits for the asynchronous request to complete. Unlike `chat-app.py`, this version displays the complete response rather than streaming text chunks. It also stores the response ID to maintain conversation context.
+
+   The script uses `asyncio.run(main())` to start the asynchronous application and closes the Azure credential when finished.
+
+4. **Review `requirements.txt`.**
+
+   The application uses the following Python packages:
+
+   | Package | Purpose |
+   |---|---|
+   | `python-dotenv` | Loads configuration values from the `.env` file. |
+   | `aiohttp` | Supports asynchronous HTTP operations when required by the application or its dependencies. |
+   | `azure-identity` | Handles Azure authentication using CLI credentials. |
+   | `openai` | Provides the client for communicating with the deployed model. |
+
+   These dependencies support configuration loading, Azure authentication, and communication with the model. They were installed in the earlier setup step.
+
+5. **Save your changes** by pressing `Ctrl + S`.
 
 ## Sign in to Azure and Verify Your Account
 
