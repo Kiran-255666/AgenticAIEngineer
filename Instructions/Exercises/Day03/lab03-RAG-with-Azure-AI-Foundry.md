@@ -59,7 +59,7 @@ This gives you a baseline for understanding how the model answers questions **be
 
    ![Screenshot](../../media/d1.png)
 
-5. In the **Instructions** field, enter the following prompt and select **Apply Changes**:
+5. In the **Instructions** field, replace the default prompt with the following prompt:
 
    ```text
    You are a Credit Risk Assessment Assistant.
@@ -68,10 +68,10 @@ This gives you a baseline for understanding how the model answers questions **be
 6. In the chat pane, enter:
 
    ```text
-   Which industries are classified as High Risk?
+   What factors are considered when assessing credit risk for a business?
    ```
 
-7. Review the response. The response may be generic because the model does not yet have access to the organization's credit risk knowledge base.
+7. Review the response. The response should be generic because the model does not yet have access to the organization's credit risk knowledge base.
 
 8. Under the **Tools** section, select **Add** and choose **Upload files**.
 
@@ -88,7 +88,7 @@ This gives you a baseline for understanding how the model answers questions **be
 10. Ask the same question again:
 
     ```text
-    Which industries are classified as High Risk?
+    What factors are considered when assessing credit risk for a business?
     ```
 
 11. Compare the new response with the previous response. The model should now retrieve relevant information from the uploaded documents and provide a more grounded response.
