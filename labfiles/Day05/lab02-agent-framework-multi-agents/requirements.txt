@@ -1,3 +1,0 @@
-python-dotenv
-azure-identity
-agent-framework==1.12.0
