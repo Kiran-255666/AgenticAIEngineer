@@ -38,11 +38,14 @@ Microsoft Foundry projects organize models, resources, data, and other assets us
 
    ![All resources page showing the existing hakunamatata1 project.](../../media/04-03-01.png)
 
-2. On the project home page, make sure you are in the **`hakunamatata1`** project. In the **Build an agent** card, select **Start building**.
+2. On the project home page, make sure you are in the **`hakunamatata1`** project. In the **Create an agent** card, select **Start building**.
 
    ![Microsoft Foundry project home page with the Start building button highlighted in the Build an agent card.](../../media/04-03-02.png)
 
-3. In the **Create an agent** dialog, enter `credit-risk-agent` as the **Agent name** and make sure **Interaction mode** is set to **Text**.
+3. In the Create an agent dialog, enter `credit-risk-agent-<your_unique_suffix>` as the Agent name. Set Interaction mode to Text.
+
+> [!NOTE]
+> Replace `<your_unique_suffix>` with a suffix of your choice. This helps distinguish your agent from those created by other participants.
 
 4. Select **Create**.
 
@@ -155,7 +158,7 @@ Return to the agent playground.
 
    It also specifies that the **latest available financial year** should be used for these calculations.
 
-3. In the **Code interpreter** section, select **+ Files** and upload `Forumlas.txt` from the `textfiles` folder using **Drag and drop files here** or **browse for files**.
+3. In the **Code interpreter** section, select **Upload files** and upload `Forumlas.txt` from the `textfiles` folder using **Drag and drop files here** or **browse for files**.
 
 4. Verify that the file status shows **Success**, then select **Attach**.
 
