@@ -1,0 +1,38 @@
+Industry Risk Classification Examples
+Last updated: 2025-08-11
+
+Examples
+
+Company Type: Regional Electricity Provider
+Industry Classification: Utilities
+Risk Rating: Low
+
+Company Type: Public Healthcare Network
+Industry Classification: Healthcare
+Risk Rating: Low
+
+Company Type: Enterprise Software Services Firm
+Industry Classification: IT Services
+Risk Rating: Medium
+
+Company Type: Consumer Goods Distributor
+Industry Classification: FMCG Distribution
+Risk Rating: Medium
+
+Company Type: Commercial Building Contractor
+Industry Classification: Construction
+Risk Rating: High
+
+Company Type: New Airline Operator
+Industry Classification: Airlines
+Risk Rating: High
+
+Company Type: Early-Stage Technology Startup
+Industry Classification: Startups
+Risk Rating: High
+
+Usage Notes
+
+When multiple classifications appear possible, use the company's primary business activity.
+
+Document the selected industry category and supporting rationale for audit purposes.

@@ -1,0 +1,31 @@
+CREDIT RISK DOCUMENT PACK
+
+Company Name: Apex Manufacturing Pvt Ltd
+
+Company Registration Certificate
+--------------------------------
+Document Type: Company Registration Certificate
+Company Name: Apex Manufacturing Pvt Ltd
+Registration Number: U29299KA2018PTC112345
+Registration Status: Active
+
+GST Certificate
+---------------
+Document Type: GST Registration Certificate
+Company Name: Apex Manufacturing Pvt Ltd
+GSTIN: 29AABCA1234F1Z5
+GST Registration Status: Active
+
+Document Verification Information
+----------------------------------
+Required documents:
+1. Company Registration Certificate
+2. GST Certificate
+
+Both required documents are available.
+
+Company names:
+- Registration Certificate: Apex Manufacturing Pvt Ltd
+- GST Certificate: Apex Manufacturing Pvt Ltd
+
+The company names match across the provided documents.

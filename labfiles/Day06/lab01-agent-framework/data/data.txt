@@ -1,0 +1,103 @@
+## COMPANY 1: ABC Utilities Pvt Ltd
+
+Company Registration Certificate: Present
+GST Certificate: Present
+Registration Certificate Name: ABC Utilities Pvt Ltd
+GST Certificate Name: ABC Utilities Pvt Ltd
+MCA Status: Active
+Sanctions Check: No Match Found
+Financial Statements: Available
+
+Current Assets: 1560000
+Current Liabilities: 1000000
+Total Debt: 1860000
+Total Equity: 1000000
+Revenue: 9000000
+Net Profit: 500000
+D&B Score: 720
+Industry: Utilities
+
+---
+
+## COMPANY 2: CarePlus Healthcare Ltd
+
+Company Registration Certificate: Present
+GST Certificate: Present
+Registration Certificate Name: CarePlus Healthcare Ltd
+GST Certificate Name: CarePlus Healthcare Ltd
+MCA Status: Active
+Sanctions Check: No Match Found
+Financial Statements: Available
+
+Current Assets: 2400000
+Current Liabilities: 1500000
+Total Debt: 1800000
+Total Equity: 1500000
+Revenue: 12000000
+Net Profit: 1200000
+D&B Score: 735
+Industry: Healthcare
+
+---
+
+## COMPANY 3: Nova Manufacturing Pvt Ltd
+
+Company Registration Certificate: Present
+GST Certificate: Present
+Registration Certificate Name: Nova Manufacturing Pvt Ltd
+GST Certificate Name: Nova Manufacturing Pvt Ltd
+MCA Status: Active
+Sanctions Check: No Match Found
+Financial Statements: Available
+
+Current Assets: 1400000
+Current Liabilities: 1100000
+Total Debt: 2200000
+Total Equity: 1200000
+Revenue: 8000000
+Net Profit: 350000
+D&B Score: 670
+Industry: Manufacturing
+
+---
+
+## COMPANY 4: TechNova Services Pvt Ltd
+
+Company Registration Certificate: Present
+GST Certificate: Present
+Registration Certificate Name: TechNova Services Pvt Ltd
+GST Certificate Name: TechNova Services Pvt Ltd
+MCA Status: Active
+Sanctions Check: No Match Found
+Financial Statements: Available
+
+Current Assets: 1900000
+Current Liabilities: 1400000
+Total Debt: 1700000
+Total Equity: 1800000
+Revenue: 10000000
+Net Profit: 650000
+D&B Score: 680
+Industry: IT Services
+
+---
+
+## COMPANY 5: Skyline Construction Ltd
+
+Company Registration Certificate: Present
+GST Certificate: Present
+Registration Certificate Name: Skyline Construction Ltd
+GST Certificate Name: Skyline Construction Ltd
+MCA Status: Active
+Sanctions Check: No Match Found
+Financial Statements: Available
+
+Current Assets: 800000
+Current Liabilities: 1200000
+Total Debt: 4500000
+Total Equity: 1000000
+Revenue: 7000000
+Net Profit: 50000
+D&B Score: 610
+Industry: Construction
+----------------------
