@@ -51,7 +51,7 @@ Microsoft Foundry projects organize models, resources, data, and other assets us
 
    ![Create an agent dialog with credit-risk-agent entered as the agent name.](../../media/04-03-033.png)
 
-The agent playground opens. An available deployed model should already be selected for you.
+5. The agent playground opens. An available deployed model should already be selected for you.
 
 ![Screenshot of the playground.](../../media/04-03-04.png)
 
