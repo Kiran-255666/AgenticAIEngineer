@@ -1,0 +1,298 @@
+---
+lab:
+  title: Create a generative AI chat app
+  description: Learn how to build a simple Python app that connects to a deployed model in Microsoft Foundry and chats with it.
+  level: 200
+  duration: 20
+  islab: true
+  status: 'released'
+---
+
+# Create a generative AI chat app
+
+**Note: We have already updated the mentioned files with the code mentioned in the instructions, but we would highly suggest going through it before executing it**
+
+In this exercise, you'll use the Microsoft Foundry Python SDK to build a small app that sends messages to a language model and shows its replies.
+
+This exercise takes approximately **20** minutes.
+
+> **Note**: Some of the technologies used in this exercise are in preview or in active development. You may see unexpected behavior, warnings, or errors.
+
+Before starting this exercise, ensure you have:
+
+## Prerequisites
+
+- An active [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account)
+- [Python 3.12](https://www.python.org/downloads/) or later installed
+- **Azure CLI** installed - [Install Azure CLI](https://aka.ms/installazurecliwindows)
+- [Visual Studio Code](https://code.visualstudio.com/) installed on your local machine
+- A web browser
+- Basic familiarity with running commands in a terminal (you don't need to know Python already; the code is provided)
+
+> A Foundry project with the **gpt-5.4-mini** model already deployed has been set up for you. In the next section, you'll locate your project's **endpoint** and **deployment name** in the Azure AI Foundry portal.
+>
+> **Important:** Copy both values into a local text file (for example, Notepad) and keep them somewhere safe, as you'll use them repeatedly throughout these labs.
+>
+> **Security note:** Treat your endpoint and deployment details as sensitive information. Never share them publicly, or paste them into online websites, AI assistants, forums, or chats. If you ever need to share screenshots or logs, mask or redact your endpoint, URLs, API keys, and any other sensitive information first.
+
+# Find your project endpoint and deployment name
+
+1. In a web browser, open the [Microsoft Foundry portal](https://ai.azure.com) at `https://ai.azure.com` and sign in with your Azure credentials. Close any tips or quick-start panes that appear the first time you sign in.
+
+1. On the home page, select your project. (If you have more than one, pick the one your trainer or lab environment set up for this exercise.)
+
+    ![Screenshot of the Foundary Portal showing your project details.](../../media/home-page.png)
+
+    Selecting your project takes you straight to its home page.
+
+    ![Screenshot of the Foundry project home page, showing the API key, Project endpoint, and Azure OpenAI endpoint fields.](../../media/project-home-page-1.png)
+
+1. To confirm the name of your deployed model, use any of these:
+    - Under **Use a model**, select **View deployments**
+
+        ![Screenshot of the View deployments page, listing the deployed model name.](../../media/view-deployments.png)
+
+    - On the same home page scroll down, check the **Recent work** or **All** section
+
+        ![Screenshot of the Recent work / All section on the home page, showing the deployed model.](../../media/recent-work-all.png)
+
+    - In the top menu, select **Build**, then **Models**
+
+        ![Screenshot of the Build menu with Models selected, showing the deployed model name.](../../media/build-models.png)
+
+    It should read **gpt-5.4-mini**. Note this exact name too.
+1. On the project home page, find the **Project endpoint** field and copy the value shown there directly. This is the web address your app will use to reach your project and model. (The **Azure OpenAI endpoint** field, shown next to it, works too if you prefer to use that instead.)
+
+    ![Screenshot of the API key, Project endpoint, and Azure OpenAI endpoint fields, with the copy icon next to Project endpoint highlighted.](../../media/project-endpoint-copy.png)
+
+1. Copy both the endpoint and the deployment name into a local text file and save it somewhere safe. You'll paste these values into a configuration file in the next section, and you'll need them again in later exercises.
+
+    > **Tip**: If you don't see a project or a gpt-5.4-mini deployment here, check with your trainer before continuing.
+
+# Create a client application to chat with the model
+
+You'll write a small Python app that connects to your Foundry project and holds a conversation with the deployed model. A **client application** here just means: code that runs on your machine and talks to the model over the internet.
+
+### Prepare the application configuration
+
+1. Open a web browser and go to the [GitHub](https://github.com/Kiran-255666/AgenticAIEngineer).
+1. On the repo page, select the green **`<> Code`** button, then select **Download ZIP**.
+
+    ![Screenshot of the Code button.](../../media/code.png)
+1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer. **Ensure that there are no other ZIP files or extracted folders with the same name in the Downloads folder.**
+
+1. **Copy the `chat-app` folder to the Desktop:**
+
+   **Use PowerShell to run the following commands to copy the folder to the Desktop and open it in VS Code. The path below is an example; verify your actual path before running the commands.**
+
+   ```powershell
+   Copy-Item "C:\Users\agenticuser\Downloads\AgenticAIEngineer-main\AgenticAIEngineer-main\labfiles\Day01\lab02-develop-an-ai-app-with-ai-foundry-sdk\python\chat-app" "$env:USERPROFILE\Desktop\chat-app" -Recurse
+   ```
+
+   ```powershell
+   code "$env:USERPROFILE\Desktop\chat-app"
+   ```
+
+2. **Install the required packages:**
+
+   Create and activate a Python virtual environment, then install the required dependencies:
+
+   ```powershell
+   python -m venv labenv
+   .\labenv\Scripts\Activate.ps1
+   pip install -r requirements.txt
+   ```
+
+   > **Note:** If `python -m venv labenv` returns an error in the Virtual Machine, use the Windows Python Launcher instead:
+   >
+   > ```powershell
+   > py -m venv labenv
+   > .\labenv\Scripts\Activate.ps1
+   > pip install -r requirements.txt
+   > ```
+
+## Configure your application
+
+1. **Configure the `.env` file.**
+
+   Open `.env` in Visual Studio Code and add your Azure AI Foundry endpoint and model deployment name.
+
+   ```env
+   AZURE_OPENAI_ENDPOINT=""
+   MODEL_DEPLOYMENT=""
+   ```
+
+   Replace the empty values with the corresponding details from your project in [Azure AI Foundry](https://ai.azure.com/).
+
+2. **Review `chat-app.py`.**
+
+   First, review how the application loads its configuration:
+
+   ```python
+   load_dotenv()
+   azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+   model_deployment = os.getenv("MODEL_DEPLOYMENT")
+   ```
+
+   This loads the values from `.env` so the application can identify the Azure endpoint and model deployment.
+
+   Next, review the authentication and client setup:
+
+   ```python
+   token_provider = get_bearer_token_provider(
+       AzureCliCredential(),
+       "https://ai.azure.com/.default"
+   )
+
+   openai_client = OpenAI(
+       base_url=azure_openai_endpoint,
+       api_key=token_provider
+   )
+   ```
+
+   This uses your Azure CLI credentials to obtain an access token and initializes the OpenAI client to communicate with the deployed model.
+
+   Finally, examine how the application sends prompts and receives responses:
+
+   ```python
+   stream = openai_client.responses.create(
+       model=model_deployment,
+       instructions="You are a helpful AI assistant that answers questions and provides information.",
+       input=input_text,
+       previous_response_id=last_response_id,
+       stream=True
+   )
+   ```
+
+   This sends the prompt to the model and streams the response as it is generated. The `previous_response_id` helps maintain conversation context between requests. The application displays the response as it arrives and exits when you type `quit`.
+
+3. **Review `chat-async.py`.**
+
+   Examine how the asynchronous client is initialized:
+
+   ```python
+   credential = AzureCliCredential()
+
+   token_provider = get_bearer_token_provider(
+       credential,
+       "https://ai.azure.com/.default"
+   )
+
+   async_client = AsyncOpenAI(
+       base_url=azure_openai_endpoint,
+       api_key=token_provider
+   )
+   ```
+
+   This configures Azure authentication and initializes `AsyncOpenAI`, which supports asynchronous requests.
+
+   Next, review how the application sends a prompt and displays the response:
+
+   ```python
+   response = await async_client.responses.create(
+       model=model_deployment,
+       instructions="You are a helpful AI assistant that answers questions and provides information.",
+       input=input_text,
+       previous_response_id=last_response_id
+   )
+
+   print("Assistant:", response.output_text)
+   last_response_id = response.id
+   ```
+
+   The `await` keyword waits for the asynchronous request to complete. Unlike `chat-app.py`, this version displays the complete response rather than streaming text chunks. It also stores the response ID to maintain conversation context.
+
+   The script uses `asyncio.run(main())` to start the asynchronous application and closes the Azure credential when finished.
+
+4. **Review `requirements.txt`.**
+
+   The application uses the following Python packages:
+
+   | Package | Purpose |
+   |---|---|
+   | `python-dotenv` | Loads configuration values from the `.env` file. |
+   | `aiohttp` | Supports asynchronous HTTP operations when required by the application or its dependencies. |
+   | `azure-identity` | Handles Azure authentication using CLI credentials. |
+   | `openai` | Provides the client for communicating with the deployed model. |
+
+   These dependencies support configuration loading, Azure authentication, and communication with the model. They were installed in the earlier setup step.
+
+5. **Save your changes** by pressing `Ctrl + S`.
+
+## Sign in to Azure and Verify Your Account
+
+### 1. Sign in to Azure 
+
+If you have already signed in to Azure earlier, you can skip this section and proceed directly to **Run the app** using `python chat-app.py`; otherwise, follow the flow below.
+
+```bash
+az login
+````
+Follow the prompts:
+
+* Open the sign-in page that appears.
+* Enter the code shown in the terminal.
+* Click **"Assigned by your organization"**.
+* Sign in using the credentials provided by your trainer.
+
+If you're prompted to select a subscription or tenant, type:
+
+```text
+1
+```
+
+and press **Enter**.
+
+### 2. If `az login` Fails
+
+Sign out completely and try again:
+
+```bash
+az logout
+```
+
+Then sign in again:
+
+```bash
+az login
+```
+
+If prompted, select:
+
+```text
+1
+```
+
+for the subscription.
+
+### 3. Verify the Active Account
+
+After signing in successfully, confirm that Azure CLI is using the correct account:
+
+```bash
+az account show
+```
+
+You should see your account and subscription details.
+
+1. Run the app:
+
+    ```bash
+    python chat-app.py
+    ```
+
+    ![Screenshot of the terminal running chat-app.py, showing the app started and waiting for input.](../../media/response-00.png)
+
+2. When prompted, type a question, such as "What is the fastest animal on Earth?", and read the model's reply.
+
+3. Ask a follow-up, like "Where can I see one?" or "Are they endangered?" The model should answer using the earlier question as context, since your app is saving the conversation history.
+
+    ![Screenshot of the responses](../../media/response-01.png)
+
+4. Type "quit" to exit the program.
+
+    > If the app stops with a rate-limit error, wait a few seconds and try again. If there isn't enough quota left on the deployment, the model may not respond at all; check with your trainer if this happens.
+
+## Summary
+
+You found your Foundry project's endpoint and deployment name, then built a Python app that connects to a gpt-5.4-mini model and holds a back-and-forth conversation with it, using conversation history so the model can follow up on earlier questions.
