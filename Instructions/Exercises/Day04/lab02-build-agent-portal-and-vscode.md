@@ -40,7 +40,7 @@ Microsoft Foundry projects organize models, resources, data, and other assets us
 
 2. On the project home page, make sure you are in the **`hakunamatata1`** project. In the **Create an agent** card, select **Start building**.
 
-   ![Microsoft Foundry project home page with the Start building button highlighted in the Build an agent card.](../../media/04-03-02.png)
+   ![Microsoft Foundry project home page with the Start building button highlighted in the Build an agent card.](../../media/04-03-022.png)
 
 3. In the Create an agent dialog, enter `credit-risk-agent-<your_unique_suffix>` as the Agent name. Set Interaction mode to Text.
 
@@ -49,7 +49,7 @@ Microsoft Foundry projects organize models, resources, data, and other assets us
 
 4. Select **Create**.
 
-   ![Create an agent dialog with credit-risk-agent entered as the agent name.](../../media/04-03-03.png)
+   ![Create an agent dialog with credit-risk-agent entered as the agent name.](../../media/04-03-033.png)
 
 The agent playground opens. An available deployed model should already be selected for you.
 
