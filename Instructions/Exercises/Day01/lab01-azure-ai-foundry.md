@@ -247,7 +247,7 @@ Select **Discover** from the top navigation menu. The **Discover** page helps yo
 
 Select **Build** from the top navigation menu. This is the most important area in Azure AI Foundry and the section where you will spend most of your time during the upcoming labs. The **Build** page is used to create, configure, test, and manage AI agents, models, tools, knowledge sources, and other project resources.
 
-../../media/Build_Page.png
+![Discover Page](../../media/Build_Page.png)
 
 | Location | Description | Use |
 |----------|-------------|-----|
@@ -274,7 +274,8 @@ Select **Build** from the top navigation menu. This is the most important area i
 
 Select **Operate** from the top navigation menu. The **Operate** page helps you monitor, manage, and track the operational health of your AI solutions. This section becomes more useful after you begin creating and using agents because it provides insights into agent activity, performance, usage, costs, and operational metrics.
 
-../../media/Operate_Page.png
+![Discover Page](../../media/Operate_Page.png)
+
 
 | Location | Description | Use |
 |----------|-------------|-----|
