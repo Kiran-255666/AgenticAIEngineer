@@ -185,266 +185,206 @@ In this part, you will explore the Azure AI Foundry portal. No coding is require
 4. Select your project from the resource list to open it.
 5. Wait for the project dashboard to load before proceeding to the next section.
 
-## 1) The page header and navigation
+## Azure AI Foundry Home Page
+
+After you open the **hakunamatata1** project, the **Home** page appears. This page provides quick access to common Azure AI Foundry tasks, project details, model deployments, and learning resources.
+
+![Azure AI Foundry Home Page](../../media/Home_Page.png)
+
+| Location | Description | Use |
+|----------|-------------|-----|
+| Project Selector | Displays the current project name (`hakunamatata1`). | Switch between available projects. |
+| Search Bar | Global search bar located at the top of the page. | Search for models, deployments, resources, and project assets. |
+| New Foundry Toggle | Switches between the classic and new Foundry experience. | Enable the latest Azure AI Foundry user interface. |
+| Home | Home page of the current project. | View project information and quick-start options. |
+| Discover | Catalog of available AI capabilities and models. | Explore models, services, and AI features. |
+| Build | Development area for AI applications and agents. | Create agents, prompts, flows, and other AI components. |
+| Operate | Monitoring and operational tools. | Track usage, performance, and operational activities. |
+| Manage | Project management and configuration area. | Configure project settings, connections, and resources. |
+| Docs | Opens Azure AI Foundry documentation. | Access product documentation and learning materials. |
+| Build an Agent | Quick-start card for creating AI agents. | Create and configure an agent for your project. |
+| Use a Model | Quick-start card for working with deployed models. | View and manage model deployments. |
+| API Key | Authentication key for the project. | Use the key to authenticate applications and API requests. |
+| Project Endpoint | Endpoint URL for the current project. | Connect applications and SDKs to the project. |
+| Azure OpenAI Endpoint | Azure OpenAI service endpoint URL. | Send requests to deployed Azure OpenAI models. |
+| Test in Playground | Opens the playground experience. | Run prompts and test model responses. |
+| Explore Models | Opens the model catalog. | Browse and compare available foundation models. |
+| Compare Models | Opens model comparison tools. | Compare benchmarks, pricing, and capabilities. |
+| Model Selection | Displays featured and available models. | Discover models supported by Azure AI Foundry. |
+| Recent Work | Displays recently used project assets. | Quickly access models, agents, and other resources. |
+| Learning and Resources | Links to documentation, GitHub repositories, and community resources. | Learn more about Azure AI Foundry and 
+
+## Discover Page
+
+Select **Discover** from the top navigation menu. The **Discover** page helps you explore available models, tools, services, and solution templates in Azure AI Foundry.
+
+![Discover Page](../../media/Discover_Page.png)
+
+| Location | Description | Use |
+|----------|-------------|-----|
+| Overview | Landing page of the Discover section. | View featured models, tools, services, and solution templates. |
+| Models | Catalog of available AI models. | Browse and evaluate models from Azure OpenAI, Microsoft, Anthropic, Meta, DeepSeek, and other providers. |
+| Agents | Collection of agent-related resources and templates. | Explore prebuilt agent capabilities and agent development options. |
+| Tools | Available tools and integrations for AI applications. | Add capabilities such as GitHub, Databricks, Calendar, and MCP servers to your solutions. |
+| Knowledge | Knowledge sources and knowledge management features. | Connect and manage data sources used by agents and AI applications. |
+| Services | AI services available in Azure AI Foundry. | Access services such as Speech, Language, Translator, and Document Intelligence. |
+| Solution Templates | Prebuilt AI solution templates. | Accelerate development by starting from ready-made solutions. |
+| Featured Models | Highlights selected foundation models. | Explore popular and recommended models. |
+| Popular Publishers | Displays model providers such as OpenAI, Anthropic, Microsoft, Meta, Mistral AI, and DeepSeek. | Browse models from a specific provider. |
+| Model Collections | Curated collections of related models. | Explore groups of models organized by scenario or provider. |
+| Model Leaderboard | Compares models using quality, safety, throughput, and cost metrics. | Evaluate and compare models before deployment. |
+| Featured Tools | Recommended tools and integrations. | Discover tools that extend AI application capabilities. |
+| Featured Solution Templates | Prebuilt end-to-end solution examples. | Start quickly with common AI application scenarios. |
+| Models Built by Microsoft Foundry | Collection of Microsoft-developed AI models and services. | Explore Microsoft AI offerings available within Foundry. |
+| Experiment with Prebuilt Services | Collection of ready-to-use Azure AI services. | Test Speech, Language, Translator, and Document Intelligence services without building a custom solution. |
+| View All Models | Opens the complete model catalog. | Browse all available foundation models. |
+| View All Tools | Opens the complete tool catalog. | Explore all available integrations and utilities. |
+| View All Solution Templates | Opens the full template library. | Browse all available starter solutions. |
+
+> **Tip:** The **Discover** page is typically the starting point for exploring new vices, and solution templates before building AI applications in Azure AI Foundry.
+
+## Build Page
+
+Select **Build** from the top navigation menu. This is the most important area in Azure AI Foundry and the section where you will spend most of your time during the upcoming labs. The **Build** page is used to create, configure, test, and manage AI agents, models, tools, knowledge sources, and other project resources.
+
+../../media/Build_Page.png
+
+| Location | Description | Use |
+|----------|-------------|-----|
+| Agents | Create and manage AI agents. | Build, configure, test, and monitor agents for your applications. |
+| Models | Manage model deployments within the project. | Deploy, view, and use foundation models in your solutions. |
+| Services | Access Azure AI services connected to the project. | Configure and use services such as Azure OpenAI and Azure AI Services. |
+| Tools | Add tools that agents can use. | Enable capabilities such as API calls, GitHub access, databases, and MCP servers. |
+| Knowledge | Manage knowledge sources. | Connect documents and data sources that agents can reference. |
+| Memory | Configure memory for agents. | Store and retrieve conversational context across interactions. |
+| Guardrails | Define safety and compliance controls. | Apply content filtering, safety policies, and governance settings. |
+| Data | Manage project data assets. | Upload and organize data used by agents and AI applications. |
+| Evaluations | Evaluate model and agent performance. | Measure quality, accuracy, safety, and response effectiveness. |
+| Fine-tune | Fine-tune supported models. | Customize models using your own training data. |
+| Agents Tab | Lists all agents created in the project. | View and manage available agents. |
+| Routines Tab | Create reusable task sequences. | Automate repetitive agent actions and workflows. |
+| Workflows Tab | Build multi-step workflows. | Orchestrate complex AI processes involving multiple actions. |
+| New Agent | Creates a new AI agent. | Start building an agent for a specific business or technical scenario. |
+| Type Filter | Filters items by type. | Narrow displayed resources based on their category. |
+| Interaction Type Filter | Filters agents by interaction style. | View only agents with a specific interaction model. |
+
+> **Important:** The **Build** section is the primary workspace in Azure AI Foundry. Most hands-on lab activities, including creating agents, configuring tools, connecting knowledge sources, and testing AI solutions, will be performed from this area.
+
+## Operate Page
+
+Select **Operate** from the top navigation menu. The **Operate** page helps you monitor, manage, and track the operational health of your AI solutions. This section becomes more useful after you begin creating and using agents because it provides insights into agent activity, performance, usage, costs, and operational metrics.
+
+../../media/Operate_Page.png
+
+| Location | Description | Use |
+|----------|-------------|-----|
+| Overview | Displays operational insights across the project. | Monitor agent activity, usage, and performance metrics. |
+| Assets | Lists deployed and registered project assets. | View and manage operational resources. |
+| Compliance | Displays compliance-related monitoring and governance information. | Review compliance and operational policies. |
+| Subscription Filter | Selects the Azure subscription to monitor. | View metrics for a specific subscription. |
+| Project Filter | Selects the project to monitor. | Display operational data for a specific project. |
+| Time Range Filter | Selects the reporting period (Day, 7 Days, 1 Month, etc.). | Analyze trends over a chosen time period. |
+| Register Asset | Registers an asset for monitoring and management. | Track and manage deployed resources. |
+| Active Alerts | Displays operational alerts. | Identify issues that require attention. |
+| Running Agents | Displays agents currently running. | Monitor active agent workloads. |
+| Estimated Cost | Displays estimated project costs. | Track resource consumption and spending. |
+| Agent Success Rate | Displays agent execution success metrics. | Evaluate reliability and performance. |
+| Token Usage | Displays token consumption statistics. | Monitor model usage and associated costs. |
+| Agent Run Volume Over Time | Shows trends in agent execution volume. | Analyze agent activity patterns. |
+| Agent Run Volume | Summarizes increases and decreases in agent activity. | Identify workload trends. |
+| Agent Run Success Rate Trends | Shows success rate patterns over time. | Detect operational issues and performance changes. |
 
-![Screenshot of the project page header and navigation.](image.png)
+> **Important:** During the early labs, many sections on this page may show **No data to show** because no agents have been created or executed yet. As you build and test agents in later labs, the dashboards on this page will begin displaying operational metrics.
 
-- **Header (top-left):** Shows Microsoft Foundry and the name of your project. This tells you which project you are working in.
-- **Search with AI (top-center):** Searches resources, settings, models, and tools across Foundry. You can open it by pressing the Ctrl and K keys together.
-- **Home (top-right):** Shows the main dashboard of the project, with resources, endpoints, and quick-start options.
-- **Discover (top-right):** Lets you explore available models, examples, and capabilities.
-- **Build (top-right):** Is used to create, configure, and deploy AI applications and agents. You do not use it in this lab.
-- **Operate (top-right):** Is used to monitor deployments, review usage, and troubleshoot running solutions.
-- **Manage (top-right):** Is used to manage project settings, permissions, connections, and resources.
-- **Docs (top-right):** Opens Microsoft documentation, tutorials, and learning materials.
-- **Main heading (Welcome):** Shows the name of the account that is signed in.
+> **Tip:** You will spend most of your time in the **Build** section during the upcoming labs. The **Operate** section is primarily used for monitoring, troubleshooting, cost tracking, and reviewing the performance of agents after they have been deployed and used.
 
-## 2) The main project cards
+## Manage and Additional Navigation Options
 
-![Screenshot of the main project cards.](image.png)
+The remaining options in the Azure AI Foundry portal help you manage project resources, access documentation, review notifications, and manage your account settings.
 
-**Use a model**
+| Location | Description | Use |
+|----------|-------------|-----|
+| Manage | Project administration and configuration area. | Manage project settings, connected resources, users, permissions, and deployment configurations. |
+| Docs | Opens Microsoft Foundry documentation on Microsoft Learn. | Access product documentation, tutorials, learning paths, and reference material. |
+| Feedback (😊) | Opens the feedback option. | Submit product feedback, suggestions, or report your experience with Azure AI Foundry. |
+| Notifications (🔔) | Notification center. | View alerts, updates, deployment notifications, and service messages. |
+| Profile (👤) | User profile menu. | Access account information, profile settings, and sign-out options. |
 
-- Located on the left.
-- Lets you manage existing endpoints or deploy a new model.
-- The **View deployments** button opens the list of model deployments. You will use this button to find **gpt-5.4-mini**.
+> **Note:** Selecting **Docs** opens the Microsoft Learn documentation for Azure AI Foundry:
+>
+> [Microsoft Foundry documentation | Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/)
 
-**Build an agent**
+## Footer Links
 
-- Located on the top-right.
-- Lets you create an AI agent by configuring instructions, tools, and knowledge, without writing code.
-- You do not use it in this lab.
+Return to the **Home** page and scroll to the bottom. The footer contains additional links related to legal and privacy information.
 
-**Code an agent**
+| Location | Description | Use |
+|----------|-------------|-----|
+| Terms | Microsoft Azure legal information page. | Review Azure terms, licensing information, and legal notices. |
+| Privacy | Microsoft Privacy Statement. | Review Microsoft's privacy policies and data handling practices. |
 
-- Located below Build an agent.
-- Lets you define and deploy an agent in code with the Microsoft Agent Framework.
-- You do not use it in this lab.
+> **Note:** The footer links redirect to the following pages:
+>
+> - **Terms:** [Microsoft Azure Legal Information](https://azure.microsoft.com/en-us/support/legal/)
+> - **Privacy:** [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement)
 
-## 3) Endpoints and API key
+> **Important:** You will spend most of your time in the **Build** section during the upcoming labs. The **Discover**, **Operate**, and **Manage** sections are primarily used to explore capabilities, monitor resources, and administer your project as your solutions become more advanced.
 
-Below the main cards, you can see three fields:
+# Get Your Endpoint and Key
 
-![Screenshot of the API key, Project endpoint, and Azure OpenAI endpoint fields.](image.png)
+Before running the notebook, you must collect the endpoint and API key for your Azure AI Foundry resource.
 
-**API key**
+1. Return to the Azure AI Foundry portal.
+2. Open your **hakunamatata1** project.
+3. Select **Build** from the top navigation menu.
+4. Select **Models** from the left navigation pane.
+5. Open the deployed **gpt-5.4-mini** model.
+6. Select the **Details** tab next to **Playground**.
 
-- The key is masked.
-- A copy icon is on the right.
-- Keep the key private.
+![Screenshot of the Details tab showing the endpoint and key.](../../media/model_details.png)
 
-**Project endpoint**
+7. Copy the **Endpoint** value.
+8. Copy the **Key** value.
+9. Save both values in a secure location such as Notepad. You will use them later in the notebook.
 
-- Shows the endpoint of your Azure AI Foundry project.
-- A copy icon is available.
-- Code uses this endpoint to connect to the project.
+> **Important:** Keep your API key private. Do not share it with others or commit it to source control repositories such as GitHub.
 
-**Azure OpenAI endpoint**
+## Endpoint Format
 
-- Shows the Azure OpenAI endpoint.
-- A copy icon is available.
-- Code uses this endpoint to work directly with the Azure OpenAI APIs.
+The notebook expects the endpoint to end with `/v1`.
 
-In this lab, you take the endpoint and the key from the **Details** tab of the deployed model, as shown later in "Find your endpoint and key".
+Example:
 
-## 4) Model selection
+| Value | Example |
+|---------|---------|
+| Endpoint shown in Foundry | `https://<your-resource-name>.services.ai.azure.com/openai/v1/responses` |
+| Endpoint to use in the notebook | `https://<your-resource-name>.services.ai.azure.com/openai/v1` |
 
-Below the endpoint section, a Model selection area has three cards:
+Remove everything after `/v1` before pasting the value into the notebook.
 
-![Screenshot of the Model selection cards.](image.png)
+> **Note:** The notebook automatically removes a trailing slash if one is present.
 
-**Test in playground**
+## Deployment Name
 
-- Lets you run prompts and see responses without writing code.
-- You will use it in this lab.
+Use the deployment name shown in Azure AI Foundry.
 
-**Explore models**
+For this lab:
 
-- Lets you browse the models that are available.
-- You will look at it next.
+```python
+DEPLOYMENT = "gpt-5.4-mini"
+```
 
-**Compare models**
+## Values Required in the Notebook
 
-- Lets you review benchmarks and capabilities of models side by side.
-- You will look at it next.
+You will use the following values when configuring the notebook:
 
-## 5) Available models
+| Variable | Value |
+|----------|---------|
+| `ENDPOINT` | Endpoint copied from the Details tab and ending with `/v1` |
+| `API_KEY` | API key copied from the Details tab |
+| `DEPLOYMENT` | `gpt-5.4-mini` |
 
-At the bottom of the page, the portal lists available models, for example:
-
-- claude-fable-5-1 (Anthropic)
-- gpt-6-astra (OpenAI)
-- MAI-Image-2.6 (Microsoft)
-- DeepSeek-V4-Flash (DeepSeek)
-
-Arrows on the left and right show more models. You do not need to choose one of these. Your lab uses **gpt-5.4-mini**.
-
-## 6) Recent work
-
-The Recent work section has three filters: **All**, **Agents**, and **Models**.
-
-It shows the models and projects that you opened recently in a table with these columns: Name, Version, Type, Last viewed, and Endpoint. **gpt-5.4-mini** appears here after you open it. The **View endpoint** link in each row opens the endpoint information of that model. Prev and Next buttons at the bottom move between pages of the table.
-
-## 7) Learning and resources
-
-Further down, the Learning and resources section has three options:
-
-- **Docs:** Explore the detailed Microsoft Foundry documentation.
-- **GitHub:** Get the latest SDK updates and code samples.
-- **Discord:** Join the Microsoft Foundry community and ask questions.
-
-# Explore the model catalog
-
-The model catalog helps you find and compare models. In this lab, the model is already chosen for you. This tour shows you where the information is, so that you can find it in your own projects later.
-
-## Open the model catalog
-
-1. On the project home page, under Model selection, click **Explore models**.
-
-    ![Screenshot of the Explore models card.](image.png)
-
-    The Models catalog opens. It lists the models that you can browse.
-
-## The catalog page
-
-![Screenshot of the Models catalog.](image.png)
-
-At the top of the page, you can see:
-
-- **Models:** The number of models that the catalog lists.
-- **Search:** Finds a model by name.
-- **Sort by:** Changes the order of the list. The default is Featured.
-- **Compare models:** Lets you select models and compare their capabilities and performance.
-- **View leaderboard:** Shows performance measurements of models in several categories.
-
-The left side of the page has two availability options:
-
-- **All models:** Shows every model in the catalog.
-- **Available in my project:** Shows the models that your project can use.
-
-The left side also has filters that narrow the list. These are the filters you are most likely to use:
-
-- **Collections:** Filter by collection.
-- **Publisher:** Filter by the company that provides the model.
-- **Supported features:** Filter by the features a model supports.
-- **Inference tasks:** Filter by the kind of task a model performs, such as chat or image generation.
-- **Region:** Filter by the regions where a model is available.
-
-The catalog has more filters for deployment options, fine-tuning, lifecycle, domain, and industry. You do not need them in this lab.
-
-The main area shows one entry for each model. Each entry shows the model name, the publisher, and the task types the model supports, such as Chat completion, Responses, Messages, Text to image, or Speech to text.
-
-## Compare models
-
-1. Click **Compare models** at the top-right of the model catalog.
-
-    ![Screenshot of the Compare models button.](image.png)
-
-    The comparison page shows several models side by side. For each model, it can show:
-
-    - Model name and version
-    - Deploy option
-    - View details
-    - Quality
-    - Safety
-    - Estimated cost
-    - Throughput
-    - Input types
-    - Output types
-    - Context window
-    - Maximum output
-    - Training date
-
-1. Click the **Add model** button to add another model to the comparison.
-
-    This helps you check the capabilities of models against what your application needs.
-
-## View the leaderboard
-
-1. Go back to the model catalog and click **View leaderboard**.
-
-    ![Screenshot of the Model leaderboard.](image.png)
-
-    The leaderboard compares models by benchmark results in four areas:
-
-    - **Quality:** The quality index of the model.
-    - **Safety:** The measured attack success rate. A lower value is better.
-    - **Throughput (tokens per second):** The number of output tokens that the model generates each second. A higher value is better.
-    - **Benchmark cost:** The cost of running the evaluation datasets. A lower value is better.
-
-1. Below the charts, select individual models to compare their quality index, safety, throughput, and benchmark cost.
-
-    > **Tip:** Leaderboard results are benchmark measurements. To judge a model for your own application, test it with your own prompts in the Playground.
-
-# Test the deployed model in the Chat Playground
-
-You will now try the model that is already deployed in your project.
-
-> **Note:** Use the existing **gpt-5.4-mini** deployment. Do not create another deployment. Extra deployments use resources that the lab does not need.
-
-## Open the Chat Playground
-
-1. Go back to the project home page.
-
-1. Under Model selection, click **View deployments**.
-
-    ![Screenshot of the View deployments button.](image.png)
-
-1. Select the deployed **gpt-5.4-mini** model.
-
-1. On the **gpt-5.4-mini** deployment page, click **Playground**.
-
-    ![Screenshot of the Playground button on the deployment page.](image.png)
-
-    The Playground opens with these main areas:
-
-    ![Screenshot of the Playground layout.](image.png)
-
-### The Playground areas
-
-1. **Model and deployment:** Shows the model (gpt-5.4-mini) and the deployment type (Global Standard). The **Save as agent** button saves the current configuration as an agent. The **Compare models** button compares this model with others.
-1. **Navigation tabs:** At the top of the deployment page, these tabs are available:
-    - **Playground:** Test prompts and interact with the model.
-    - **Details:** View information about the deployment and the model. You will use this tab to find your endpoint and key.
-    - **Monitor:** View usage, requests, token counts, cost, and performance metrics.
-    - **Evaluation:** Evaluate model behavior and configure evaluators.
-1. **Instructions:** Holds the system-level instructions that guide how the model responds. This is where you set the system message.
-1. **Tools:** Connects additional tools to the model. For example, Web search can add web-based information when it is turned on.
-1. **Knowledge:** Lets you upload files or connect knowledge sources that give the model more context. Use the **Add** button for this.
-1. **Memory:** Holds memory settings for the model or agent.
-1. **Guardrail:** Holds safety controls for managing and testing model behavior.
-1. **Chat:** The place where you talk to the model. Type a prompt in the chat input, for example "Explain Azure AI Foundry in simple terms.", and click **Call model**. The response appears in the chat area.
-
-In this lab, you mainly use **Instructions** and **Chat**. The other areas are described so that you recognize them.
-
-## Try the Playground
-
-1. Enter the prompt "Explain Azure AI Foundry in two sentences" and press Enter.
-
-    ![Screenshot of the playground response.](image.png)
-
-    The reply appears in the chat area. Notice that the reply follows your request for two sentences.
-
-# Find your endpoint and key
-
-Your code needs the endpoint and the key of the deployment.
-
-1. On the deployed model page, click the **Details** tab next to Playground.
-
-    ![Screenshot of the Details tab showing the endpoint and key.](image.png)
-
-1. Copy the **Endpoint** and the **Key**.
-
-1. Save both values somewhere safe, such as Notepad. You will paste them into the notebook.
-
-1. In the endpoint, remove everything after `/v1/`.
-
-    For example:
-
-    - Endpoint shown: `https://<your-resource-name>.services.ai.azure.com/openai/v1/responses`
-    - Endpoint to use: `https://<your-resource-name>.services.ai.azure.com/openai/v1/`
-
-1. Keep the key exactly as it is, and keep it private.
+After you have collected these values, return to Visual Studio Code and continue with the notebook.
 
 ---
 
