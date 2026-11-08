@@ -144,13 +144,43 @@ You control the model's reply with the settings below. The notebook uses the fir
 
 # Part 2: Explore Azure AI Foundry
 
-This part is a tour of the Azure AI Foundry portal. You do not write code in this part. You use your existing project and your existing **gpt-5.4-mini** deployment.
+In this part, you will explore the Azure AI Foundry portal. No coding is required. You will use the project and the **gpt-5.4-mini** deployment that you created earlier.
 
-## Open your project
+## Open Your Project
 
-Go to the Azure AI Foundry portal at <https://ai.azure.com/> and open the project that was created for you.
+1. Navigate to the Azure AI Foundry portal: <https://ai.azure.com/>.
+2. Sign in with your Azure account.
+3. Open the project that you created in Part 1.
 
-![Screenshot of the Foundry portal showing your project.](image.png)
+> **Note:** After you sign in to Microsoft Foundry (`ai.azure.com`), you may be redirected to the **All Resources** page. This page displays the AI Foundry resources and projects available in your Azure subscription.
+
+![Screenshot of the Foundry portal showing your project.](../../media/AllResources_Page.png)
+
+## Overview of the All Resources Page
+
+### Top Section
+
+| Location | Description | Use |
+|----------|-------------|-----|
+| Recent Projects | Displays projects that were recently accessed. | Quickly reopen an existing project and continue your work. |
+| Create Project | Creates a new AI Foundry project. | Create a new project for building AI applications, agents, and solutions. |
+
+### Resource List Section
+
+| Location | Description | Use |
+|----------|-------------|-----|
+| Search | Search box for resources and projects. | Find a specific project or resource. |
+| Type Filter | Filters resources by resource type. | Display only selected resource types. |
+| Subscription Filter | Filters resources by Azure subscription. | Display resources from a specific subscription. |
+| Region Filter | Filters resources by Azure region. | Display resources deployed in a selected region. |
+| Name | Displays the project name. | Select a project to open and manage it. |
+| Type | Displays the resource type. | Identify the type of resource. |
+| Parent Resource | Displays the AI Foundry resource associated with the project. | Identify the resource that hosts the project. |
+| Subscription | Displays the Azure subscription associated with the resource. | Verify resource ownership and billing context. |
+| Region | Displays the Azure region where the resource is | Displays the account that created the resource. | Identify the creator of the resource. |
+
+4. Select your project from the resource list to open it.
+5. Wait for the project dashboard to load before proceeding to the next section.
 
 ## 1) The page header and navigation
 
