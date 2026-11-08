@@ -10,13 +10,29 @@ lab:
 
 # Explore Azure AI Foundry and call a deployed model
 
-**Note: This document has two parts. Part 1 is the theory. Part 2 is the hands-on lab. Read the theory first. The concepts there (tokens, system messages, temperature, top-p, max tokens, JSON output) are the knobs you'll use in the lab.**
+**Note: This document has three parts. Part 1 is the theory. Part 2 is a tour of the Azure AI Foundry portal. Part 3 sends you to the lab notebook, where you run the code. Read the theory first. The concepts there (tokens, system messages, temperature, top-p, max tokens, JSON output) are the knobs you'll use in the lab.**
 
 In this exercise, you'll explore the Azure AI Foundry portal, test a deployed model in the Chat Playground, and then call the same model from a Jupyter notebook using the OpenAI SDK and REST.
 
 This exercise takes approximately **30** minutes.
 
 > **Note**: Some of the technologies used in this exercise are in preview or in active development. You may see unexpected behavior, warnings, or errors.
+
+Before starting this exercise, ensure you have:
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/) installed on your local machine
+- Python 3.12.1 available as a kernel
+- The **Python (Microsoft)** and **Jupyter (Microsoft)** extensions installed and enabled in VS Code
+- Microsoft Edge (or another web browser)
+- Basic familiarity with running notebook cells (you don't need to know Python already; the code is provided)
+
+> A Foundry project with the **gpt-5.4-mini** model already deployed has been set up for you. If multiple AI Foundry resources are available, confirm with the instructor which resource should be used. The resource and model deployed during the demonstration can be used unless instructed otherwise.
+>
+> **Important:** Copy the endpoint and key into a local text file (for example, Notepad) and keep them somewhere safe, as you'll use them in the notebook.
+>
+> **Tip:** Keep the Azure AI Foundry project page open in Microsoft Edge for easy access during the lab.
 
 ---
 
@@ -28,7 +44,7 @@ This part covers the concepts behind the lab: what generative AI is, how large l
 
 ### What is Generative AI?
 
-Generative AI refers to models that learn patterns from large datasets and produce new content—text, code, images, audio, video, or structured JSON. Instead of just deciding which class an input belongs to (discriminative learning), a generative model learns a probability distribution over data and samples from it to create plausible outputs.
+Generative AI refers to models that learn patterns from large datasets and produce new content: text, code, images, audio, video, or structured JSON. Instead of just deciding which class an input belongs to (discriminative learning), a generative model learns a probability distribution over data and samples from it to create plausible outputs.
 
 **Simple contrast**
 
@@ -47,7 +63,7 @@ Generative AI refers to models that learn patterns from large datasets and produ
 - **Embeddings:** Each token is mapped to a dense vector capturing meaning and context.
 - **Pretraining (self-supervised):** The model learns to predict the next token, internalizing language, facts, styles, and patterns.
 - **Instruction tuning & alignment:** Extra training phases teach the model to follow instructions and adhere to helpful/safe policies (e.g., RLHF/RLAIF).
-- **Decoding (sampling):** Parameters like temperature, top-p, and max_output_tokens control creativity, focus, and length—knobs you'll use in the lab.
+- **Decoding (sampling):** Parameters like temperature, top-p, and max_output_tokens control creativity, focus, and length. You'll use these parameters in the lab.
 
 ### What GenAI can do (relevant to this lab)
 
@@ -58,7 +74,7 @@ Generative AI refers to models that learn patterns from large datasets and produ
 
 ### Common solution patterns (pick the lightest that works)
 
-- **Prompt-only:** No training—just strong system messages, constraints, and examples. Fastest to ship.
+- **Prompt-only:** No training. You use strong system messages, constraints, and examples. Fastest to ship.
 - **RAG (Retrieval-Augmented Generation):** Ground the model in your content (indexes/vector search) to reduce hallucinations and keep answers up-to-date.
 - **Lightweight adaptation:** Small parameter-efficient fine-tunes (e.g., LoRA) for tone/format/domain jargon when prompts alone aren't enough.
 - **Tool use & agents:** Let models call functions/REST APIs, chain steps, and orchestrate workflows.
@@ -101,7 +117,7 @@ Generative AI refers to models that learn patterns from large datasets and produ
 
 ### What is an LLM?
 
-A Large Language Model (LLM) is a neural network—typically a transformer—trained on massive text/code corpora to predict the next token. By repeatedly predicting tokens, LLMs can generate coherent text, follow instructions, write code, and structure outputs for downstream systems.
+A Large Language Model (LLM) is a neural network, typically a transformer, trained on massive text/code corpora to predict the next token. By repeatedly predicting tokens, LLMs can generate coherent text, follow instructions, write code, and structure outputs for downstream systems.
 
 > **Key idea:** If a model is good at next-token prediction, it can compose sentences, reason over context, and format information on demand.
 
@@ -123,7 +139,7 @@ A Large Language Model (LLM) is a neural network—typically a transformer—tra
 
 ### Inference & decoding (how outputs are produced)
 
-**Greedy decoding:** Always pick the highest-probability token (deterministic, but can be bland).
+**Greedy decoding:** Always pick the highest-probability token. The output is deterministic and has little variety.
 
 **Sampling controls:**
 
@@ -142,7 +158,7 @@ A Large Language Model (LLM) is a neural network—typically a transformer—tra
 - **Transformation:** Rewrite tone, translate, normalize, redact.
 - **Extraction / Structuring:** Return JSON with fields; classify; map to enums.
 - **Reasoning & Tools:** Stepwise reasoning; call functions/APIs ("tool use") for retrieval, calculations, or database ops.
-- **Few-shot learning:** Provide 1–3 examples in the prompt to steer style and format without training.
+- **Few-shot learning:** Provide 1 to 3 examples in the prompt to steer style and format without training.
 
 ### Common solution patterns
 
@@ -157,13 +173,13 @@ A Large Language Model (LLM) is a neural network—typically a transformer—tra
 
 - **Hallucinations:** Fluent but wrong content. Mitigate with RAG, verification, and conservative decoding.
 - **Context limits:** Long prompts can hit the window; summarize, chunk, and retrieve only what's needed.
-- **Tokenization quirks:** Weird splits affect counting and sometimes formatting. Measure in tokens, not characters.
+- **Tokenization:** Unusual splits change the token count and can affect formatting. Measure length in tokens, not characters.
 - **Determinism vs creativity:** Temperature/top-p change reproducibility; set them intentionally for your use case.
 - **Latency & rate limits:** Model size, output length, and concurrency affect responsiveness; watch quotas and batching.
 
 ### Cost & performance levers
 
-- Prompt tokens dominate cost in RAG/long contexts—keep context lean and relevant.
+- Prompt tokens often make up most of the cost in RAG and long-context use. Keep the context short and relevant.
 - Smaller/faster models reduce latency and spend; use them when quality is "good enough."
 - Caching (prompt or response) can cut repeat costs.
 - Streaming improves UX for longer answers without changing total tokens.
@@ -202,29 +218,15 @@ A Large Language Model (LLM) is a neural network—typically a transformer—tra
 
 ### Bridge to the hands-on
 
-You'll now deploy a chat-capable model, test decoding settings in the Playground, and call the endpoint via SDK/REST while enforcing JSON output and measuring the quality–cost–latency trade-offs.
+You'll now deploy a chat-capable model, test decoding settings in the Playground, and call the endpoint via SDK/REST while enforcing JSON output and measuring the trade-offs between quality, cost, and latency.
 
 ---
 
-# Part 2: Lab
+# Part 2: Explore Azure AI Foundry
 
-Before starting this exercise, ensure you have:
+This part is a tour of the Azure AI Foundry portal. You do not write code in this part.
 
-## Prerequisites
-
-- [Visual Studio Code](https://code.visualstudio.com/) installed on your local machine
-- Python 3.12.1 available as a kernel
-- The **Python (Microsoft)** and **Jupyter (Microsoft)** extensions installed and enabled in VS Code
-- Microsoft Edge (or another web browser)
-- Basic familiarity with running notebook cells (you don't need to know Python already; the code is provided)
-
-> A Foundry project with the **gpt-5.4-mini** model already deployed has been set up for you. If multiple AI Foundry resources are available, confirm with the instructor which resource should be used. The resource and model deployed during the demonstration can be used unless instructed otherwise.
->
-> **Important:** Copy the endpoint and key into a local text file (for example, Notepad) and keep them somewhere safe, as you'll use them in the notebook.
->
-> **Tip:** Keep the Azure AI Foundry project page open in Microsoft Edge for easy access during the lab.
-
-# Explore the Azure AI Foundry portal
+## Open the portal
 
 Navigate to AI Foundry Portal (<https://ai.azure.com/>) and find the project created for you.
 
@@ -317,10 +319,10 @@ Below the endpoint section, there is a Model selection area containing three car
 
 At the bottom of the page, the portal displays available models, including examples such as:
 
-- claude-fable-5-1 — Anthropic
-- gpt-6-astra — OpenAI
-- MAI-Image-2.6 — Microsoft
-- DeepSeek-V4-Flash — DeepSeek
+- claude-fable-5-1 (Anthropic)
+- gpt-6-astra (OpenAI)
+- MAI-Image-2.6 (Microsoft)
+- DeepSeek-V4-Flash (DeepSeek)
 
 There is also a left/right navigation control to view additional models.
 
@@ -504,7 +506,7 @@ Each model entry shows the model name, provider, and supported task types such a
 
    Once you've identified a model suitable for your use case, use the Deploy option from the model details or comparison page.
 
-## Explore Foundation Models — Notable Families
+## Explore Foundation Models: Notable Families
 
 The current catalog contains models from multiple providers. Some examples visible in the catalog include:
 
@@ -604,17 +606,17 @@ Use the deployed `gpt-5.4-mini` model for the upcoming hands-on exercises and AP
 
 - **Model:** gpt-5.4-mini
 - **Deployment type:** Global Standard
-- **Save as agent** — Save the current model configuration as an agent.
-- **Compare models** — Compare this model with other available models.
+- **Save as agent**: Save the current model configuration as an agent.
+- **Compare models**: Compare this model with other available models.
 
 ### 2) Navigation tabs
 
 At the top of the deployment page:
 
-- **Playground** — Test prompts and interact with the model.
-- **Details** — View deployment and model information.
-- **Monitor** — View usage, requests, token counts, cost, and performance metrics.
-- **Evaluation** — Evaluate model behavior and configure evaluators.
+- **Playground**: Test prompts and interact with the model.
+- **Details**: View deployment and model information.
+- **Monitor**: View usage, requests, token counts, cost, and performance metrics.
+- **Evaluation**: Evaluate model behavior and configure evaluators.
 
 ### 3) Instructions
 
@@ -642,8 +644,8 @@ The Guardrail section contains safety controls for managing and testing model be
 
 The Chat section is where you interact directly with `gpt-5.4-mini`.
 
-- **Call model** — Sends your prompt to the deployed model.
-- **Chat input** — Enter a prompt such as "Explain Azure AI Foundry in simple terms."
+- **Call model**: Sends your prompt to the deployed model.
+- **Chat input**: Enter a prompt such as "Explain Azure AI Foundry in simple terms."
 - The response appears directly in the chat area.
 
 For this lab, use the deployed `gpt-5.4-mini` model in the Chat Playground to test prompts and observe its responses before moving on to the SDK/REST section.
@@ -673,18 +675,11 @@ For this lab, use the deployed `gpt-5.4-mini` model in the Chat Playground to te
 
 1. Keep the Key as it is and save it securely.
 
-# Call the model from the notebook
+---
 
-Now, the notebook lets you:
+# Part 3: Run the lab
 
-- Install the OpenAI Python SDK
-- Configure endpoint credentials
-- Send chat requests (non‑streaming & streaming)
-- Get a JSON response
-- Run small prompt‑tuning experiments
-- Send a request with REST
-
-The notebook has all the code. You open it and run it cell by cell.
+You now have the fundamentals of generative AI and LLMs, and you know your way around the Azure AI Foundry portal. Next, run the code in the lab notebook.
 
 ### Prepare the application configuration
 
@@ -694,37 +689,10 @@ The notebook has all the code. You open it and run it cell by cell.
     ![Screenshot of the Code button.](../../media/code.png)
 1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer. **Ensure that there are no other ZIP files or extracted folders with the same name in the Downloads folder.**
 
-### Prepare your environment
-
-1. Open `lab01-azure_aI_foundry.ipynb` from the extracted folder (`labfiles/Day01`) in Visual Studio Code.
-
-1. Install and enable the suggested extensions:
-    - Python (Microsoft)
-    - Jupyter (Microsoft)
-
-    Wait for both extensions to finish installing.
-
-    > **Note:** If the notebook does not run, no kernel appears, or you encounter a Jupyter activation error:
-    >
-    > 1. Open the Jupyter extension.
-    > 2. Click the ▼ next to Uninstall.
-    > 3. Select Install Specific Version...
-    > 4. Install Jupyter v2025.4.0.
-    > 5. Reload VS Code and reopen the notebook.
-
-1. Configure the kernel:
-    1. Click **Select Kernel**.
-    1. Under Kernel Source, select **Python Environments...**
-    1. Choose **Python 3.12.1**.
-
-    You can now run the notebook.
-
-> **Tip:** If you do not have the Jupyter settings in place, press **Shift + Enter** twice and follow the on-screen instructions from VS Code to set up the kernel and environment. Contact the Lab Support representative for any assistance.
-
 ## Summary
 
-You navigated Azure AI Foundry, explored the model catalog, the deployed-model details and the Chat Playground, and found the endpoint and key of your `gpt-5.4-mini` deployment. In the notebook, you call that deployment through the SDK and REST, test prompts (system message, JSON output) and run small tuning experiments (reasoning effort, max output tokens).
+You learned the theory behind generative AI and LLMs. You toured the Azure AI Foundry portal: the model catalog, compare models, the leaderboard, the Chat Playground, and the place to find your endpoint and key. You have enough fundamentals and Azure AI Foundry knowledge to run the lab.
 
 ---
 
-**Next step:** Open [AgenticAIEngineer/labfiles/Day01/lab01-azure_aI_foundry.ipynb at main · Kiran-255666/AgenticAIEngineer](https://github.com/Kiran-255666/AgenticAIEngineer/blob/main/labfiles/Day01/lab01-azure_aI_foundry.ipynb) and run the notebook as it instructs.
+**Next step:** Open [AgenticAIEngineer/labfiles/Day01/lab01-azure-ai-foundry.ipynb at main · Kiran-255666/AgenticAIEngineer](https://github.com/Kiran-255666/AgenticAIEngineer/blob/main/labfiles/Day01/lab01-azure-ai-foundry.ipynb) and run the notebook as it instructs.
