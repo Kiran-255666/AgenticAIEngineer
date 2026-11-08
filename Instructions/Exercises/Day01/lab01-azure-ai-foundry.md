@@ -150,7 +150,10 @@ In this part, you will explore the Azure AI Foundry portal. No coding is require
 
 1. Navigate to the Azure AI Foundry portal: <https://ai.azure.com/>.
 2. Sign in with your Azure account.
-3. Open the project that you created in Part 1.
+3. Open the project named **hakunamatata1** that was created for you.
+4. Ensure that you are using the **New Foundry UI**. If the **New Foundry** toggle in the upper-right corner is disabled, enable it before continuing.
+
+![Screenshot of the Foundry portal showing your project.](../../media/NewToggle.png)
 
 > **Note:** After you sign in to Microsoft Foundry (`ai.azure.com`), you may be redirected to the **All Resources** page. This page displays the AI Foundry resources and projects available in your Azure subscription.
 
