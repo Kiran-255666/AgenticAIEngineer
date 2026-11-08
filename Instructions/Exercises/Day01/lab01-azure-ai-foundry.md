@@ -10,15 +10,24 @@ lab:
 
 # Explore Azure AI Foundry and call a deployed model
 
-**Note: This document has three parts. Part 1 is the theory. Part 2 is a tour of the Azure AI Foundry portal. Part 3 sends you to the lab notebook, where you run the code. Read the theory first. The concepts there (tokens, system messages, temperature, top-p, max tokens, JSON output) are the knobs you'll use in the lab.**
+**Note: This document has three parts. Part 1 is an optional fundamentals recap that you can open if you want a refresher. Part 2 is a tour of the Azure AI Foundry portal. Part 3 sends you to the lab notebook, where you run the code.**
 
-In this exercise, you'll explore the Azure AI Foundry portal, test a deployed model in the Chat Playground, and then call the same model from a Jupyter notebook using the OpenAI SDK and REST.
+In this exercise, you will use a project and a model deployment that are already set up for you. You will find them in the Azure AI Foundry portal, test the deployed model in the Chat Playground, and then call the same model from a Jupyter notebook using the OpenAI SDK and REST.
 
 This exercise takes approximately **30** minutes.
 
 > **Note**: Some of the technologies used in this exercise are in preview or in active development. You may see unexpected behavior, warnings, or errors.
 
-Before starting this exercise, ensure you have:
+## What you will use in this lab
+
+You do not create a project, and you do not deploy a model. Both are ready for you.
+
+- **Project:** The workspace in Azure AI Foundry that holds your model deployment, your endpoint, and your key. Your project is already created.
+- **Deployed model:** A model that is running and ready to receive requests. In this lab, the deployed model is **gpt-5.4-mini**.
+
+Because of this, the lab only uses the terms and settings that help you work with an existing project and an existing deployment. Parts of the portal that are used to create or deploy things are described briefly so that you recognize them, but you do not need to use them.
+
+If you cannot see your project or the **gpt-5.4-mini** deployment, tell the instructor before you continue.
 
 ## Prerequisites
 
@@ -26,249 +35,160 @@ Before starting this exercise, ensure you have:
 - Python 3.12.1 available as a kernel
 - The **Python (Microsoft)** and **Jupyter (Microsoft)** extensions installed and enabled in VS Code
 - Microsoft Edge (or another web browser)
-- Basic familiarity with running notebook cells (you don't need to know Python already; the code is provided)
+- Basic familiarity with running notebook cells (you do not need to know Python already; the code is provided)
 
-> A Foundry project with the **gpt-5.4-mini** model already deployed has been set up for you. If multiple AI Foundry resources are available, confirm with the instructor which resource should be used. The resource and model deployed during the demonstration can be used unless instructed otherwise.
+> A Foundry project with the **gpt-5.4-mini** model already deployed has been set up for you. If more than one AI Foundry resource is available, ask the instructor which resource to use. Use the resource and model from the demonstration unless the instructor tells you otherwise.
 >
-> **Important:** Copy the endpoint and key into a local text file (for example, Notepad) and keep them somewhere safe, as you'll use them in the notebook.
+> **Important:** Copy the endpoint and the key into a local text file (for example, Notepad) and keep them somewhere safe. You will use them in the notebook.
 >
 > **Tip:** Keep the Azure AI Foundry project page open in Microsoft Edge for easy access during the lab.
 
 ---
 
-# Part 1: Theory
+# Part 1: Fundamentals recap (optional)
 
-This part covers the concepts behind the lab: what generative AI is, how large language models (LLMs) work, and which knobs you'll use to control their output.
+Open any section below if you want to refresh a concept. You can skip this part and come back to it later. Every concept here appears in the lab.
 
-## Introduction to Generative AI
+<details>
+<summary><strong>What generative AI is</strong></summary>
 
-### What is Generative AI?
+Generative AI refers to models that learn patterns from large datasets and then produce new content. The content can be text, code, images, audio, video, or structured JSON.
 
-Generative AI refers to models that learn patterns from large datasets and produce new content: text, code, images, audio, video, or structured JSON. Instead of just deciding which class an input belongs to (discriminative learning), a generative model learns a probability distribution over data and samples from it to create plausible outputs.
+A discriminative model decides which class an input belongs to. A generative model creates new content that fits the patterns it learned.
 
-**Simple contrast**
+- **Discriminative example:** "Is this email spam?" The model answers with a class, such as spam or not spam.
+- **Generative example:** "Draft a reply to this email in a friendly tone." The model writes new text.
 
-- **Discriminative:** "Is this email spam?"
-- **Generative:** "Draft a reply to this email in a friendly tone."
+Cloud platforms such as Azure AI Foundry let you use these models through a web portal (the playground) and through code (an API).
 
-### Why this matters now
+</details>
 
-- **Transformers at scale:** The transformer architecture + massive pretraining datasets + accelerated hardware unlocked fluent, domain-spanning generation.
-- **Foundation models:** Broadly pretrained "generalists" that can be steered with prompts or lightly adapted to tasks.
-- **Accessible endpoints:** Cloud platforms (e.g., Azure AI Foundry) expose models via APIs and playgrounds, reducing setup friction.
+<details>
+<summary><strong>What a large language model is and how it produces text</strong></summary>
 
-### How modern LLMs work (practical view)
+A large language model (LLM) is a neural network that is trained on very large amounts of text and code to predict the next token. A model that predicts the next token well can write sentences, answer questions, follow instructions, write code, and return information in a fixed format.
 
-- **Tokens:** Inputs/outputs are processed as tokens (sub-word chunks).
-- **Embeddings:** Each token is mapped to a dense vector capturing meaning and context.
-- **Pretraining (self-supervised):** The model learns to predict the next token, internalizing language, facts, styles, and patterns.
-- **Instruction tuning & alignment:** Extra training phases teach the model to follow instructions and adhere to helpful/safe policies (e.g., RLHF/RLAIF).
-- **Decoding (sampling):** Parameters like temperature, top-p, and max_output_tokens control creativity, focus, and length. You'll use these parameters in the lab.
+These ideas explain how an LLM produces a reply:
 
-### What GenAI can do (relevant to this lab)
+- **Token:** A small piece of text, often a part of a word. The model reads and writes tokens. Length limits and cost are counted in tokens, not in characters or words. For example, the word "Internationalization" can be split into the tokens "International" and "ization".
+- **Embedding:** A list of numbers that represents the meaning of a token. The model works with these numbers.
+- **Next-token prediction:** The model reads your prompt, predicts the most suitable next token, adds it to the text, and repeats this step until the reply is complete.
+- **Context window:** The largest number of tokens that the prompt and the reply can use together. If a request needs more tokens than the context window allows, the request fails or the text is cut off.
+- **Training:** The model first learns general language patterns from a very large set of text and code. Later training steps teach it to follow instructions and to respond in a helpful and safe way. This training is already finished for the model you will use.
 
-- **Text & Docs:** Summarize policies, draft emails, extract key fields, convert to structured JSON.
-- **Code:** Generate scaffolds, explain errors, write tests.
-- **Reasoning & Tools:** Follow multi-step instructions, call tools/APIs, and format outputs for downstream systems.
-- **Multimodal:** Describe images, reason over UI screenshots, or produce captions (model-dependent).
+</details>
 
-### Common solution patterns (pick the lightest that works)
+<details>
+<summary><strong>The settings you will use in the lab</strong></summary>
 
-- **Prompt-only:** No training. You use strong system messages, constraints, and examples. Fastest to ship.
-- **RAG (Retrieval-Augmented Generation):** Ground the model in your content (indexes/vector search) to reduce hallucinations and keep answers up-to-date.
-- **Lightweight adaptation:** Small parameter-efficient fine-tunes (e.g., LoRA) for tone/format/domain jargon when prompts alone aren't enough.
-- **Tool use & agents:** Let models call functions/REST APIs, chain steps, and orchestrate workflows.
+You control the model's reply with the settings below. The notebook uses the first five. The last two are in the playground and in the notebook as optional controls.
 
-> **Rule of thumb:** Start with prompting + RAG. Fine-tune only when you have a repeating gap prompts can't fix.
+- **System message:** An instruction that sets the role, the tone, and the format rules for the model. For example, "You are a concise Azure assistant." or "Return ONLY valid JSON."
+- **User message:** Your question or task. The model answers it.
+- **Maximum output tokens (`max_output_tokens`):** The largest number of tokens the reply can contain. A smaller limit gives shorter replies and lower cost. If the limit is too small, the reply is cut off.
+- **Streaming (`stream=True`):** The reply arrives in small parts while the model writes it, instead of arriving as one block after it finishes. The total number of tokens does not change.
+- **JSON output:** You ask for a reply in JSON, with fixed keys, so that code can read the reply reliably. Your code should still check that the reply is valid JSON before it uses it.
+- **Reasoning effort (`reasoning`):** For models that support it, this setting controls how much the model reasons before it writes the answer. The reasoning uses tokens, and those tokens count toward `max_output_tokens`. When the limit is very small, reasoning can use all the tokens and leave no room for the answer. The notebook explains what to do in that case.
+- **Temperature and top-p:** These settings control how varied the reply is. A lower temperature gives more consistent replies, and a temperature near 0 gives the most predictable ones. A higher temperature gives more varied replies. Top-p limits the choice to the smallest group of likely tokens whose probabilities add up to the value p. Some models do not allow you to change these two settings.
 
-### Risks & responsible use (what to watch during the lab)
+</details>
 
-- **Hallucinations:** Confident but wrong outputs. Mitigate by grounding (RAG), citing sources, and validating critical answers.
-- **Bias & Safety:** Pretraining data can encode biases; use safety filters, policy prompts, and human review for sensitive tasks.
-- **Privacy & Security:** Avoid sending secrets/PII; use least-privilege access and logging.
-- **IP & Compliance:** Respect licensing and provide provenance where required.
-- **Evaluation:** Track quality, safety, latency, and cost as first-class metrics.
+<details>
+<summary><strong>Terms you will see in the lab</strong></summary>
 
-### How we'll control outputs in the lab
+- **Project:** The workspace in Azure AI Foundry that contains your deployment, endpoint, and key.
+- **Deployment:** A model that is running in your project and can receive requests. Your deployment is **gpt-5.4-mini**.
+- **Deployment name:** The name that your code sends in the `model` field. In this lab, it is `gpt-5.4-mini`.
+- **Endpoint:** The web address that your code sends requests to.
+- **API key:** A secret value that proves your code is allowed to use the deployment. Treat it like a password. Do not share it, and do not paste it in public places.
+- **Responses API:** The API that the notebook calls. You send messages to it and it returns the model's reply.
+- **SDK:** A code library that makes the API easier to call. The notebook uses the OpenAI Python SDK.
+- **REST:** Calling the API directly with an HTTP request. The notebook shows one REST call with the `requests` library.
+- **Playground:** A page in the portal where you try prompts without writing code.
+- **Hallucination:** A reply that sounds confident but is wrong or has no basis. Check important answers against a reliable source.
+- **Grounding:** Giving the model trusted information to base its answer on, so that the answer relies on that information.
 
-- **System message:** Sets role, tone, and format rules (e.g., "Return JSON only.").
-- **Temperature / top-p:** Lower = more deterministic; higher = more diverse/creative.
-- **Max tokens:** Constrains response length; prevents runaways and reduces cost.
-- **Schemas:** Ask for key-value JSON so downstream code can parse reliably.
+</details>
 
-### Key terms (quick glossary)
+<details>
+<summary><strong>Safe use of a model</strong></summary>
 
-- **Prompt:** Instructions given to the model (system + user messages).
-- **Context window:** Token budget for input + output; exceeding it truncates or fails.
-- **Grounding:** Supplying authoritative context so answers cite or rely on it.
-- **Hallucination:** Fabricated or non-grounded content presented as fact.
-- **Response format:** Agreed structure (e.g., strict JSON) to integrate with tools.
+- Do not send secrets, passwords, or personal data in a prompt.
+- Keep your API key private. Remove the key from the notebook before you save or share it.
+- Check important answers, because a model can produce wrong content.
+- Keep the system message clear, so that the model knows the role and the format that you expect.
 
-### Mini self-check (use before moving on)
+</details>
 
-1. In one sentence, explain the difference between generative and discriminative models.
-2. Which decoding parameter would you adjust to reduce randomness?
-3. When should you consider RAG instead of fine-tuning?
-4. Name one risk and one mitigation when using LLMs in production.
+<details>
+<summary><strong>Self-check with answers</strong></summary>
 
----
+1. **What is the difference between a generative model and a discriminative model?**
+   A generative model creates new content. A discriminative model decides which class an input belongs to.
 
-## Large Language Models (LLMs)
+2. **Which setting do you lower to make replies more consistent?**
+   The temperature.
 
-### What is an LLM?
+3. **What is the context window, and why does it matter for cost and latency?**
+   The context window is the largest number of tokens that the prompt and the reply can use together. A request with more tokens costs more and takes longer to process.
 
-A Large Language Model (LLM) is a neural network, typically a transformer, trained on massive text/code corpora to predict the next token. By repeatedly predicting tokens, LLMs can generate coherent text, follow instructions, write code, and structure outputs for downstream systems.
+4. **Name one risk of using a model and one way to reduce it.**
+   One risk is hallucination. You reduce it by checking important answers against a reliable source.
 
-> **Key idea:** If a model is good at next-token prediction, it can compose sentences, reason over context, and format information on demand.
+5. **Where do you find the endpoint and the key of your deployment?**
+   On the **Details** tab of the deployed model page in the Azure AI Foundry portal.
 
-### Mental model / anatomy
-
-- **Tokenizer:** Splits text into subword tokens (e.g., "Internationalization" → International, ization). Tokenization affects cost, length limits, and formatting strategies.
-- **Embeddings:** Tokens are mapped to dense vectors capturing meaning.
-- **Transformer blocks:** Stacks of self-attention + feed-forward layers transform token representations into contextualized meaning.
-- **Self-attention:** Each token can "attend" to others, enabling long-range dependencies and reasoning over prior text.
-- **Positional encoding / RoPE:** Injects token order so the model understands sequence.
-- **Context window:** The total token budget for prompt plus response. Exceeding it truncates or errors; efficient prompt design matters.
-
-### Training lifecycle (practical view)
-
-1. **Pretraining (self-supervised):** Learn general language patterns via next-token prediction. Produces a foundation model.
-2. **Supervised fine-tuning (SFT) / Instruction tuning:** Teach the model to follow instructions with curated input→output examples.
-3. **Alignment (RLHF/RLAIF):** Use human/AI preference signals to make responses helpful, safe, and compliant with policy.
-4. **Safety layers:** Policy prompts, classifiers, blocklists, and post-filters to reduce unsafe or non-compliant content.
-
-### Inference & decoding (how outputs are produced)
-
-**Greedy decoding:** Always pick the highest-probability token. The output is deterministic and has little variety.
-
-**Sampling controls:**
-
-- **Temperature:** Higher → more diverse/creative; lower → more deterministic.
-- **Top-p (nucleus):** Sample from the smallest set of tokens whose cumulative probability ≥ p.
-- **Top-k:** Sample from the top k tokens only.
-- **Penalties (frequency/presence):** Reduce repetition.
-
-**Length control:** `max_output_tokens` caps cost/verbosity and prevents runaways.
-
-**Format control:** System prompts, exemplars, and (when supported) `response_format` help enforce strict JSON or other schemas.
-
-### What LLMs can do (relevant to this lab)
-
-- **Generation:** Draft explanations, emails, summaries, plans.
-- **Transformation:** Rewrite tone, translate, normalize, redact.
-- **Extraction / Structuring:** Return JSON with fields; classify; map to enums.
-- **Reasoning & Tools:** Stepwise reasoning; call functions/APIs ("tool use") for retrieval, calculations, or database ops.
-- **Few-shot learning:** Provide 1 to 3 examples in the prompt to steer style and format without training.
-
-### Common solution patterns
-
-- **Prompt-only:** Carefully engineered system/user prompts; fast to ship.
-- **RAG (Retrieval-Augmented Generation):** Retrieve enterprise content and feed it as context to ground answers and reduce hallucinations.
-- **Parameter-efficient fine-tuning (e.g., LoRA):** Light adaptation when prompts + RAG can't fix persistent gaps (tone, taxonomy).
-- **Agents / Tool orchestration:** Chain tool calls and multi-step plans for tasks like enrichment, validation, and workflow execution.
-
-> **Rule of thumb:** Start with prompting + RAG; fine-tune only when necessary.
-
-### Constraints & failure modes
-
-- **Hallucinations:** Fluent but wrong content. Mitigate with RAG, verification, and conservative decoding.
-- **Context limits:** Long prompts can hit the window; summarize, chunk, and retrieve only what's needed.
-- **Tokenization:** Unusual splits change the token count and can affect formatting. Measure length in tokens, not characters.
-- **Determinism vs creativity:** Temperature/top-p change reproducibility; set them intentionally for your use case.
-- **Latency & rate limits:** Model size, output length, and concurrency affect responsiveness; watch quotas and batching.
-
-### Cost & performance levers
-
-- Prompt tokens often make up most of the cost in RAG and long-context use. Keep the context short and relevant.
-- Smaller/faster models reduce latency and spend; use them when quality is "good enough."
-- Caching (prompt or response) can cut repeat costs.
-- Streaming improves UX for longer answers without changing total tokens.
-
-### Choosing an LLM (practical criteria)
-
-- **Task fit:** Reasoning vs quick drafting; structured JSON vs open-ended writing.
-- **Modalities:** Text-only vs multimodal (images/audio).
-- **Quality vs cost:** Start small; step up only if needed.
-- **Safety features:** Policy adherence, content filters, auditing.
-- **Ecosystem fit:** SDKs, tool calling, eval tooling, deployment options in your platform.
-
-### Operating LLMs in this lab
-
-- Use the system message to define role, tone, and required output schema.
-- Keep temperature low for procedural tasks; raise it for brainstorming.
-- Set `max_output_tokens` conservatively, then raise if truncation is observed.
-- When you need reliable structure, ask for strict JSON and validate client-side.
-- For knowledge tasks, prefer RAG over hoping the model "remembers" facts.
-
-### Quick glossary
-
-- **Token:** Subword unit used by the model.
-- **Embedding:** Vector representation of a token/text span.
-- **Context window:** Max tokens prompt + output can occupy.
-- **System message:** High-level behavioral contract for the model.
-- **Hallucination:** Confident, non-grounded output.
-- **Tool/function call:** Model emits a schema to trigger code or APIs.
-
-### Mini self-check
-
-1. What does temperature control, and when would you set it near 0?
-2. Why is RAG usually preferred over fine-tuning for enterprise Q&A?
-3. What is the context window, and why does it matter for cost/latency?
-4. Name one mitigation for hallucinations.
-
-### Bridge to the hands-on
-
-You'll now deploy a chat-capable model, test decoding settings in the Playground, and call the endpoint via SDK/REST while enforcing JSON output and measuring the trade-offs between quality, cost, and latency.
+</details>
 
 ---
 
 # Part 2: Explore Azure AI Foundry
 
-This part is a tour of the Azure AI Foundry portal. You do not write code in this part.
+This part is a tour of the Azure AI Foundry portal. You do not write code in this part. You use your existing project and your existing **gpt-5.4-mini** deployment.
 
-## Open the portal
+## Open your project
 
-Navigate to AI Foundry Portal (<https://ai.azure.com/>) and find the project created for you.
+Go to the Azure AI Foundry portal at <https://ai.azure.com/> and open the project that was created for you.
 
 ![Screenshot of the Foundry portal showing your project.](image.png)
 
-## 1) Page Context
+## 1) The page header and navigation
 
 ![Screenshot of the project page header and navigation.](image.png)
 
-- **Header (top-left): Microsoft Foundry → hakunamatata:** Shows that you're currently working inside the hakunamatata Azure AI Foundry project.
-- **Top-center: Search with AI (Ctrl + K):** Allows you to quickly search resources, settings, models, and tools across Foundry.
-- **Top-right: Home:** Displays the project's main dashboard, resources, endpoints, and quick-start options.
-- **Top-right: Discover:** Lets you explore available AI models, examples, and capabilities.
-- **Top-right: Build:** Used to create, configure, and deploy AI applications and agents.
-- **Top-right: Operate:** Used to monitor deployments, review usage, and troubleshoot running solutions.
-- **Top-right: Manage:** Used to manage project settings, permissions, connections, and resources.
-- **Top-right: Docs:** Provides access to Microsoft documentation, tutorials, and learning materials.
-- **Main heading: Welcome, Agenticuser60:** Displays the currently signed-in user account.
+- **Header (top-left):** Shows Microsoft Foundry and the name of your project. This tells you which project you are working in.
+- **Search with AI (top-center):** Searches resources, settings, models, and tools across Foundry. You can open it by pressing the Ctrl and K keys together.
+- **Home (top-right):** Shows the main dashboard of the project, with resources, endpoints, and quick-start options.
+- **Discover (top-right):** Lets you explore available models, examples, and capabilities.
+- **Build (top-right):** Is used to create, configure, and deploy AI applications and agents. You do not use it in this lab.
+- **Operate (top-right):** Is used to monitor deployments, review usage, and troubleshoot running solutions.
+- **Manage (top-right):** Is used to manage project settings, permissions, connections, and resources.
+- **Docs (top-right):** Opens Microsoft documentation, tutorials, and learning materials.
+- **Main heading (Welcome):** Shows the name of the account that is signed in.
 
-## 2) Main project cards
+## 2) The main project cards
 
 ![Screenshot of the main project cards.](image.png)
 
 **Use a model**
 
 - Located on the left.
-- Description: Manage your existing endpoints or deploy a new model.
-- **View deployments** button → opens the available model deployments.
+- Lets you manage existing endpoints or deploy a new model.
+- The **View deployments** button opens the list of model deployments. You will use this button to find **gpt-5.4-mini**.
 
 **Build an agent**
 
 - Located on the top-right.
-- Description: Create an AI agent by configuring instructions, tools, and knowledge without writing code.
-- **Start building** button → starts the agent-building workflow.
+- Lets you create an AI agent by configuring instructions, tools, and knowledge, without writing code.
+- You do not use it in this lab.
 
 **Code an agent**
 
 - Located below Build an agent.
-- Description: Define and deploy an agent in code using Microsoft Agent Framework for full control and customization.
-- **Start coding** button → starts the coding workflow.
+- Lets you define and deploy an agent in code with the Microsoft Agent Framework.
+- You do not use it in this lab.
 
-## 3) Endpoints & API key
+## 3) Endpoints and API key
 
 Below the main cards, you can see three fields:
 
@@ -277,166 +197,117 @@ Below the main cards, you can see three fields:
 **API key**
 
 - The key is masked.
-- Copy icon is available on the right.
-- Keep the API key private.
+- A copy icon is on the right.
+- Keep the key private.
 
 **Project endpoint**
 
-- Shows the Azure AI Foundry project endpoint.
-- Copy icon is available.
-- This is the endpoint used when connecting to the project through SDK/API code.
+- Shows the endpoint of your Azure AI Foundry project.
+- A copy icon is available.
+- Code uses this endpoint to connect to the project.
 
 **Azure OpenAI endpoint**
 
 - Shows the Azure OpenAI endpoint.
-- Copy icon is available.
-- Used when working directly with Azure OpenAI APIs.
+- A copy icon is available.
+- Code uses this endpoint to work directly with the Azure OpenAI APIs.
 
-> **Use in lab:** Copy the API key and the required project endpoint when the lab asks you to configure your SDK/API connection.
+In this lab, you take the endpoint and the key from the **Details** tab of the deployed model, as shown later in "Find your endpoint and key".
 
 ## 4) Model selection
 
-Below the endpoint section, there is a Model selection area containing three cards:
+Below the endpoint section, a Model selection area has three cards:
 
 ![Screenshot of the Model selection cards.](image.png)
 
 **Test in playground**
 
-- Run prompts and see responses.
-- Used to interactively test models without writing code.
+- Lets you run prompts and see responses without writing code.
+- You will use it in this lab.
 
 **Explore models**
 
-- Browse available models.
-- Used to explore the models available in the project.
+- Lets you browse the models that are available.
+- You will look at it next.
 
 **Compare models**
 
-- Review benchmarks and capabilities.
-- Used to compare available models based on their capabilities and performance information.
+- Lets you review benchmarks and capabilities of models side by side.
+- You will look at it next.
 
 ## 5) Available models
 
-At the bottom of the page, the portal displays available models, including examples such as:
+At the bottom of the page, the portal lists available models, for example:
 
 - claude-fable-5-1 (Anthropic)
 - gpt-6-astra (OpenAI)
 - MAI-Image-2.6 (Microsoft)
 - DeepSeek-V4-Flash (DeepSeek)
 
-There is also a left/right navigation control to view additional models.
-
-Scroll down a little further and you can see the following sections:
+Arrows on the left and right show more models. You do not need to choose one of these. Your lab uses **gpt-5.4-mini**.
 
 ## 6) Recent work
 
-The Recent work section has three filters:
+The Recent work section has three filters: **All**, **Agents**, and **Models**.
 
-**All | Agents | Models**
-
-It shows your recently accessed models/projects in a table with:
-
-| Name | Version | Type | Last viewed | Endpoint |
-|---|---|---|---|---|
-| gpt-5.4-mini | gpt-5.4-mini | Model | 9/24/26, 12:00:46 AM | View endpoint |
-| Phi-4-mini-instruct | Phi-4-mini-instruct | Model | 9/23/26, 11:54:26 PM | View endpoint |
-
-At the bottom, it shows 1-2 of 2, with Prev / Next navigation.
+It shows the models and projects that you opened recently in a table with these columns: Name, Version, Type, Last viewed, and Endpoint. **gpt-5.4-mini** appears here after you open it. The **View endpoint** link in each row opens the endpoint information of that model. Prev and Next buttons at the bottom move between pages of the table.
 
 ## 7) Learning and resources
 
-Further down, there is a Learning and resources section with three options:
+Further down, the Learning and resources section has three options:
 
-**Docs**
-Explore the detailed Microsoft Foundry documentation.
+- **Docs:** Explore the detailed Microsoft Foundry documentation.
+- **GitHub:** Get the latest SDK updates and code samples.
+- **Discord:** Join the Microsoft Foundry community and ask questions.
 
-**GitHub**
-Get the latest SDK updates and code samples on GitHub.
+# Explore the model catalog
 
-**Discord**
-Have questions? Join and connect with the Microsoft Foundry Discord community.
+The model catalog helps you find and compare models. In this lab, the model is already chosen for you. This tour shows you where the information is, so that you can find it in your own projects later.
 
-# Explore the Model Catalog
+## Open the model catalog
 
-## Open Model Catalog
+1. On the project home page, under Model selection, click **Explore models**.
 
-On the Project Overview page, under Model selection, you will see Test in playground, Explore models, and Compare models.
+    ![Screenshot of the Explore models card.](image.png)
 
-Click **Explore models**.
+    The Models catalog opens. It lists the models that you can browse.
 
-![Screenshot of the Explore models card.](image.png)
-
-This opens the Models catalog, where you can browse the available models.
-
-## What you're looking at (screen anatomy)
-
-### Models catalog
+## The catalog page
 
 ![Screenshot of the Models catalog.](image.png)
 
 At the top of the page, you can see:
 
-- **Models (239)** → shows the number of models currently listed in the catalog.
-- **Search** → search for a specific model by name.
-- **Sort by** → sort the available models, currently shown as Featured.
-- **Compare models** → select models and compare their capabilities and performance.
-- **View leaderboard** → view model performance metrics across different categories.
+- **Models:** The number of models that the catalog lists.
+- **Search:** Finds a model by name.
+- **Sort by:** Changes the order of the list. The default is Featured.
+- **Compare models:** Lets you select models and compare their capabilities and performance.
+- **View leaderboard:** Shows performance measurements of models in several categories.
 
-### Availability
+The left side of the page has two availability options:
 
-The left-side filter contains:
+- **All models:** Shows every model in the catalog.
+- **Available in my project:** Shows the models that your project can use.
 
-- **All models** → displays all models available in the catalog.
-- **Available in my project** → displays models currently available for your project.
+The left side also has filters that narrow the list. These are the filters you are most likely to use:
 
-### Filters
+- **Collections:** Filter by collection.
+- **Publisher:** Filter by the company that provides the model.
+- **Supported features:** Filter by the features a model supports.
+- **Inference tasks:** Filter by the kind of task a model performs, such as chat or image generation.
+- **Region:** Filter by the regions where a model is available.
 
-The left blade also provides filters to narrow down the model catalog:
+The catalog has more filters for deployment options, fine-tuning, lifecycle, domain, and industry. You do not need them in this lab.
 
-- **Collections** → filter models by collection.
-- **Publisher** → filter by model provider/publisher.
-- **Supported features** → filter according to supported features.
-- **Inference tasks** → filter based on the type of task the model supports.
-- **Deployment options** → filter based on available deployment methods.
-- **Deployment SKU** → filter based on deployment SKU.
-- **Region** → filter models based on supported regions.
-- **Fine-tuning methods** → filter models based on fine-tuning support.
-- **Lifecycle** → filter based on model lifecycle status.
-- **Domain** → filter by supported domain.
-- **Industry** → filter by industry.
+The main area shows one entry for each model. Each entry shows the model name, the publisher, and the task types the model supports, such as Chat completion, Responses, Messages, Text to image, or Speech to text.
 
-### Model listings
+## Compare models
 
-The main area displays individual model entries.
-
-Examples visible in the current catalog include:
-
-- gpt-6-sol
-- gpt-6-luna
-- gpt-6-astra
-- gpt-5.6-sol
-- gpt-5.6-luna
-- claude-fable-5-1
-- claude-opus-5-5
-- claude-sonnet-5
-- grok-4.6
-- Kimi-K2.7-Code
-- MAI-Voice-2
-- MAI-Image-2.5
-- DeepSeek-V4-Pro
-- DeepSeek-V4-Flash
-
-Each model entry shows the model name, provider, and supported task types such as Chat completion, Responses, Messages, Text to image, or Speech to text.
-
-## Compare Models
-
-1. Click **Compare models** at the top-right of the Model Catalog.
+1. Click **Compare models** at the top-right of the model catalog.
 
     ![Screenshot of the Compare models button.](image.png)
 
-    The comparison page allows you to view multiple models side-by-side.
-
-    For example, the comparison screen displays:
+    The comparison page shows several models side by side. For each model, it can show:
 
     - Model name and version
     - Deploy option
@@ -451,235 +322,102 @@ Each model entry shows the model name, provider, and supported task types such a
     - Maximum output
     - Training date
 
-1. You can use **+ Add model** to add another model to the comparison.
+1. Click the **Add model** button to add another model to the comparison.
 
-    This is useful when you want to compare models based on the requirements of your application before deploying one.
+    This helps you check the capabilities of models against what your application needs.
 
-## Model Leaderboard
+## View the leaderboard
 
-1. Come back to Model Catalog and now click **View leaderboard**.
+1. Go back to the model catalog and click **View leaderboard**.
 
     ![Screenshot of the Model leaderboard.](image.png)
 
-    The Model leaderboard provides benchmark-based comparisons across four areas:
+    The leaderboard compares models by benchmark results in four areas:
 
-    **Quality**
-    Measures the model's quality index.
+    - **Quality:** The quality index of the model.
+    - **Safety:** The measured attack success rate. A lower value is better.
+    - **Throughput (tokens per second):** The number of output tokens that the model generates each second. A higher value is better.
+    - **Benchmark cost:** The cost of running the evaluation datasets. A lower value is better.
 
-    **Safety**
-    Shows the measured attack success rate. Lower is better according to the portal.
+1. Below the charts, select individual models to compare their quality index, safety, throughput, and benchmark cost.
 
-    **Throughput (tokens/sec)**
-    Shows the number of output tokens generated per second. Higher is better for throughput.
+    > **Tip:** Leaderboard results are benchmark measurements. To judge a model for your own application, test it with your own prompts in the Playground.
 
-    **Benchmark cost**
-    Shows benchmark cost for the evaluated datasets. Lower is better for cost.
+# Test the deployed model in the Chat Playground
 
-1. Below the charts, you can select individual models and compare their:
+You will now try the model that is already deployed in your project.
 
-    - Quality index
-    - Safety
-    - Throughput
-    - Benchmark cost
-
-    > **Tip:** Leaderboard results are benchmark measurements. For your own application, validate the models using your actual prompts and requirements in the Playground.
-
-## Model Selection Workflow
-
-1. **Start with Search and Filters**
-
-   Search for a specific model or use filters such as Publisher, Supported features, Inference tasks, Region, and Deployment options.
-
-2. **Check the model details**
-
-   Open a model to review its supported capabilities, deployment information, and other specifications.
-
-3. **Compare candidates**
-
-   Use Compare models when you want to examine multiple models side-by-side.
-
-4. **Check the leaderboard**
-
-   Use View leaderboard to review benchmark measurements for Quality, Safety, Throughput, and Benchmark cost.
-
-5. **Deploy the model**
-
-   Once you've identified a model suitable for your use case, use the Deploy option from the model details or comparison page.
-
-## Explore Foundation Models: Notable Families
-
-The current catalog contains models from multiple providers. Some examples visible in the catalog include:
-
-### OpenAI
-
-Examples include GPT-6 and GPT-5.6 model variants.
-
-- General-purpose language models.
-- Support capabilities such as Chat completion and Responses.
-- Suitable for applications such as assistants, coding, reasoning, and structured interactions.
-
-### Anthropic
-
-Examples include Claude model variants such as Claude Fable, Claude Opus, and Claude Sonnet.
-
-- General-purpose language models.
-- Useful for conversational, analytical, and long-context workloads.
-- Capabilities depend on the specific model and version.
-
-### Microsoft
-
-Examples include MAI-Voice-2, MAI-Image-2.5, MAI-Image-2.5-Flash, and MAI-Thinking-1.
-
-- Covers different workloads including text, image, speech, and reasoning.
-- The supported input/output types depend on the individual model.
-
-### DeepSeek
-
-Examples include DeepSeek-V4-Pro and DeepSeek-V4-Flash.
-
-- Language models available for conversational and related workloads.
-- Check the individual model page for supported capabilities and deployment options.
-
-### xAI
-
-Examples include Grok-4.6 and Grok-4.3.
-
-- General-purpose language models.
-- The catalog displays supported capabilities such as Chat completion and Responses.
-
-### Kimi
-
-Examples include Kimi-K2.7-Code and Kimi-K2.6.
-
-- Includes models focused on language and coding workloads.
-- Check the individual model details for supported features.
-
-### Cohere
-
-Examples include Cohere Command models.
-
-- Designed for language and enterprise-oriented workloads.
-- Check the specific model page for supported capabilities.
-
-## Picking a Model
-
-When selecting a model, consider:
-
-- **Task fit:** Choose a model that supports your required task, such as chat, coding, image generation, or speech.
-- **Quality:** Check benchmark results and test the model with your own prompts.
-- **Latency and throughput:** Consider throughput when response speed matters.
-- **Cost:** Compare estimated or benchmark costs when working under a budget.
-- **Context window:** Check the supported context size for applications involving large amounts of text.
-- **Region:** Make sure the model is available in the region required by your project.
-- **Deployment options:** Check which deployment options and SKUs are available.
-- **Features:** Verify support for capabilities such as Responses, Chat completion, tool calling, structured outputs, or multimodal input where required.
-
-> **Best practice:** Use the Model Catalog → Model Details → Compare Models → Leaderboard → Playground flow to evaluate a model before using it in your application.
-
-# Use the deployed model
-
-Use the deployed `gpt-5.4-mini` model for the upcoming hands-on exercises and API/code execution.
-
-> **Note:** Please use the existing deployment, as we already have a deployed model available. This avoids the need to create additional deployments and helps prevent unnecessary resource consumption during the hands-on exercises.
-
-# Test the model in the Chat Playground
+> **Note:** Use the existing **gpt-5.4-mini** deployment. Do not create another deployment. Extra deployments use resources that the lab does not need.
 
 ## Open the Chat Playground
 
-1. Come back to the project overview page.
+1. Go back to the project home page.
 
 1. Under Model selection, click **View deployments**.
 
     ![Screenshot of the View deployments button.](image.png)
 
-1. Select the deployed `gpt-5.4-mini` model.
+1. Select the deployed **gpt-5.4-mini** model.
 
-1. On the `gpt-5.4-mini` deployment page, click **Playground**.
+1. On the **gpt-5.4-mini** deployment page, click **Playground**.
 
     ![Screenshot of the Playground button on the deployment page.](image.png)
 
-    The `gpt-5.4-mini` Playground opens with the following main areas:
+    The Playground opens with these main areas:
 
     ![Screenshot of the Playground layout.](image.png)
 
-### 1) Model & deployment
+### The Playground areas
 
-- **Model:** gpt-5.4-mini
-- **Deployment type:** Global Standard
-- **Save as agent**: Save the current model configuration as an agent.
-- **Compare models**: Compare this model with other available models.
+1. **Model and deployment:** Shows the model (gpt-5.4-mini) and the deployment type (Global Standard). The **Save as agent** button saves the current configuration as an agent. The **Compare models** button compares this model with others.
+1. **Navigation tabs:** At the top of the deployment page, these tabs are available:
+    - **Playground:** Test prompts and interact with the model.
+    - **Details:** View information about the deployment and the model. You will use this tab to find your endpoint and key.
+    - **Monitor:** View usage, requests, token counts, cost, and performance metrics.
+    - **Evaluation:** Evaluate model behavior and configure evaluators.
+1. **Instructions:** Holds the system-level instructions that guide how the model responds. This is where you set the system message.
+1. **Tools:** Connects additional tools to the model. For example, Web search can add web-based information when it is turned on.
+1. **Knowledge:** Lets you upload files or connect knowledge sources that give the model more context. Use the **Add** button for this.
+1. **Memory:** Holds memory settings for the model or agent.
+1. **Guardrail:** Holds safety controls for managing and testing model behavior.
+1. **Chat:** The place where you talk to the model. Type a prompt in the chat input, for example "Explain Azure AI Foundry in simple terms.", and click **Call model**. The response appears in the chat area.
 
-### 2) Navigation tabs
+In this lab, you mainly use **Instructions** and **Chat**. The other areas are described so that you recognize them.
 
-At the top of the deployment page:
+## Try the Playground
 
-- **Playground**: Test prompts and interact with the model.
-- **Details**: View deployment and model information.
-- **Monitor**: View usage, requests, token counts, cost, and performance metrics.
-- **Evaluation**: Evaluate model behavior and configure evaluators.
-
-### 3) Instructions
-
-The Instructions section lets you provide system-level instructions that guide how `gpt-5.4-mini` responds.
-
-### 4) Tools
-
-The Tools section lets you connect additional tools to the model.
-
-For example, Web search can provide web-grounded information when enabled.
-
-### 5) Knowledge
-
-Use **Add** to upload files or connect knowledge sources that can provide additional context to the model.
-
-### 6) Memory
-
-The Memory section provides memory-related configuration for the model or agent.
-
-### 7) Guardrail
-
-The Guardrail section contains safety controls for managing and testing model behavior.
-
-### 8) Chat
-
-The Chat section is where you interact directly with `gpt-5.4-mini`.
-
-- **Call model**: Sends your prompt to the deployed model.
-- **Chat input**: Enter a prompt such as "Explain Azure AI Foundry in simple terms."
-- The response appears directly in the chat area.
-
-For this lab, use the deployed `gpt-5.4-mini` model in the Chat Playground to test prompts and observe its responses before moving on to the SDK/REST section.
-
-## Try out the playground
-
-1. Enter the prompt "Explain Azure AI Foundry in two sentences" and hit Enter.
+1. Enter the prompt "Explain Azure AI Foundry in two sentences" and press Enter.
 
     ![Screenshot of the playground response.](image.png)
 
+    The reply appears in the chat area. Notice that the reply follows your request for two sentences.
+
 # Find your endpoint and key
 
-1. From the deployed model page, click the **Details** tab beside Playground.
+Your code needs the endpoint and the key of the deployment.
+
+1. On the deployed model page, click the **Details** tab next to Playground.
 
     ![Screenshot of the Details tab showing the endpoint and key.](image.png)
 
-1. Copy the **Endpoint** and **Key**.
+1. Copy the **Endpoint** and the **Key**.
 
-1. Save them somewhere safe, such as Notepad, so you can use them later whenever the notebook/code requires the endpoint and key.
+1. Save both values somewhere safe, such as Notepad. You will paste them into the notebook.
 
-1. For the Endpoint, remove anything that comes after `/v1/`.
+1. In the endpoint, remove everything after `/v1/`.
 
-    Example:
+    For example:
 
-    - Endpoint shown: `https://hakunamatata1.services.ai.azure.com/openai/v1/responses`
-    - Save/use: `https://hakunamatata1.services.ai.azure.com/openai/v1/`
+    - Endpoint shown: `https://<your-resource-name>.services.ai.azure.com/openai/v1/responses`
+    - Endpoint to use: `https://<your-resource-name>.services.ai.azure.com/openai/v1/`
 
-1. Keep the Key as it is and save it securely.
+1. Keep the key exactly as it is, and keep it private.
 
 ---
 
 # Part 3: Run the lab
 
-You now have the fundamentals of generative AI and LLMs, and you know your way around the Azure AI Foundry portal. Next, run the code in the lab notebook.
+You now know the concepts that the lab uses, and you know where to find your project, your deployed model, the Playground, the endpoint, and the key. Next, run the code in the lab notebook.
 
 ### Prepare the application configuration
 
@@ -691,7 +429,7 @@ You now have the fundamentals of generative AI and LLMs, and you know your way a
 
 ## Summary
 
-You learned the theory behind generative AI and LLMs. You toured the Azure AI Foundry portal: the model catalog, compare models, the leaderboard, the Chat Playground, and the place to find your endpoint and key. You have enough fundamentals and Azure AI Foundry knowledge to run the lab.
+You used a project and a model deployment that were already set up for you. You learned the concepts that the lab uses, you toured the Azure AI Foundry portal, you tested **gpt-5.4-mini** in the Chat Playground, and you found the endpoint and key that your code needs. You now have the knowledge to run the lab.
 
 ---
 
