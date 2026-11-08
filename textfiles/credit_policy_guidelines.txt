@@ -1,0 +1,74 @@
+Credit Policy Guidelines 
+Purpose 
+This document defines the organization's credit decision framework and approval 
+recommendations. 
+The final customer classification is based on the overall Credit Risk Assessment Score. 
+Low Risk Customer 
+Score Above 80 
+Risk Classification 
+Low Risk 
+Recommended Credit Limit 
+USD 5,000,000 
+Recommended Payment Terms 
+60 Days 
+Business Interpretation 
+Customers in this category demonstrate strong financial health, satisfactory compliance results, 
+and lower overall risk exposure. 
+Medium Risk Customer 
+Score Between 50 and 80 
+Risk Classification 
+Medium Risk 
+Recommended Credit Limit 
+USD 2,000,000 
+Recommended Payment Terms 
+30 Days 
+Business Interpretation 
+Customers demonstrate acceptable financial performance but may require additional 
+monitoring. 
+High Risk Customer 
+Score Below 50 
+Risk Classification 
+High Risk 
+Recommended Credit Limit 
+No Credit Facility 
+Recommended Payment Terms 
+Advance Payment Required 
+Business Interpretation 
+Customers demonstrate elevated business, financial, or compliance risk. 
+Policy Exceptions 
+Management approval is required for exceptions to standard credit policies. 
+Approved credit limits may be adjusted by authorized personnel. 
+Business approval does not override compliance requirements. 
+Inactive companies should not receive credit approval. 
+Applications with missing mandatory documentation should be placed on hold until 
+documentation is received. 
+Any sanctions or watchlist match requires manual review. 
+Decision Examples 
+Customer A 
+Final Score: 90 
+Decision: Low Risk 
+Credit Limit: USD 5,000,000 
+Payment Terms: 60 Days 
+Customer B 
+Final Score: 70 
+Decision: Medium Risk 
+Credit Limit: USD 2,000,000 
+Payment Terms: 30 Days 
+Customer C 
+Final Score: 35 
+Decision: High Risk 
+Credit Limit: No Credit Facility 
+Payment Terms: Advance Payment 
+Frequently Asked Questions 
+What credit limit applies to a Low Risk customer? 
+What payment terms apply to a Medium Risk customer? 
+Can credit limits be overridden? 
+What happens when a company is inactive? 
+What should happen if mandatory documents are missing? 
+What action is required when sanctions are identified? 
+Knowledge Check Questions 
+Which risk category receives a USD 5,000,000 limit? 
+What happens when a customer scores below 50? 
+Can business approval bypass compliance requirements? 
+Who can approve policy exceptions? 
+What should happen if documentation is incomplete? 

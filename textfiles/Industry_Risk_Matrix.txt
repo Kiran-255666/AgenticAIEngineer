@@ -1,0 +1,79 @@
+Industry Risk Matrix 
+Purpose 
+The Industry Risk Matrix provides a standardized approach for assessing industry-related 
+risk during credit evaluations. 
+Industry risk represents the likelihood that economic, market, regulatory, or operational 
+conditions could negatively affect a company's ability to meet its financial obligations. 
+Low Risk Industries 
+Utilities 
+Government 
+Healthcare 
+Characteristics 
+Stable demand 
+Predictable revenue streams 
+Lower market volatility 
+Lower default probability 
+Industry Risk Score: 15 Points 
+Example Companies 
+Electricity providers 
+Water supply companies 
+Public healthcare organizations 
+Government service providers 
+Medium Risk Industries 
+Manufacturing 
+FMCG Distribution 
+IT Services 
+Characteristics 
+Moderate market exposure 
+Dependence on economic cycles 
+Generally stable operations 
+Manageable business risks 
+Industry Risk Score: 8 Points 
+Example Companies 
+Consumer goods manufacturers 
+Software service providers 
+Regional distributors 
+Industrial manufacturers 
+High Risk Industries 
+Construction 
+Real Estate Developers 
+Airlines 
+Commodity Trading 
+Startups 
+Mining and Metal 
+Characteristics 
+High market volatility 
+Capital intensive operations 
+Greater economic sensitivity 
+Higher business uncertainty 
+Industry Risk Score: 3 Points 
+Example Companies 
+Property developers 
+Airlines 
+Mining operators 
+Newly established startups 
+Industry Assessment Guidelines 
+The primary source of revenue should determine the industry classification. 
+If a company operates across multiple industries, classify it according to the business 
+segment that generates the highest revenue. 
+Industry classification should be reviewed periodically to ensure accuracy. 
+If insufficient information exists to determine an industry classification, the application 
+should be escalated for manual review. 
+Industry risk should not be used as the sole basis for approving or rejecting a customer. 
+Industry risk is one component of the overall credit assessment process. 
+Examples 
+ABC Utilities Ltd - Utilities - Low Risk - Score 15 
+Global Manufacturing Solutions - Manufacturing - Medium Risk - Score 8 
+SkyJet Airlines - Airlines - High Risk - Score 3 
+Frequently Asked Questions 
+Which industries are classified as High Risk? 
+What industry category does Manufacturing belong to? 
+What score is assigned to Utilities? 
+How should a company with multiple business lines be classified? 
+Can industry risk alone determine credit approval? 
+What should be done if industry information is unavailable? 
+Knowledge Check Questions 
+Which industries are considered Low Risk? 
+What score is assigned to Medium Risk industries? 
+Why is industry risk considered during credit assessments? 
+What happens when a company operates in multiple industries? 

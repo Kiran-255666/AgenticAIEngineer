@@ -1,0 +1,268 @@
+CREDIT RISK ASSESSMENT RULES
+
+Purpose
+-------
+These rules are used to assess the credit risk of a client company and determine the appropriate credit limit and payment terms.
+
+1. DOCUMENT VERIFICATION
+------------------------
+
+Verify that both of the following documents are available:
+
+- Company Registration Certificate
+- GST Certificate
+
+Both documents must be present to pass the document verification step.
+
+Compare the client company name with the company name shown on both certificates.
+
+The company names must match exactly.
+
+If either required document is missing, or the company name does not match, the compliance check fails.
+
+2. COMPANY LEGAL STATUS
+-----------------------
+
+Check the company's status through the MCA (Ministry of Corporate Affairs).
+
+Accepted status:
+
+- Active
+
+An Inactive status should be treated as a compliance concern and considered during the final risk assessment.
+
+3. SANCTIONS AND COMPLIANCE SCREENING
+-------------------------------------
+
+Check the company against the Dow Jones sanctions database and relevant compliance records.
+
+Look for:
+
+- Sanctions
+- Watchlists
+- Adverse compliance records
+
+A confirmed sanctions or compliance match is a rejection condition.
+
+4. FINANCIAL STATEMENTS
+-----------------------
+
+Confirm that audited or summarized financial statements are available for the last two financial years.
+
+Use the latest financial year for the primary financial ratio calculations.
+
+Calculate:
+
+Current Ratio
+--------------
+Current Ratio = Current Assets / Current Liabilities
+
+Debt-to-Equity Ratio
+--------------------
+Debt-to-Equity = Total Debt / Shareholders' Equity
+
+Net Profit Margin
+-----------------
+Net Profit Margin = (Net Profit / Revenue) × 100
+
+5. EXTERNAL CREDIT BUREAU
+-------------------------
+
+Obtain the latest Dun & Bradstreet (D&B) credit score or rating available for the company.
+
+Use the latest available score when calculating the credit-risk score.
+
+6. INDUSTRY RISK
+----------------
+
+Assign an industry risk rating using the following Industry Risk Matrix.
+
+LOW RISK:
+- Utilities
+- Government
+- Healthcare
+
+Industry score: 15
+
+MEDIUM RISK:
+- Manufacturing
+- FMCG distribution
+- IT services
+
+Industry score: 8
+
+HIGH RISK:
+- Construction
+- Real estate developers
+- Airlines
+- Commodity trading
+- Startups
+- Mining & Metal
+
+Industry score: 3
+
+7. CREDIT RISK SCORECARD
+------------------------
+
+The total score is 100 points.
+
+Compliance: 20 points
+Liquidity (Current Ratio): 20 points
+Leverage (Debt-to-Equity): 15 points
+Profitability (Net Profit Margin): 15 points
+External Credit Bureau: 15 points
+Industry Risk: 15 points
+
+COMPLIANCE
+----------
+
+No sanctions/compliance match:
+20 points
+
+Confirmed sanctions/compliance match:
+0 points
+
+A confirmed match is a rejection condition.
+
+CURRENT RATIO
+-------------
+
+Current Ratio >= 1.5:
+20 points
+
+Current Ratio 1.2–1.49:
+15 points
+
+Current Ratio 1.0–1.19:
+8 points
+
+Current Ratio < 1.0:
+0 points
+
+DEBT-TO-EQUITY
+--------------
+
+Debt-to-Equity <= 1.5:
+15 points
+
+Debt-to-Equity 1.51–2.0:
+10 points
+
+Debt-to-Equity 2.01–3.0:
+5 points
+
+Debt-to-Equity > 3.0:
+0 points
+
+NET PROFIT MARGIN
+-----------------
+
+Net Profit Margin >= 8%:
+15 points
+
+Net Profit Margin 4–7.99%:
+10 points
+
+Net Profit Margin 1–3.99%:
+5 points
+
+Net Profit Margin < 1% or a loss:
+0 points
+
+D&B CREDIT SCORE
+----------------
+
+D&B score >= 700:
+15 points
+
+D&B score 650–699:
+10 points
+
+D&B score 600–649:
+5 points
+
+D&B score < 600:
+0 points
+
+INDUSTRY RISK
+-------------
+
+Low Risk:
+15 points
+
+Medium Risk:
+8 points
+
+High Risk:
+3 points
+
+8. FINAL RISK CLASSIFICATION
+----------------------------
+
+Calculate the total score by adding all six scorecard components.
+
+TOTAL SCORE > 80:
+Risk Rating: Low
+
+Recommended credit limit: $5,000,000
+Recommended payment terms: 60 days
+
+TOTAL SCORE 50–80:
+Risk Rating: Medium
+
+Recommended credit limit: $2,000,000
+Recommended payment terms: 30 days
+
+TOTAL SCORE < 50:
+Risk Rating: High
+
+Credit recommendation: No credit
+Payment requirement: Advance payment
+
+9. FINAL ASSESSMENT
+-------------------
+
+The final assessment should include:
+
+- Document verification result
+- Company name match result
+- MCA legal status
+- Sanctions/compliance screening result
+- Financial ratios
+- D&B credit score
+- Industry risk rating
+- Score for each scorecard category
+- Total score out of 100
+- Final risk rating
+- Recommended credit limit
+- Recommended payment terms
+
+The agent should clearly explain how each score was calculated and should not invent missing company information.
+
+WORKED EXAMPLE
+--------------
+
+Example input:
+
+Current Ratio: 1.56
+Debt-to-Equity: 1.86
+Net Profit Margin: 5.56%
+D&B Credit Score: 720
+Industry: Utilities
+Compliance: No confirmed match
+
+Score calculation:
+
+Compliance = 20
+Current Ratio = 20
+Debt-to-Equity = 10
+Net Profit Margin = 10
+D&B Credit Score = 15
+Industry Risk = 15
+
+Total = 90/100
+
+Final Risk Rating: Low
+
+Recommended credit limit: $5,000,000
+Recommended payment terms: 60 days
