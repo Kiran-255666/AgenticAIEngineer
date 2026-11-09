@@ -342,7 +342,7 @@ You now know the concepts that the lab uses, and you know where to find your pro
 1. Open a web browser and go to the [GitHub](https://github.com/Kiran-255666/AgenticAIEngineer).
 1. On the repo page, select the green **`<> Code`** button, then select **Download ZIP**.
 
-    ![Screenshot of the Code button.](../../media/code.png)
+    ![Screenshot of the Code button.](../../media/code_v1.png)
 1. Once the download finishes, locate the ZIP file and extract it to a folder on your computer. **Ensure that there are no other ZIP files or extracted folders with the same name in the Downloads folder.**
 
 ## Summary
