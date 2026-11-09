@@ -155,7 +155,7 @@ In this part, you will explore the Azure AI Foundry portal. No coding is require
 
 ![Screenshot of the Foundry portal showing your project.](../../media/NewToggle.png)
 
-> **Note:** After you sign in to Microsoft Foundry (`ai.azure.com`), you may be redirected to the **All Resources** page. This page displays the AI Foundry resources and projects available in your Azure subscription.
+> **Note:** After signing in to Microsoft Foundry ([ai.azure.com](https://ai.azure.com/)), you may be redirected to the **All Resources** page, as shown below. If you are not redirected to this page, skip to the **Azure AI Foundry Home Page** section. The **All Resources** page displays the AI Foundry resources and projects available in your Azure subscription.
 
 ![Screenshot of the Foundry portal showing your project.](../../media/AllResources_Page.png)
 
