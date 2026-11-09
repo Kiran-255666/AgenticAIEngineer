@@ -189,7 +189,7 @@ In this part, you will explore the Azure AI Foundry portal. No coding is require
 
 After you open the **hakunamatata1** project, the **Home** page appears. This page provides quick access to common Azure AI Foundry tasks, project details, model deployments, and learning resources.
 
-![Azure AI Foundry Home Page](../../media/Home_Page.png)
+![Azure AI Foundry Home Page](../../media/Home_page.png)
 
 | Location | Description | Use |
 |----------|-------------|-----|
