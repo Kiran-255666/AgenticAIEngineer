@@ -351,4 +351,4 @@ You used a project and a model deployment that were already set up for you. You 
 
 ---
 
-**Next step:** Open [AgenticAIEngineer/labfiles/Day01/lab01-azure-ai-foundry.ipynb at main · Kiran-255666/AgenticAIEngineer](https://github.com/Kiran-255666/AgenticAIEngineer/blob/main/labfiles/Day01/lab01-azure-ai-foundry.ipynb) and run the notebook as it instructs.
+**Next step:** Open **labfiles/Day01/lab01-azure-ai-foundry.ipynb** locally in vscode and run the notebook as it instructs.
