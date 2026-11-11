@@ -70,24 +70,24 @@ Your agent has been created, and the **Agent's playground** is now open. In this
 
    On the file page, select **Download raw file** to download `IT_Policy.txt` to your local **Downloads** folder.
    
-   ![Screenshot of the agent's playground.](../media/howto_v1.png)
+   ![Screenshot of the agent's playground.](../media/howto_v11.png)
 
 > [!NOTE]
 > The document contains sample IT policies for password resets, software installation requests, and hardware troubleshooting.
 
 3. Return to the **Agent's playground**. In the **Tools** section, select **Add**, and then turn on **Code interpreter**.
 
-   ![Screenshot of the agent's playground.](../media/code-interpreter_v1.png)
+   ![Screenshot of the agent's playground.](../media/code-interpreter_v11.png)
 
 4. Select **Add tools**, then select **File search**. Select **Add tool** to add it to the agent.
 
-   ![Screenshot of the agent's playground.](../media/add-tool_v1.png)
+   ![Screenshot of the agent's playground.](../media/add-tool_v11.png)
 
 5. An Attach files dialog box will appear. Leave the Index option set to its default value (Create a new index). In the Vector index name field, enter index_<youruniquesuffix>. Select Browse for files, navigate to the Downloads folder, select IT_Policy.txt, and then select Attach.
 
 6. Wait for the file to finish indexing. When the file status changes to Success, select Attach to add the vector index to your agent.
 
-   ![Screenshot of the agent's playground.](../media/add-tool2_v1.png)
+   ![Screenshot of the agent's playground.](../media/add-tool2_v11.png)
 
 7. Download the system performance data file from the training repository. Open a new browser tab and enter the following URL in the address bar:
 
