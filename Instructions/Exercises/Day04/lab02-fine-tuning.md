@@ -79,7 +79,7 @@ Choose how you want to proceed:
 
 1. In the Foundry portal, select **Fine-tune** from the left navigation.
 
-   ![Fine-tuning page with an arrow pointing to Start fine-tuning.](../../media/fine-tune-001_v1.png)
+   ![Fine-tuning page with an arrow pointing to Start fine-tuning.](../../media/fine-tune-001_v11.png)
 
 2. Select **Start fine-tuning**.
 3. In **Basic details**, configure the job as follows:
@@ -88,7 +88,7 @@ Choose how you want to proceed:
    - **Model:** `gpt-4.1`
    - **Training type:** Data Zone
 
-   ![Basic details page showing Supervised, gpt-4.1, and Data Zone selected.](../../media/fine-tune-002.png)
+   ![Basic details page showing Supervised, gpt-4.1, and Data Zone selected.](../../media/fine-tune-002_v11.png)
 
 4. Select **Next**.
 5. In **Datasets**, under **Training data source**, select **Upload or drag and drop**.
@@ -96,7 +96,7 @@ Choose how you want to proceed:
 7. Confirm that the upload finishes and that the Dataset preview displays the file content and JSONL rows.
 8. Leave **Validation data source (optional)** empty.
 
-   ![Datasets page showing credit_risk_management.jsonl uploaded and previewed.](../../media/fine-tune-003.png)
+   ![Datasets page showing credit_risk_management.jsonl uploaded and previewed.](../../media/fine-tune-003_v11.png)
 
 9. Select **Next** to open **Optional settings**.
 10. Configure these settings:
@@ -107,7 +107,7 @@ Choose how you want to proceed:
     - **Deployment type:** **Developer**.
     - Ensure that **Default** is selected for **Batch size**, **Number of epochs**, and **Learning-rate multiplier**.
 
-    ![Optional settings page showing a generated display name, Random seed, automatic deployment control, Developer deployment type, and default hyperparameters.](../../media/fine-tune-004_v1.png)
+    ![Optional settings page showing a generated display name, Random seed, automatic deployment control, Developer deployment type, and default hyperparameters.](../../media/fine-tune-004_v11.png)
 
 11. Select **Submit** to start the fine-tuning job.
 
