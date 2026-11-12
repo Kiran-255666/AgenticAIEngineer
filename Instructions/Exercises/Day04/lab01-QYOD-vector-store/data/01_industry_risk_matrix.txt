@@ -1,0 +1,36 @@
+Industry Risk Matrix
+Version: 1.0 | Last updated: 2025-09-18
+
+Purpose
+
+This document defines the industry risk categories used during credit risk assessments.
+
+Industry Risk Ratings
+
+Low Risk Industries
+- Utilities
+- Government
+- Healthcare
+
+Medium Risk Industries
+- Manufacturing
+- FMCG Distribution
+- IT Services
+
+High Risk Industries
+- Construction
+- Real Estate Developers
+- Airlines
+- Commodity Trading
+- Startups
+- Mining & Metal
+
+Assessment Guidance
+
+Industry risk is one factor within the overall credit assessment process.
+
+Lower-risk industries typically demonstrate more stable demand, predictable cash flows, and lower business volatility.
+
+Higher-risk industries may experience cyclical demand, market volatility, project-based revenue fluctuations, funding challenges, or regulatory uncertainty.
+
+Review industry classification carefully before assigning a risk rating.
