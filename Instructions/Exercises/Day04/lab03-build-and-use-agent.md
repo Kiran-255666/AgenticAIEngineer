@@ -193,6 +193,9 @@ IT_Policy.txt
 system_performance.csv
 ```
 
+> [!NOTE]
+> The lab folder also contains `system_performance.md`, which is simply the `system_performance.csv` file saved in Markdown format. It is not relevant to the code used in this lab it is included only as a knowledge source to upload to Microsoft Foundry.
+
 Here is what each file is used for:
 
 * **`.env`** stores the Microsoft Foundry project endpoint and the name of your agent.
