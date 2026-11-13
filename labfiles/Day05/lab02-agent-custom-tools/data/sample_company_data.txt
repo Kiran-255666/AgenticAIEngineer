@@ -1,0 +1,44 @@
+
+[company_1]
+company_name|Apex Manufacturing Pvt Ltd
+company_registration|true
+gst_certificate|true
+current_assets|500000
+current_liabilities|250000
+total_debt|300000
+equity|600000
+net_profit|80000
+revenue|1000000
+
+[company_2]
+company_name|Greenfield Technologies Pvt Ltd
+company_registration|true
+gst_certificate|false
+current_assets|300000
+current_liabilities|200000
+total_debt|500000
+equity|250000
+net_profit|30000
+revenue|1000000
+
+[company_3]
+company_name|Sunrise Textiles Ltd
+company_registration|false
+gst_certificate|false
+current_assets|150000
+current_liabilities|200000
+total_debt|800000
+equity|300000
+net_profit|20000
+revenue|1000000
+
+[company_4]
+company_name|Bluewave Industries Pvt Ltd
+company_registration|true
+gst_certificate|true
+current_assets|900000
+current_liabilities|300000
+total_debt|200000
+equity|800000
+net_profit|150000
+revenue|1500000

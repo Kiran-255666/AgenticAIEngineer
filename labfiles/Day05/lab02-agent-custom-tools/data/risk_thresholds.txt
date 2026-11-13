@@ -1,0 +1,6 @@
+current_ratio_good|1.50
+current_ratio_medium|1.20
+debt_to_equity_good|1.50
+debt_to_equity_medium|2.00
+net_profit_margin_good|8.00
+net_profit_margin_medium|4.00
