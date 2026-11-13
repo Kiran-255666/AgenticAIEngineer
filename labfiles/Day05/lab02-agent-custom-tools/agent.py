@@ -246,7 +246,7 @@ def main():
             if input_list:
 
                 response = openai_client.responses.create(
-                    input=input_list,
+                    conversation=conversation.id,
                     previous_response_id=response.id,
                     extra_body={
                         "agent_reference": {
