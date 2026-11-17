@@ -135,7 +135,7 @@ The Monitoring section contains several options. Explain the purpose of each opt
 
 1. Click **Add metric**.
 2. Keep the default **Scope** and **Metric Namespace**
-3. In the **Metric** dropdown, select **Azure OpenAI Availability Rate**.
+3. In the **Metric** dropdown, select **Azure OpenAI AvailabilityRate**
 4. Set **Aggregation** to **Average**.
 5. Confirm that the metric appears as a chip above the chart.
 
