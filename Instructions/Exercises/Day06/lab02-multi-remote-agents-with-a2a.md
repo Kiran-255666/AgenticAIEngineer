@@ -10,9 +10,9 @@ lab:
 
 # Connect to remote agents with A2A protocol
 
-**Note: We have already updated the mentioned files with the code mentioned in the instructions, but we would highly suggest going through it before executing it**
+In this exercise, you'll use Azure AI Agent Service with the A2A protocol to create multiple remote agents that collaborate on a credit risk assessment task. A Routing Agent receives user questions and delegates them to specialized agents. A Document Verification Agent checks company documents, a Financial Analysis Agent retrieves financial information and calculates financial ratios, and a Credit Risk Assessment Agent summarizes the available information to support the overall assessment.
 
-In this exercise, you'll use Azure AI Agent Service with the A2A protocol to create simple remote agents that interact with one another. These agents will assist technical writers with preparing their developer blog posts. A title agent will generate a headline, and an outline agent will use the title to develop a concise outline for the article. Let's get started.
+This exercise demonstrates how multiple specialized agents communicate using the A2A protocol, exchange information, and collaborate to handle a complex business task.
 
 This exercise should take approximately **30** minutes to complete.
 
