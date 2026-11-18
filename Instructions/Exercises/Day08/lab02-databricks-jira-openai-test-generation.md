@@ -309,7 +309,12 @@ Before running the notebook, create a Jira Cloud account, create a Jira workspac
 
 ### 4.1 Create a Jira Cloud Account
 
-1. Open [Atlassian account signup](https://id.atlassian.com/signup).
+1. Copy the link below and open it in a new browser tab:
+
+```
+https://id.atlassian.com/signup
+```
+
 2. Locate the **Email** field and enter your personal Gmail address, then select **Sign up**. Alternatively, you can continue using Google, Microsoft, Apple, or Slack. 
 > **TIP** Ideally use fill your personal Gmail address in Email field.
 3. Complete the verification using the code sent to your registered email address.
@@ -340,7 +345,12 @@ This is the value you will use for `JIRA_BASE_URL`.
 
 ### 4.2 Create a Jira API Token
 
-1. Open the [Atlassian API token page](https://id.atlassian.com/manage-profile/security/api-tokens).
+1. Copy the link below and open it in a new browser tab:
+
+```
+https://id.atlassian.com/manage-profile/security/api-tokens
+```
+
 2. Complete the verification code sent to your Atlassian account email if prompted.
 
 ![Screenshot](../../media/4point2.png)
@@ -355,7 +365,12 @@ This is the value you will use for `JIRA_BASE_URL`.
 
 ### 4.3 Create a Jira Story
 
-1. Open [Atlassian Home](https://home.atlassian.com/).
+1. Copy the link below and open it in a new browser tab:
+
+```
+https://home.atlassian.com/
+```
+
 2. Open your Jira workspace.
 3. From the Jira navigation, select **Create**.
 
