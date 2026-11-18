@@ -1,6 +1,6 @@
 ---
 lab:
-  title: Build a Jira Test Case Generation Agent using Azure OpenAI in Databricks
+  title: Build Jira Test Case Generation Agent using Azure OpenAI in Databricks
   description: Learn how to retrieve a Jira Story, extract its requirements, and use Azure OpenAI to generate structured test cases within a Databricks notebook.
   level: 200
   duration: 60
@@ -8,7 +8,7 @@ lab:
   status: 'released'
 ---
 
-# Build a Jira Test Case Generation Agent using Azure OpenAI in Databricks
+# Build Jira Test Case Generation Agent using Azure OpenAI in Databricks
 
 ## Overview
 
