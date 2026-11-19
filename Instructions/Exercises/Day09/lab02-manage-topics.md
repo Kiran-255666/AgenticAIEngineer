@@ -372,6 +372,28 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 1. Select **Save**.
 
+> [!TIP]
+> **Configure the Skills Section**
+>
+> 1. Under **Instructions**, check whether the `# Skills` section is already present.
+> 2. If the `# Skills` section is missing, add it before proceeding.
+> 3. Under `# Skills`, add the following entries:
+>
+>    ```text
+>    # Skills
+>    - Analyze claim documents for completeness and accuracy.
+>    - Compare repair estimates with standard cost guidelines.
+>    - Identify missing or inconsistent information in damage assessments.
+>    ```
+>
+> 4. On a new line under the existing skills, enter `- Use the`.
+> 5. Type `/` and select the **Estimate Repair** topic from the suggestions.
+> 6. After selecting the topic, enter `when a repair estimate is required.`
+>
+> **Troubleshooting:** If the **Estimate Repair** topic does not appear in the suggestions, verify that it has been created and is available in the agent. If it is missing, create the topic first and repeat steps 4–6.
+>
+> 7. Select **Save**.
+
 ## Exercise 6 - Test the agent
 
 In this exercise, you will test topic routing and confirm the conversation follows the expected step-by-step flow.
