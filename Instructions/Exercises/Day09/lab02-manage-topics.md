@@ -373,7 +373,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 1. Select **Save**.
 
 > [!TIP]
-> **Configure the Skills Section**
+> **Skills Section missing? Configure the Skills Section**
 >
 > 1. Under **Instructions**, check whether the `# Skills` section is already present.
 > 2. If the `# Skills` section is missing, add it before proceeding.
@@ -392,7 +392,27 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 >
 > **Troubleshooting:** If the **Estimate Repair** topic does not appear in the suggestions, verify that it has been created and is available in the agent. If it is missing, create the topic first and repeat steps 4–6.
 >
-> 7. Select **Save**.
+> 7. You can also add the following `# Step-by-step` section to the instructions:
+>
+>    ```text
+>    # Step-by-step
+>    1. Receive the customer's repair request.
+>       - Goal: Understand the customer's repair requirements.
+>       - Action: Collect the necessary claim and damage details.
+>       - Transition: Proceed to estimate review.
+>
+>    2. Review the repair estimate.
+>       - Goal: Verify the estimate details.
+>       - Action: Compare the proposed repair costs with standard cost guidelines.
+>       - Transition: Identify any discrepancies or missing information.
+>
+>    3. Validate the claim information.
+>       - Goal: Ensure the submitted information is complete and accurate.
+>       - Action: Check the claim documents and damage assessment details.
+>       - Transition: Proceed with the repair estimate decision.
+>    ```
+>
+> 8. Select **Save**.
 
 ## Exercise 6 - Test the agent
 
