@@ -79,6 +79,9 @@ You can organize the folders and files according to your implementation.
 
 </details>
 
+> [!TIP]
+> `agenticuser99` and `agenticuserx` are examples only. Replace `x` with your assigned number and use your assigned folder name (`agenticuserx`).
+
 ### Folder Guidelines
 
 <details>
