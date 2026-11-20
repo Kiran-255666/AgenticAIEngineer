@@ -1,1 +1,0 @@
-## Project files will be uploaded once the maximum number of participants have joined the session.
