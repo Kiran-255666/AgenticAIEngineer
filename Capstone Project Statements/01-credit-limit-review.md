@@ -63,10 +63,10 @@ Submit one ZIP file containing:
 <details>
 <summary><strong>View required folder structure</strong></summary>
 
-Create a folder using your assigned name, such as `agenticuser99`.
+Create a folder using your assigned name, such as `agenticuserx` **Replace x with your assigned number**
 
 ```text
-agenticuser99/
+agenticuserx/  (**Replace x with your assigned number**)
 ├── src/
 ├── data/
 ├── screenshots/
@@ -137,8 +137,8 @@ Use the variable names required by your application. Include placeholder values 
 1. Replace all actual values in `.env` with placeholders and save them in `.env.example` if you haven't done.
 2. Delete the original `.env` file and virtual environment directories (`venv`, `.venv`).
 3. Ensure your entire working project folder contains all required source code, data, screenshots, documentation, and presentation files.
-4. Compress your entire working project folder into a ZIP file, keeping your assigned project folder (e.g., `agenticuser99`) as the root folder inside the ZIP.
-5. Name the ZIP file after your assigned folder (e.g., `agenticuser99.zip`).
+4. Compress your entire working project folder into a ZIP file, keeping your assigned project folder (e.g., `agenticuserx`) as the root folder inside the ZIP. **Replace x with your assigned number**
+5. Name the ZIP file after your assigned folder (e.g., `agenticuserx.zip`). **Replace x with your assigned number**
 6. Upload the ZIP file to the provided submission link.
 
 ### Optional Video Demonstration
