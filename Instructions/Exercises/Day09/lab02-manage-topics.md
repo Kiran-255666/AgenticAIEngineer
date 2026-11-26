@@ -348,7 +348,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
    `What date and time would you like to book the repair estimate?`
 
-1. Select **Date and time** for **Identify**. If you have difficulty finding it, use the **search box** in the **brackets** to search for it.
+1. Click **Identify** and use the search box to find **Date and time**, then select it.
 
    ![Screenshot of Date and Time.](../../media/DateandTime.png)
 
