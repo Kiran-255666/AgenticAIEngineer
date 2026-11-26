@@ -276,7 +276,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 1. Select **+ Add a topic** and select **From blank**.
 
-1. Select the **Details** icon to open the **Topic details** pane (you may need to select **More** \> **Details**).
+1. Select the **Details** icon to open the **Topic details** pane. If you don't see it, select **More > Details**.
 
 1. In the **Name** field, enter the following text:
 
