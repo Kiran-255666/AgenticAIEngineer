@@ -243,9 +243,9 @@ In addition to modifying existing nodes, you can use Copilot to add new ones.
 
 6. The existing question node is updated to a multiple choice question with **Yes** and **No** options.
 
-   ![Screenshot of the updated question node with Yes and No options.](../../media/new-question-node.png)
-
 7. Under **Save user response as**, select **Var1**. You will see the **Variable name** field. Replace `Var1` with `DetailsCorrect`.
+
+   ![Screenshot of the updated question node with Yes and No options.](../../media/new-question-node.png)
    
 8. Select **Save**.
 
