@@ -238,15 +238,15 @@ In addition to modifying existing nodes, you can use Copilot to add new ones.
 4. In the **What do you want to do?** field, enter the following text:
 
    `Update the existing basic question node with the message "Are these details correct?" Change its response type to "Multiple choice options" and add two options: "Yes" and "No". Do not create a new question node or duplicate any existing nodes.`
-
-5. Under **Save user response as**, select **Var1**. You will see the **Variable name** field. Replace `Var1` with `DetailsCorrect`.
    
-6. Select **Update**.
+5. Select **Update**.
 
-7. The existing question node is updated to a multiple choice question with **Yes** and **No** options.
+6. The existing question node is updated to a multiple choice question with **Yes** and **No** options.
 
    ![Screenshot of the updated question node with Yes and No options.](../../media/new-question-node.png)
 
+7. Under **Save user response as**, select **Var1**. You will see the **Variable name** field. Replace `Var1` with `DetailsCorrect`.
+   
 8. Select **Save**.
 
 ## Exercise 4 - Variable scope
