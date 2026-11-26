@@ -259,7 +259,7 @@ Enable variables to be accessed by other topics.
 
 1. Select **Variables** in the top bar to open the **Variables** pane.
 
-1. Select and expand **Topic** variables.
+1. Select **Topic (3)** to expand it.
 
 1. Select the right-hand check boxes for the three topic variables. This makes the variables available across other topics in the agent.
 
