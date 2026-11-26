@@ -368,59 +368,47 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 1. Select **Save**.
 
-### Task 5.7 - Update agent instructions
+### Task 5.7 - Update Agent Instructions
 
 1. Select the **Overview** tab.
+2. Under **Instructions**, check whether the `# Skills` section is already present.
+3. If the section is missing, add the following instructions:
 
-1. In the **Instructions** section, select **Edit**.
+   ```text
+   # Skills
+   - Analyze claim documents for completeness and accuracy.
+   - Compare repair estimates with standard cost guidelines.
+   - Identify missing or inconsistent information in damage assessments.
+   ```
 
-1. Under *# Skills* in the agent instructions, enter `- Use the`, then type `/` and select the **Estimate Repair** topic, then enter `when a repair estimate is required.`
+4. On a new line under the existing skills, enter `- Use the`.
+5. Type `/` and select the **Estimate Repair** topic from the suggestions.
 
    ![Screenshot of referencing the topic in the agent instructions.](../../media/add-topic-to-instructions.png)
 
-1. Select **Save**.
+6. After selecting the topic, enter `when a repair estimate is required.`
 
-> [!TIP]
-> **Skills Section missing? Configure the Skills Section**
->
-> 1. Under **Instructions**, check whether the `# Skills` section is already present.
-> 2. If the `# Skills` section is missing, add it before proceeding.
-> 3. Under `# Skills`, add the following entries:
->
->    ```text
->    # Skills
->    - Analyze claim documents for completeness and accuracy.
->    - Compare repair estimates with standard cost guidelines.
->    - Identify missing or inconsistent information in damage assessments.
->    ```
->
-> 4. On a new line under the existing skills, enter `- Use the`.
-> 5. Type `/` and select the **Estimate Repair** topic from the suggestions.
-> 6. After selecting the topic, enter `when a repair estimate is required.`
->
-> **Troubleshooting:** If the **Estimate Repair** topic does not appear in the suggestions, verify that it has been created and is available in the agent. If it is missing, create the topic first and repeat steps 4–6.
->
-> 7. You can also add the following `# Step-by-step` section to the instructions:
->
->    ```text
->    # Step-by-step
->    1. Receive the customer's repair request.
->       - Goal: Understand the customer's repair requirements.
->       - Action: Collect the necessary claim and damage details.
->       - Transition: Proceed to estimate review.
->
->    2. Review the repair estimate.
->       - Goal: Verify the estimate details.
->       - Action: Compare the proposed repair costs with standard cost guidelines.
->       - Transition: Identify any discrepancies or missing information.
->
->    3. Validate the claim information.
->       - Goal: Ensure the submitted information is complete and accurate.
->       - Action: Check the claim documents and damage assessment details.
->       - Transition: Proceed with the repair estimate decision.
->    ```
->
-> 8. Select **Save**.
+7. Add the following `# Step-by-step` section to the instructions:
+
+   ```text
+   # Step-by-step
+   1. Receive the customer's repair request.
+      - Goal: Understand the customer's repair requirements.
+      - Action: Collect the necessary claim and damage details.
+      - Transition: Proceed to estimate review.
+
+   2. Review the repair estimate.
+      - Goal: Verify the estimate details.
+      - Action: Compare the proposed repair costs with standard cost guidelines.
+      - Transition: Identify any discrepancies or missing information.
+
+   3. Validate the claim information.
+      - Goal: Ensure the submitted information is complete and accurate.
+      - Action: Check the claim documents and damage assessment details.
+      - Transition: Proceed with the repair estimate decision.
+   ```
+
+8. Select **Save**.
 
 ## Exercise 6 - Test the agent
 
