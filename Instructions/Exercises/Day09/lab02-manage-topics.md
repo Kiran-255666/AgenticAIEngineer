@@ -148,7 +148,7 @@ In this exercise, you will use Copilot to create a topic from a description. Thi
 
    ![Screenshot of the Edit with Copilot icon.](../../media/edit-with-copilot.png)
 
-1. Select the second **Question** node **What is your email address?**
+1. Scroll down a little and select the second **Question** node, **What is your email address?**
 
    ![Screenshot of the Edit with Copilot icon.](../../media/copilot-email-address-node.png)
 
@@ -177,9 +177,7 @@ In addition to modifying existing nodes, you can use Copilot to add new ones.
 
    `Summarize the information collected in an adaptive card`
 
-1. Select **Update**.
-
-   A message node with an Adaptive Card is added to the end of the topic.
+1. Select **Update**. A message node with an Adaptive Card is added to the end of the topic and you can find it at the bottom.
 
    ![Screenshot of the message node with an Adaptive Card.](../../media/message-node-adaptive-card.png)
 
@@ -221,6 +219,8 @@ In addition to modifying existing nodes, you can use Copilot to add new ones.
        ]
    }
    ```
+
+1. Click **Save**
 
 ### Task 3.4 – Add a question node using natural language
 
