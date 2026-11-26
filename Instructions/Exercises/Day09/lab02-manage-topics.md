@@ -142,6 +142,9 @@ In this exercise, you will use Copilot to create a topic from a description. Thi
 
 ### Task 3.2 – Edit nodes using natural language
 
+> [!TIP]
+> **For the upcoming tasks** You will be working on this canvas, and scrolling down to find and select nodes may become difficult. Use the **Hand tool** at the bottom-left, just below the **Selection tool**, to move around the canvas easily. It will make navigation much easier.
+
 1. If the **Test your agent** panel is open, close the panel.
 
 1. If the **Edit with Copilot** panel is not shown on the right side of the **Customer Details** pane, select the **Copilot** icon in the upper part of the authoring canvas.
