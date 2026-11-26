@@ -253,10 +253,9 @@ Enable variables to be accessed by other topics.
 
 ### Task 4.1 - Configure the scope of the variables
 
-1. Select the **Topics** tab.
-
-1. Select the **Customer Details** topic. If multiple **Customer Details** topics are listed, select the one with the most recent **Last modified** time.
-
+> [!TIP]
+> If you have left the **Topics** tab, select it again. Open the **Customer Details** topic. If multiple topics with the same name appear, select the one with the most recent **Last modified** time.
+   
 1. Select **Variables{X}** in the top bar to open the **Variables** pane.
 
 1. Select **Topic (3)** to expand it.
