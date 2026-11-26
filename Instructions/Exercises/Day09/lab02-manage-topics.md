@@ -301,7 +301,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 ### Task 5.3 - Add a message node
 
-1. Select the **+** icon under the Trigger node and select **Send a message**.
+1. Select the **+ icon** under the Trigger node and select **Send a message**.
 
    ![Screenshot of adding a node.](../../media/add-message-node.png)
 
@@ -313,7 +313,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 ### Task 5.4 - Route to the Customer Details topic
 
-1. Select the **+** icon under the **Message** node
+1. Select the **+ icon** under the **Message** node
 
 1. Select **Topic management** > **Go to another topic** > **Customer Details**.
 
@@ -326,7 +326,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 ### Task 5.5 - Add condition node
 
-1. Select the **+** icon under the **Topic** node and select **Add a condition**.
+1. Select the **+ icon** under the **Topic** node and select **Add a condition**.
 
 1. In the **Condition** node, select the **Select a variable >** then  choose **DetailsCorrect** variable.
 
@@ -340,7 +340,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
 ### Task 5.6 - Add question nodes
 
-1. Select the **+** icon under the left **Condition** node and select **Ask a question**.
+1. Select the **+ icon** under the left **Condition** node and select **Ask a question**.
 
 1. In the **Enter a message** field, enter the following text:
 
@@ -354,7 +354,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
    ![Screenshot of Var Name.](../../media/VarName.png)
 
-1. Select the **+** icon under the left **Question** node and select **Send a message**.
+1. Select the **+ icon** under the left **Question** node and select **Send a message**.
 
 1. In the **Enter a message** field, enter the following text:
 
