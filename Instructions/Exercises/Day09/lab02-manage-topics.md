@@ -227,21 +227,25 @@ In addition to modifying existing nodes, you can use Copilot to add new ones.
 
 ### Task 3.4 – Add a question node using natural language
 
-1. Make sure that no node is selected by selecting the empty space in the authoring canvas.
+1. Below the Summary card, select the **+ (Add node)** icon, then select **Ask a question**.
 
-1. Select the **Copilot** icon to reopen the **Edit with Copilot** pane.
+2. In the question node, enter the following message:
 
-1. In the **What do you want to do?** field, enter the following text:
+   `Are these details correct?`
 
-   `Add a new multiple choice question to prompt the user if the details are correct with two options Yes or No`
+3. If the **Copilot** pane is closed, select the **Copilot** icon again to reopen the **Edit with Copilot** pane.
 
-1. Select **Update**.
+4. In the **What do you want to do?** field, enter the following text:
 
-1. A new question node is added to the end of the topic with options for the user to select.
+   `Update the existing basic question node with the message "Are these details correct?" Change its response type to "Multiple choice options" and add two options: "Yes" and "No". Do not create a new question node or duplicate any existing nodes.`
 
-   ![Screenshot of the new question node with yes and no options.](../../media/new-question-node.png)
+5. Select **Update**.
 
-1. Select **Save**.
+6. The existing question node is updated to a multiple choice question with **Yes** and **No** options.
+
+   ![Screenshot of the updated question node with Yes and No options.](../../media/new-question-node.png)
+
+7. Select **Save**.
 
 ## Exercise 4 - Variable scope
 
