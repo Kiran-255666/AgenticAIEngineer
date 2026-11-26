@@ -352,7 +352,7 @@ In this exercise, you will create the **Estimate Repair** topic, add nodes, and 
 
    ![Screenshot of Date and Time.](../../media/DateandTime.png)
 
-1. Select the **Var1** in **Save user response as** and replace **Var1** by **`VisitDateTime`** 
+1. Select the **Var1** in **Save user response as** and replace **Var1** by **`VisitDateTime`** inside **Variable properties** panel
 
    ![Screenshot of Var Name.](../../media/VarName.png)
 
