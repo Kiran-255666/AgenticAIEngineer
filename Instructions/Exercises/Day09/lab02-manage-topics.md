@@ -257,7 +257,7 @@ Enable variables to be accessed by other topics.
 
 1. Select the **Customer Details** topic. If multiple **Customer Details** topics are listed, select the one with the most recent **Last modified** time.
 
-1. Select **Variables** in the top bar to open the **Variables** pane.
+1. Select **Variables{X}** in the top bar to open the **Variables** pane.
 
 1. Select **Topic (3)** to expand it.
 
